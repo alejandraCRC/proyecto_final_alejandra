@@ -1,0 +1,197 @@
+{
+  "nav": {
+    "home": "Home",
+    "libros": "Books",
+    "clubs_y_usuarios": "Clubs and users",
+    "tu_perfil": "Your profile",
+    "ajustes": "Settings",
+    "cerrar_sesion": "Sign out"
+  },
+  
+  "error_404": {
+    "titulo": "Error 404",
+    "mensaje": "The page you are looking for could not be found",
+    "boton": "Go to the homepage"
+  },
+
+  "comentario": {
+    "placeholder": "Write your comment here...",
+    "cancelar": "Cancel",
+    "comentar": "Comment"
+  },
+
+  "buscador": {
+    "titulo": "User and Club Search",
+    "placeholder": "Search users or clubs...",
+    "resultados_clubs": "Club Results",
+    "no_clubs": "No clubs found.",
+    "resultados_usuarios": "User Results",
+    "no_usuarios": "No users found."
+  },
+
+  "club": {
+    "editar_perfil": "Edit profile",
+    "solicitar_unirse": "Request to join",
+    "dejar_club": "Leave club",
+    "eliminar_club": "Delete club",
+    "lectura_actual": "Current reading",
+    "no_lectura": "No current reading at the moment",
+    "finalizar_lectura": "End reading",
+    "lectura_leido": "Read",
+    "establecer_lectura": "Set reading",
+    "del": "From",
+    "a": "to",
+    "publicaciones": "Posts",
+    "publicar": "Post",
+    "comentar": "Comment",
+    "ver_comentarios": "View comments",
+    "ocultar_comentarios": "Hide comments",
+    "no_comentarios": "No comments yet.",
+    "no_publicaciones": "No posts.",
+    "anterior": "Previous",
+    "siguiente": "Next",
+    "alert_seguro_eliminar": "Are you sure?",
+    "alert_texto_eliminar": "This action will permanently delete the club",
+    "eliminado": "Deleted",
+    "eliminado_texto": "The club has been successfully deleted",
+    "titulo_error": "Error",
+    "texto_error": "The club could not be deleted",
+    "pregunta_guardar_libro": "Mark as read?",
+    "pregunta_guardar_libro_texto": "Do you want to mark this book as read?"
+
+  },
+
+  "lectura": {
+    "titulo": "Select the current reading for the club",
+    "elige_fecha": "Choose when it will end:",
+    "elige_libro": "Choose the book to read:",
+    "libro_seleccionado": "Selected book:",
+    "guardar_cambios": "Save changes",
+    "error_titulo": "Oops...",
+    "error_texto": "Please select a valid book and date."
+  },
+
+"formClub": {
+  "editar_club": "Edit Club",
+  "crear_club": "Create Club",
+  "nombre": "Name",
+  "descripcion": "Description",
+  "guardar_cambios": "Save Changes",
+  "alert_actualizado_exito": "Club successfully updated",
+  "alert_actualizado_error": "Error updating the club",
+  "alert_creado_exito": "Club successfully created",
+  "alert_creado_error": "Error creating the club"
+
+},
+
+"publicacion": {
+    "nueva_publicación": "New Post",
+    "cancelar": "Cancel",
+    "guardar": "Save",
+    "placeholder_titulo": "Title",
+    "placeholder_contenido": "Write your post here..."
+  },
+
+  "home": {
+    "crear_club": "Create Club",
+    "no_clubs": "You are not following any club yet.",
+    "creado_por": "Created by:",
+    "publicaciones": "No posts or reviews yet.",
+    "reseña_de": "Review by:",
+    "por": "by",
+    "quiero_leer": "Want to Read",
+    "no_quiero_leer": "No books saved in this list.",
+    "leyendo": "Reading",
+    "no_leyendo": "No books saved in this list.",
+    "leidos": "Read",
+    "no_leidos": "No books saved in this list."
+},
+
+"buscarLibros": {
+  "titulo": "Book Search",
+  "placeholder_libros": "Buscar libros...",
+  "No_encontraron_libros": "No se encontraron libros."
+},
+
+"libro": {
+  "autores": "Author(s):",
+  "descripcion": "Description:",
+  "fecha_publicacion": "Published date:",
+  "editorial": "Publisher:",
+  "select_estado": "Add book",
+  "estado_quiero_leer": "Want to read",
+  "estado_leyendo": "Reading",
+  "estado_leido": "Read",
+  "guardar_libro": "Save book",
+  "titulo_resenias": "Reviews",
+  "sin_resenias": "There are no reviews for this book.",
+  "eliminar_libro_warning_titulo": "Delete this book?",
+  "eliminar_libro_warning_texto": "This action cannot be undone",
+  "eliminado_libro": "Deleted",
+  "eliminado_libro_texto": "The book has been successfully deleted",
+  "error_eliminar_libro_titulo": "Error",
+  "error_eliminar_libro_texto": "The book could not be deleted"
+},
+
+"resenia": {
+  "placeholder": "Write your review here...",
+  "guardar": "Save",
+  "cancelar": "Cancel"
+},
+
+"editarPerfil": {
+  "titulo": "Edit Profile",
+  "avatar_alt": "Avatar",
+  "nombre": "Name",
+  "email": "Email",
+  "bio": "Biography",
+  "guardar_cambios": "Save changes"
+},
+
+"listaUsuarios": {
+  "titulo": "List of",
+  "avatar_alt": "Avatar",
+  "ver_perfil": "View profile",
+  "sin_usuarios": "No",
+  "para_mostrar": "to show."
+},
+
+"perfil": {
+    "imagen_perfil_alt": "Profile picture",
+    "seguidos": "Following",
+    "seguidores": "Followers",
+    "editar_perfil": "Edit profile",
+    "dejar_seguir": "Unfollow",
+    "seguir": "Follow",
+     "quiero_leer": "Want to read",
+    "leyendo": "Reading",
+    "leidos": "Read",
+    "no_hay_lista": "No books saved in this list.",
+    "perfil_actualizado_exito": "Profile successfully updated",
+    "perfil_actualizado_error": "Error updating the profile"
+  },
+
+  "login":{
+    "email": "Email",
+    "password": "Password",
+    "dato_requerido": "Required",
+    "no_cuenta": "If you don't have an account",
+    "registrate": "Register here.",
+     "error_titulo": "Error",
+    "error_texto": "Login failed. Incorrect email or password."
+  },
+
+  "register": {
+    "bienvenido_a": "Welcome to",
+    "nombre_usuario": "Username",
+    "repita_password": "Repeat password",
+    "password_no_iguales": "Passwords do not match",
+    "acepta_condiciones": "I accept the terms and conditions",
+    "registrarse": "Register",
+    "nombre_usuario_formato_incorrecto": "Must be a maximum of 30 characters",
+    "email_formato_incorrecto": "Invalid email format",
+    "password_formato_incorrecto": "Password must be between 8 and 20 characters"
+  }
+
+  
+}

@@ -1,0 +1,285 @@
+<div class="bg-[#FAF0E6] w-full">
+  <!-- tarjeta con datos del club y boton de unirse -->
+  <div
+    class="bg-white shadow-lg rounded-lg p-6 border border-gray-200 mb-6 flex justify-between"
+  >
+    <!-- parte izquierda  -->
+    <div>
+      <!-- datos del club  -->
+      <h1
+        class="text-3xl font-extrabold text-gray-800 mb-2 border-b-4 border-yellow-400 inline-block pb-1"
+      >
+        {{ club?.nombre }}
+      </h1>
+      <p class="text-gray-600 text-lg mb-1">
+        {{ club?.descripcion }}
+      </p>
+      <small class="text-gray-500 italic">
+        Creado por:
+        <span class="font-medium text-gray-700">{{ creador?.nombre }}</span> ·
+        {{ club?.fecha_creacion | formatoFecha }}
+      </small>
+      <div class="flex justify-end">
+        <!-- boton para editar club  -->
+        @if(usuarioEsAdministrador){
+        <button
+          (click)="editarClub()"
+          class="mt-4 bg-[#F2A71B] text-sm text-white px-2 py-1 rounded hover:bg-[#C98914] transition-colors"
+        >
+          {{ "club.editar_perfil" | translate }} <i class="fas fa-pen"></i>
+        </button>
+        }@else{
+        <!-- boton para unirse o dejar el club  -->
+        @if(!usuarioEsMiembro ){
+        <button
+          (click)="unirseClub()"
+          class="mt-4 bg-[#F2A71B] text-sm text-white px-2 py-1 rounded hover:bg-[#C98914] transition-colors"
+        >
+          {{ "club.solicitar_unirse" | translate }}
+          <i class="fas fa-user-plus"></i>
+        </button>
+        }@else {
+        <button
+          (click)="dejarClub()"
+          class="mt-4 bg-red-500 text-sm text-white px-2 py-1 rounded hover:bg-red-600 transition-colors"
+        >
+          {{ "club.dejar_club" | translate }} <i class="fas fa-user-minus"></i>
+        </button>
+        } }
+      </div>
+    </div>
+    <!-- parte derecha  -->
+    <div>
+      <!-- lectura actual  -->
+      <div
+        class="flex flex-col text-center justify-center rounded bg-[#FAF0E6] px-5 py-2"
+      >
+        <h3 class="font-bold">{{ "club.lectura_actual" | translate }}</h3>
+        @if(!lecturaActual ){ @if(usuarioEsAdministrador){
+        <button
+          (click)="crearLecturaActual()"
+          class="mt-4 bg-red-500 text-sm text-white px-2 py-1 rounded hover:bg-red-600 transition-colors"
+        >
+          {{ "club.establecer_lectura" | translate }}
+          <i class="fas fa-book"></i>
+        </button>
+        }@else {
+        <p>{{ "club.no_lectura" | translate }}</p>
+        } }@else { @if (libro.volumeInfo.imageLinks.smallThumbnail) {
+        <div class="flex justify-center mt-2">
+          <img
+            [src]="libro.volumeInfo.imageLinks.smallThumbnail"
+            alt="{{ libro.volumeInfo.title }}"
+            class="w-24 h-auto rounded border"
+          />
+        </div>
+        }
+        <p class="text-xs">
+          {{ "club.del" | translate }}
+          <i class="text-gray-500">{{
+            lecturaActual.fecha_inicio | formatoFecha
+          }}</i>
+          {{ "club.a" | translate }}
+          <i class="text-gray-500">{{
+            lecturaActual.fecha_fin | formatoFecha
+          }}</i>
+        </p>
+        }@if(lecturaActual){ @if(usuarioEsAdministrador ){
+        <button
+          (click)="finalizarLecturaActual()"
+          class="mt-4 bg-red-500 text-sm text-white px-2 py-1 rounded hover:bg-red-600 transition-colors"
+        >
+          {{ "club.finalizar_lectura" | translate }}
+          <i class="fas fa-book"></i>
+        </button>
+        }@else{
+        <button
+          (click)="marcarComoLeido()"
+          class="mt-4 bg-red-500 text-sm text-white px-2 py-1 rounded hover:bg-red-600 transition-colors items-center"
+        >
+          @if(leido_lecturaActual){
+            <i class="fas fa-check-circle"></i>
+          }@else {
+            <i class="fas fa-circle"></i>
+          }
+          {{ "club.lectura_leido" | translate }}
+          <!-- ícono de check redondo -->
+        </button>
+        }
+      }
+      </div>
+      <div class="flex justify-end">
+        @if(usuarioEsAdministrador){
+        <button
+          (click)="eliminarClub()"
+          class="mt-4 bg-red-500 text-sm text-white px-2 py-1 rounded hover:bg-red-600 transition-colors"
+        >
+          {{ "club.eliminar_club" | translate }} <i class="fas fa-trash"></i>
+        </button>
+        }
+      </div>
+      <!-- miembros del club  -->
+      <div></div>
+    </div>
+  </div>
+
+  <!-- publicaciones -->
+  <div class="publicaciones mt-6 p-5">
+    <h3 class="text-xl font-bold text-gray-800">
+      {{ "club.publicaciones" | translate }}
+    </h3>
+    <div class="flex justify-end items-center">
+      <!-- solo pueden hacer publicaciones los miembros del club  -->
+      @if(usuarioEsMiembro){
+      <button
+        (click)="mostrarModalPublicacion = true"
+        class="bg-[#F2A71B] my-3 p-1 px-3 cursor-pointer text-white border-t-[7px] border-t-[#FFD666] border-l-[7px] border-l-[#F2A71B] border border-b-[7px] border-b-[#C98914] border-r-[7px] border-r-[#C98914] rounded"
+      >
+        {{ "club.publicar" | translate }}
+      </button>
+      }
+      <!-- Modal de publicacion -->
+      @if (mostrarModalPublicacion) {
+      <app-publicacion-modal
+        (cerrarModal)="cerrarModalPublicacion()"
+        (guardarPublicacion)="
+          recibirPublicacion($event.titulo, $event.contenido)
+        "
+      ></app-publicacion-modal>
+      }
+    </div>
+    <!-- listado de publicaciones del club  -->
+
+    @if(publicaciones.length > 0) {
+    <ul class="space-y-4">
+      @for(publicacion of publicacionesPaginadas; track $index) {
+      <li class="bg-white shadow-md rounded-lg p-4 border border-gray-200">
+        <div class="flex justify-between items-center mb-2">
+          <span
+            class="text-lg text-gray-600 font-medium pointer"
+            (click)="redirigirPerfil(publicacion.id_usuario)"
+          >
+            {{ publicacion.titulo }}
+          </span>
+          <span
+            class="font-semibold"
+            (click)="redirigirPerfil(publicacion.id_usuario)"
+          >
+            {{ publicacion.nombre }}</span
+          >
+        </div>
+        <div class="flex justify-between items-center mb-2">
+          <p class="text-gray-700 text-sm leading-snug">
+            {{ publicacion.contenido }}
+          </p>
+          <small class="text-gray-700">{{
+            publicacion.fecha_publicacion | formatoFecha
+          }}</small>
+        </div>
+        <!-- boton para dejar un comentario -->
+        <div class="flex flex-col justify-end items-start">
+          <!-- solo pueden comentar los miembros del club  -->
+          @if(usuarioEsMiembro){
+          <button
+            (click)="abrirModalComentario(publicacion)"
+            class="text-sm text-blue-600 hover:underline mt-2"
+          >
+            {{ "club.comentar" | translate }}
+          </button>
+          }
+          <!-- Modal de añadir comentario de publicacion -->
+          @if (publicacionSeleccionada?.id_publicacion ===
+          publicacion.id_publicacion) {
+          <app-addComentarioPublicacion-modal
+            (cerrarModalComentario)="cerrarModalComentarioPublicacion()"
+            (guardarComentarioPublicacion)="
+              recibirComentarioPublicacion(
+                $event.contenido,
+                publicacionSeleccionada.id_publicacion
+              )
+            "
+          ></app-addComentarioPublicacion-modal>
+          }
+        </div>
+        <!-- listado de comentarios de la publicacion -->
+        <!-- botón para mostrar/ocultar comentarios -->
+        @if(publicacion.comentarios?.length > 0) {
+        <button
+          class="text-sm text-blue-600 hover:underline mt-2"
+          (click)="
+            publicacion.mostrarComentarios = !publicacion.mostrarComentarios
+          "
+        >
+          <!-- cambia el texto segun si se muestran o no los comentarios -->
+          {{
+            publicacion.mostrarComentarios
+              ? "Ocultar comentarios"
+              : "Ver comentarios"
+          }}
+        </button>
+        }
+        <!-- comentarios de la publicación -->
+        @if(publicacion.mostrarComentarios){
+        <div class="mt-4 pl-4 border-l-2 border-yellow-300 space-y-2">
+          <div>
+            @for(comentario of publicacion.comentarios; track $index) {
+            <div>
+              <p class="text-sm text-gray-700">
+                <span class="font-semibold text-gray-800">{{
+                  comentario.nombre
+                }}</span
+                >: {{ comentario.contenido }}
+              </p>
+              <small class="text-gray-400 italic">{{
+                comentario.fecha_comentario | formatoFecha
+              }}</small>
+            </div>
+            }
+          </div>
+          <ng-template #sinComentarios>
+            <p class="text-gray-400 italic">
+              {{ "club.no_comentarios" | translate }}
+            </p>
+          </ng-template>
+        </div>
+        }
+      </li>
+      }
+    </ul>
+    } @else {
+    <p class="text-gray-500 italic">
+      {{ "club.no_publicaciones" | translate }}
+    </p>
+    }
+    <div class="flex justify-center mt-4 space-x-2">
+      <button
+        class="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400"
+        [disabled]="paginaActual === 1"
+        (click)="cambiarPagina(paginaActual - 1)"
+      >
+        {{ "club.anterior" | translate }}
+      </button>
+
+      @for ( i of [].constructor(totalPaginas); track $index) {
+      <button
+        class="px-3 py-1 rounded"
+        [ngClass]="{
+          'bg-[#F2A71B] text-white': paginaActual === $index + 1,
+          'bg-[#FCD26E]': paginaActual !== $index + 1
+        }"
+        (click)="cambiarPagina($index + 1)"
+      >
+        {{ $index + 1 }}
+      </button>
+      }
+
+      <button
+        class="px-3 py-1 bg-[#FCD26E] rounded hover:bg-[#F2A71B]"
+        [disabled]="paginaActual === totalPaginas"
+        (click)="cambiarPagina(paginaActual + 1)"
+      >
+        {{ "club.siguiente" | translate }}
+      </button>
+    </div>
+  </div>
+</div>

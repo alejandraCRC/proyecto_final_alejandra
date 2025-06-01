@@ -1,0 +1,88 @@
+<div class="crear-club h-screen w-screen bg-[url('assets/imagenes/fondo.jpg')] bg-cover bg-center">
+  <div class="flex flex-col h-screen justify-center items-center">
+    <h1 class="text-xl font-bold bg-[#8C3535] text-center text-white rounded p-3">
+      {{ 'lectura.titulo' | translate }}
+    </h1>
+
+    <form
+      [formGroup]="formLectura"
+      autocomplete="off"
+      (ngSubmit)="guardarLectura()"
+      class="bg-[#FAF0E6]/70 rounded py-[40px] px-[70px] w-[50%]"
+    >
+      <!-- Fecha fin -->
+      <div class="mb-5">
+        <label for="fecha_fin" class="form-label">{{ 'lectura.elige_fecha' | translate }}</label><br />
+        <input
+          type="date"
+          id="fecha_fin"
+          formControlName="fecha_fin"
+          class="p-2 rounded bg-[#FAF0E6] w-full"
+        />
+        @if(formLectura.get('fecha_fin')?.invalid && formLectura.get('fecha_fin')?.touched){
+          <br />
+          <small class="text-red-600 italic">{{ 'login.dato_requerido' | translate }}</small>
+        }
+      </div>
+
+      <!-- Buscador -->
+      <div class="mb-5">
+        <label class="form-label">{{ 'lectura.elige_libro' | translate }}</label><br />
+        <input
+          type="text"
+          (input)="buscar($event)"
+          placeholder="Buscar libro..."
+          class="p-2 rounded bg-[#FAF0E6] w-full"
+        />
+      </div>
+
+      <!-- Lista de resultados -->
+      @if (aLibros.length > 0) {
+        <div class="max-w-2xl mx-auto mt-6 px-4 z-10">
+          <ul class="space-y-4">
+            @for (libro of aLibros; track $index) {
+              <li 
+                (click)="libroElegido(libro)"
+                class="bg-white p-4 rounded-lg shadow hover:shadow-md cursor-pointer transition-shadow"
+              >
+                <div>
+                  <h4 class="text-md font-semibold text-gray-800">
+                    {{ libro.volumeInfo.title }}
+                  </h4>
+                  <small>{{ libro.volumeInfo.authors?.join(", ") }}</small>
+                </div>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+
+      <!-- Libro seleccionado -->
+      @if(libroSeleccionado){
+        <div class="text-center m-2">
+          <p>{{ 'lectura.libro_seleccionado' | translate }} <b>{{ libroSeleccionado.volumeInfo.title }}</b></p>
+        </div>
+
+        @if (libroSeleccionado.volumeInfo.imageLinks.smallThumbnail) {
+          <div class="flex justify-center mt-2">
+            <img
+              [src]="libroSeleccionado.volumeInfo.imageLinks.smallThumbnail"
+              alt="{{ libroSeleccionado.volumeInfo.title }}"
+              class="w-24 h-auto rounded border"
+            />
+          </div>
+        }
+      }
+
+      <!-- Botón -->
+      <div class="flex justify-end">
+        <button
+          type="submit"
+          class="bg-[#A6175A] mt-5 p-1 px-3 cursor-pointer text-white border-t-[7px] border-t-[#C7387A] border-l-[7px] border-l-[#A6175A] border border-b-[7px] border-b-[#891248] border-r-[7px] border-r-[#891248] rounded"
+        >
+          {{ 'lectura.guardar_cambios' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

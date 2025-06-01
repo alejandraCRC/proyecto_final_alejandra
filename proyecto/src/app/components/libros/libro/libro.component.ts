@@ -1,0 +1,132 @@
+import { Component, inject } from '@angular/core';
+import { LibrosService } from '../../../services/libros.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LibrosUsuarioService } from '../../../services/libros-usuario.service';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ReseniaModalComponent } from '../resenia-modal/resenia-modal.component';
+import { ReseniasService } from '../../../services/resenias.service';
+import { Resenia } from '../../../models/resenia';
+import { EstrellasPipe } from '../../../pipes/estrellas.pipe';
+import { FormatoFechaPipe } from '../../../pipes/fecha.pipe';
+import { TranslateModule } from '@ngx-translate/core';
+
+@Component({
+  selector: 'app-libros.component',
+  imports: [CommonModule, FormsModule, ReseniaModalComponent, EstrellasPipe, FormatoFechaPipe, TranslateModule],
+  templateUrl: './libro.component.html',
+  styles: ``,
+})
+export class LibroComponent {
+  libro: any = null;
+  estadoSeleccionado: string = '';
+  mostrarModalResenia: boolean = false;
+  datos: { id_libro: string | null; fecha: Date; estado: any } | null = null;
+  resenias: Resenia[] = []; // Almacena las reseñas del libro
+
+  private ruta = inject(ActivatedRoute);
+  private router = inject(Router);
+  private servicioLibros = inject(LibrosService);
+  private servicioLibrosUsuario = inject(LibrosUsuarioService);
+  private servicioResenia = inject(ReseniasService);
+
+  ngOnInit(): void {
+    const idLibro = this.ruta.snapshot.paramMap.get('idLibro'); // Obtener el ID del libro desde la URL
+    if (idLibro) {
+      this.servicioLibros.obtenerLibroPorId(idLibro).subscribe((res: any) => {
+        this.libro = res; // Almacena los detalles del libro
+        console.log(this.libro); // Ver en consola los detalles del libro
+      });
+    }
+
+    this.reseniasDelLibro();
+  }
+  resenia = '';
+  calificacion: number = 0;
+
+  // Método para manejar el guardado de la reseña
+  recibirResenia(resenia: string, calificacion: number) {
+    const id_libro = this.ruta.snapshot.paramMap.get('idLibro');
+    if (!id_libro) return;
+
+    const nuevaResenia = {
+      id_libro,
+      resenia: resenia || '',
+      calificacion: calificacion || 0,
+      fecha: new Date(),
+    };
+
+    this.servicioResenia
+      .guardarResenia(
+        nuevaResenia.id_libro,
+        nuevaResenia.calificacion,
+        nuevaResenia.resenia,
+        nuevaResenia.fecha
+      )
+      .subscribe({
+        next: () => {
+          console.log('Reseña guardada');
+          this.guardarLibro(); // Llama al método para guardar el libro
+          this.cerrarModalResenia();
+        },
+        error: (err) => console.error('Error al guardar reseña:', err),
+      });
+  }
+
+  CambioDeEstado() {
+    //comprueba si el estado seleccionado es "leído" y muestra el modal de reseña
+    this.mostrarModalResenia = this.estadoSeleccionado === 'leido';
+  }
+  cerrarModalResenia() {
+    //controla el cierre del modal
+    this.mostrarModalResenia = false;
+  }
+
+  guardarLibro() {
+    this.datos = {
+      id_libro: this.ruta.snapshot.paramMap.get('idLibro'),
+      fecha: new Date(),
+      estado: this.estadoSeleccionado,
+    };
+    console.log('Datos a guardar:', this.datos),
+      this.servicioLibrosUsuario
+        .guardarLibroUsuario(
+          this.datos.id_libro ?? '',
+          this.datos.fecha,
+          this.datos.estado
+        )
+        .subscribe({
+          next: (respuesta) => {
+            console.log('libro guardado:', respuesta);
+            // podrías mostrar un mensaje, redirigir, etc.
+          },
+          error: (error) => {
+            console.error('Error al guardar libro:', error);
+            // aquí podrías mostrar un mensaje de error al usuario
+          },
+        });
+  }
+
+  reseniasDelLibro() {
+    const id_libro = this.ruta.snapshot.paramMap.get('idLibro');
+    if (id_libro) {
+      this.servicioResenia.getReseniasPorLibroId(id_libro).subscribe({
+        next: (data) => {
+          console.log(data); // Ver en consola la respuesta del servidor
+          this.resenias = data; //rellena el array de reseñas
+          this.resenias.sort(
+            (a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime()
+          ); // Ordenar por fecha
+        },
+        error: (error) => {
+          console.error('Error al obtener las reseñas:', error);
+        },
+      });
+    }
+  }
+
+  //Método para redirigir al perfil del usuario
+  redirigirPerfil(id: number) {
+    this.router.navigate(['/app/perfil', id]);  // Navegar a la ruta de detalle pasando el ID
+  }
+}

@@ -1,0 +1,95 @@
+@if(libro) {
+    <div class="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md space-y-4">
+      <h2 class="text-2xl font-bold text-gray-800">{{ libro.volumeInfo.title }}</h2>
+  
+      @if (libro.volumeInfo.imageLinks) {
+        <img
+          [src]="libro.volumeInfo.imageLinks.thumbnail"
+          alt="{{ libro.volumeInfo.title }}"
+          class="w-48 h-auto rounded border"
+        />
+      }
+  
+      <p class="text-gray-700">
+        <strong class="font-semibold">{{'libro.autores' | translate}}</strong> {{ libro.volumeInfo.authors?.join(', ') }}
+      </p>
+  
+      <p class="text-gray-700">
+        <strong class="font-semibold">{{'libro.descripcion' | translate}}</strong> {{ libro.volumeInfo.description }}
+      </p>
+  
+      <p class="text-gray-700">
+        <strong class="font-semibold">{{'libro.fecha_publicacion' | translate}}</strong> {{ libro.volumeInfo.publishedDate }}
+      </p>
+  
+      <p class="text-gray-700">
+        <strong class="font-semibold">{{'libro.editorial' | translate}}</strong> {{ libro.volumeInfo.publisher }}
+      </p>
+  
+        <!-- Selector de estado -->
+    <div>
+      <select
+        id="estado"
+        [(ngModel)]="estadoSeleccionado"
+        (change)="CambioDeEstado()"
+        class="block w-full max-w-xs p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+      >
+        <option value="" disabled selected>{{ 'libro.select_estado' | translate }}</option>
+        <option value="quiero leer">{{ 'libro.estado_quiero_leer' | translate }}</option>
+        <option value="leyendo">{{ 'libro.estado_leyendo' | translate }}</option>
+        <option value="leido">{{ 'libro.estado_leido' | translate }}</option>
+      </select>
+    </div>
+
+    <!-- Modal de reseña -->
+    @if (mostrarModalResenia) {
+      <app-resenia-modal
+        (cerrarModal)="cerrarModalResenia()"
+        (guardarResenia)="recibirResenia($event.resenia, $event.calificacion)"
+      ></app-resenia-modal>
+    }
+
+    <!-- Botón para guardar -->
+    <button
+      (click)="guardarLibro()"
+      class="bg-[#1B6CF2] mt-5 p-1 px-3 cursor-pointer text-white font-semibold
+      border-t-[7px] border-t-[#66A3FF]
+      border-l-[7px] border-l-[#1B6CF2]
+      border-b-[7px] border-b-[#1248A6]
+      border-r-[7px] border-r-[#1248A6]
+      rounded transition-all duration-300
+      hover:bg-[#1248A6]
+      hover:border-t-[#1B6CF2] hover:border-l-[#1248A6]
+      hover:border-b-[#66A3FF] hover:border-r-[#66A3FF]"
+    >
+      {{ 'libro.guardar_libro' | translate }}
+    </button>
+
+    <!-- Reseñas -->
+    <div class="resenias mt-6">
+      @if(resenias.length > 0) {
+        <h3 class="text-xl font-bold text-gray-800 mb-4">{{ 'libro.titulo_resenias' | translate }}</h3>
+        <ul class="space-y-4">
+          @for(resenia of resenias; track $index) {
+            <li class="bg-white shadow-md rounded-lg p-4 border border-gray-200">
+              <div class="flex justify-between items-center mb-2">
+                <span class="text-sm text-gray-600 font-medium pointer" (click)="redirigirPerfil(resenia.id_usuario)">
+                  {{ resenia.nombre }}
+                </span>
+                <span class="font-semibold" [innerHTML]='resenia.calificacion | estrellas'></span>
+              </div>
+              <div class="flex justify-between items-center mb-2">
+                <p class="text-gray-700 text-sm leading-snug">
+                  {{ resenia.resenia }}
+                </p>
+                <small class="text-gray-700">{{ resenia.fecha | formatoFecha }}</small>
+              </div>
+            </li>
+          }
+        </ul>
+      } @else {
+        <p class="text-gray-500 italic">{{ 'libro.sin_resenias' | translate }}</p>
+      }
+    </div>
+  </div>
+}

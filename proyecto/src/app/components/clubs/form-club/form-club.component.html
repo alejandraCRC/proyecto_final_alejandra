@@ -1,0 +1,62 @@
+<!-- contenedor principal  -->
+<div
+  class="crear-club h-screen w-screen bg-[url('assets/imagenes/fondo.jpg')] bg-cover bg-center"
+>
+  
+
+  <div class="flex flex-col h-screen justify-center items-center">
+    <h1
+    
+    class="text-xl font-bold bg-[#8C3535] text-center text-white rounded p-3"
+  >
+    {{ club?.id_club ? ('formClub.editar_club' | translate) : ('formClub.crear_club' | translate) }}
+  </h1>
+    <form
+      [formGroup]="formClub"
+      autocomplete="off"
+      (ngSubmit)="guardarCambios()"
+      class="bg-[#FAF0E6]/70 rounded py-[40px] px-[70px] w-[50%]"
+    >
+      <!-- Nombre del club -->
+      <div class="mb-5">
+        <label for="nombre" class="form-label">{{ 'formClub.nombre' | translate }}</label><br />
+        <input
+          type="text"
+          class="p-2 rounded bg-[#FAF0E6] w-full"
+          id="nombre"
+          formControlName="nombre"
+        />
+        @if(formClub.get('nombre')?.invalid && formClub.get('nombre')?.touched){
+          <br />
+          <small class="text-red-600 italic">{{ 'login.dato_requerido' | translate }}</small>
+        }
+      </div>
+
+      <!-- Descripción del club -->
+      <div class="mb-5">
+        <label for="descripcion" class="form-label">{{ 'formClub.descripcion' | translate }}</label><br />
+        <textarea
+          rows="3"
+          class="p-2 rounded bg-[#FAF0E6] w-full"
+          id="descripcion"
+          formControlName="descripcion"
+        ></textarea>
+        @if(formClub.get('descripcion')?.invalid && formClub.get('descripcion')?.touched){
+          <br />
+          <small class="text-red-600 italic">{{ 'login.dato_requerido' | translate }}</small>
+        }
+      </div>
+
+      <!-- Botón -->
+      <div class="flex justify-end">
+        <button
+          type="submit"
+          [disabled]="formClub.invalid"
+          class="bg-[#A6175A] mt-5 p-1 px-3 cursor-pointer text-white border-t-[7px] border-t-[#C7387A] border-l-[7px] border-l-[#A6175A] border border-b-[7px] border-b-[#891248] border-r-[7px] border-r-[#891248] rounded"
+        >
+          {{ 'formClub.guardar_cambios' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

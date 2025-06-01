@@ -1,0 +1,194 @@
+{
+  "nav": {
+    "home": "Inicio",
+    "libros": "Libros",
+    "clubs_y_usuarios": "Clubs y usuarios",
+    "tu_perfil": "Tu perfil",
+    "ajustes": "Configuración",
+    "cerrar_sesion": "Cerrar sesión"
+  },
+
+  "error_404": {
+    "title": "Error 404",
+    "message": "La página que estás buscando no se pudo encontrar",
+    "button": "Ir a la página de inicio"
+  },
+
+  "comentario": {
+    "placeholder": "Escribe tu comentario aquí...",
+    "cancelar": "Cancelar",
+    "comentar": "Comentar"
+  },
+
+  "buscador": {
+    "titulo": "Buscador de usuarios y clubs",
+    "placeholder": "Buscar usuarios o clubs...",
+    "resultados_clubs": "Resultados de Clubs",
+    "no_clubs": "No se encontraron clubs.",
+    "resultados_usuarios": "Resultados de Usuarios",
+    "no_usuarios": "No se encontraron usuarios."
+  },
+
+   "club": {
+    "editar_perfil": "Editar perfil",
+    "solicitar_unirse": "Solicitar unirse",
+    "dejar_club": "Dejar club",
+    "eliminar_club": "Eliminar club",
+    "lectura_actual": "Lectura actual",
+    "no_lectura": "No hay ninguna lectura actual por el momento",
+    "finalizar_lectura": "Finalizar lectura",
+    "lectura_leido": "Leído",
+    "establecer_lectura": "Establecer lectura",
+    "del": "De",
+    "a": "a",
+    "publicaciones": "Publicaciones",
+    "publicar": "Publicar",
+    "comentar": "Comentar",
+    "ver_comentarios": "Ver comentarios",
+    "ocultar_comentarios": "Ocultar comentarios",
+    "no_comentarios": "No hay comentarios aún.",
+    "no_publicaciones": "No hay publicaciones.",
+    "anterior": "Anterior",
+    "siguiente": "Siguiente",
+    "alert_seguro_eliminar": "¿Estás seguro?",
+    "alert_texto_eliminar": "Esta acción eliminará el club permanentemente",
+    "eliminado": "Eliminado",
+    "eliminado_texto": "El club ha sido eliminado correctamente",
+    "titulo_error": "Error",
+    "texto_error": "No se pudo eliminar el club",
+    "pregunta_guardar_libro": "¿Guardar como leído?",
+    "pregunta_guardar_libro_texto": "¿Deseas marcar este libro como leído?"
+  },
+
+  "lectura": {
+    "titulo": "Selecciona la lectura actual para el club",
+    "elige_fecha": "Elige cuando terminará:",
+    "elige_libro": "Elige el libro a leer:",
+    "libro_seleccionado": "Libro seleccionado:",
+    "guardar_cambios": "Guardar cambios",
+     "error_titulo": "Oops...",
+    "error_texto": "Selecciona un libro y una fecha válida."
+  },
+
+  "formClub": {
+    "editar_club": "Editar Club",
+    "crear_club": "Crear Club",
+    "nombre": "Nombre",
+    "descripcion": "Descripción",
+    "guardar_cambios": "Guardar Cambios",
+    "alert_actualizado_exito": "Club actualizado correctamente",
+    "alert_actualizado_error": "Error al actualizar el club",
+    "alert_creado_exito": "Club creado correctamente",
+    "alert_creado_error": "Error al crear el club"
+  },
+
+  "publicacion": {
+    "nueva_publicación": "Nueva Publicación",
+    "cancelar": "Cancelar",
+    "guardar": "Guardar",
+    "placeholder_titulo": "Título",
+    "placeholder_contenido": "Escribe tu publicación aquí..."
+  },
+
+  "home": {
+    "crear_club": "Crear Club",
+    "no_clubs": "Aún no sigues ningún club.",
+    "creado_por": "Creado por:",
+    "publicaciones": "No hay publicaciones ni reseñas aún.",
+    "reseña_de": "Reseña de:",
+    "por": "por",
+    "quiero_leer": "Quiero leer",
+    "no_quiero_leer": "No tienes libros guardados en esta lista.",
+    "leyendo": "Leyendo",
+    "no_leyendo": "No tienes libros guardados en esta lista.",
+    "leidos": "Leídos",
+    "no_leidos": "No tienes libros guardados en esta lista."
+  },
+  
+  "buscarLibros": {
+    "titulo": "Buscador de libros",
+    "placeholder_libros": "Search for books...",
+    "No_encontraron_libros": "No books found."
+},
+
+"libro": {
+  "autores": "Autor(es):",
+  "descripcion": "Descripción:",
+  "fecha_publicacion": "Fecha de publicación:",
+  "editorial": "Editorial:",
+  "select_estado": "Añadir libro",
+  "estado_quiero_leer": "Quiero leer",
+  "estado_leyendo": "Leyendo",
+  "estado_leido": "Leído",
+  "guardar_libro": "Guardar libro",
+  "titulo_resenias": "Reseñas",
+  "sin_resenias": "No hay reseñas para este libro.",
+  "eliminar_libro_warning_titulo": "¿Eliminar este libro?",
+  "eliminar_libro_warning_texto": "Esta acción no se puede deshacer",
+  "eliminado_libro": "Eliminado",
+  "eliminado_libro_texto": "El libro ha sido eliminado correctamente",
+  "error_eliminar_libro_titulo": "Error",
+  "error_eliminar_libro_texto": "No se pudo eliminar el libro"
+},
+
+"resenia": {
+  "placeholder": "Escribe tu reseña aquí...",
+  "guardar": "Guardar",
+  "cancelar": "Cancelar"
+},
+
+"editarPerfil": {
+  "titulo": "Editar Perfil",
+  "avatar_alt": "Avatar",
+  "nombre": "Nombre",
+  "email": "Email",
+  "bio": "Biografía",
+  "guardar_cambios": "Guardar cambios"
+},
+
+"listaUsuarios": {
+  "titulo": "Lista de",
+  "avatar_alt": "Avatar",
+  "ver_perfil": "Ver perfil",
+  "sin_usuarios": "No hay",
+  "para_mostrar": "para mostrar."
+},
+
+"perfil": {
+    "imagen_perfil_alt": "Imagen de perfil",
+    "seguidos": "Seguidos",
+    "seguidores": "Seguidores",
+    "editar_perfil": "Editar perfil",
+    "dejar_seguir": "Dejar de seguir",
+    "seguir": "Seguir",
+    "quiero_leer": "Quiero leer",
+    "leyendo": "Leyendo",
+    "leidos": "Leídos",
+    "no_hay_lista": "No tienes libros guardados en esta lista.",
+    "perfil_actualizado_exito": "Perfil actualizado correctamente",
+    "perfil_actualizado_error": "Error al actualizar el perfil"
+  },
+
+  "login":{
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "dato_requerido": "Dato requerido.",
+    "no_cuenta": "Si no tienes una cuenta",
+    "registrate": "Registrate aqui.",
+    "error_titulo": "Error",
+    "error_texto": "Error al iniciar sesión. Correo o contraseña incorrectos."
+  },
+  
+  "register":{
+    "bienvenido_a": "Bienvenido a",
+    "nombre_usuario": "Nombre de usuario",
+    "repita_password": "Repita la contraseña",
+    "password_no_iguales": "Las contraseñas no coinciden",
+    "acepta_condiciones": "Acepto las condiciones",
+    "registrarse": "Registrarse",
+    "nombre_usuario_formato_incorrecto": "Debe tener un máximo de 30 caracteres",
+    "email_formato_incorrecto":"Formato de correo electrónico incorrecto",
+    "password_formato_incorrecto": "La contraseña debe tener un mínimo de 8 caracteres y máximo 20"
+  }
+
+}

@@ -1,0 +1,45 @@
+<!-- fondo  -->
+<div
+  class="min-h-screen bg-[url('assets/imagenes/fondo.jpg')] bg-cover bg-center relative flex flex-col items-center justify-center"
+>
+  <!-- Capa oscura superpuesta -->
+  <div class="absolute inset-0 bg-black/40 z-0"></div>
+
+  <!-- Contenedor principal -->
+  <div class="relative z-10 bg-[#FAF0E6] w-[80%] rounded-3xl pt-6 pb-10 px-6">
+    <h1 class="text-xl font-semibold text-gray-800 mb-3 ml-3">
+      {{ 'buscarLibros.titulo' | translate }}
+    </h1>
+    <!-- contenedor del input  -->
+    <div class="max-w-2xl mx-auto mt-8 px-4 z-10">
+      <input
+        type="text"
+        (input)="buscar($event)"
+        placeholder="{{'buscarLibros.placeholder_libros' | translate}}"
+        class="w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+      />
+    </div>
+    <!-- Resultados -->
+    @if (aLibros.length > 0) {
+    <div class="max-w-2xl mx-auto mt-6 px-4 z-10">
+      <ul class="space-y-4">
+        @for (libro of aLibros; track $index) {
+        <li
+          (click)="redirigirLibro(libro.id)"
+          class="bg-white p-4 rounded-lg shadow hover:shadow-md cursor-pointer transition-shadow"
+        >
+          <div>
+            <h4 class="text-md font-semibold text-gray-800">
+              {{ libro.volumeInfo.title }}
+            </h4>
+            <small>
+              {{ libro.volumeInfo.authors?.join(", ") }}
+            </small>
+          </div>
+        </li>
+        }
+      </ul>
+    </div>
+    } 
+  </div>
+</div>

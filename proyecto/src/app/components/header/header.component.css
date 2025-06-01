@@ -1,0 +1,22 @@
+.menu-romboide {
+  transform: skewX(-20deg);
+  color: #f5f5dc;
+  padding: 0.5rem 1.25rem;
+  display: inline-block;
+  transition: all 0.3s ease;
+  border-left: 2px solid #a64545;
+}
+
+.menu-romboide span {
+  display: inline-block;
+  transform: skewX(20deg); /* deshace el skew interno */
+}
+
+.menu-romboide:hover {
+  background-color: #9d3e3e;
+}
+
+.menu-romboide.active {
+  border-color: #fcd26e;
+  background-color: #6e2c2c;
+}

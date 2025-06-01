@@ -1,0 +1,39 @@
+@if(tipoLista && listaUsuarios && listaUsuarios.length > 0){
+<div class="p-4">
+  <h2 class="text-xl font-bold mb-4 capitalize">
+    {{ 'listaUsuarios.titulo' | translate }} {{ tipoLista }}
+  </h2>
+
+  <ul class="space-y-3">
+    @for(usuario of listaUsuarios; track $index){
+    <li
+      class="flex items-center p-3 bg-white rounded shadow-sm hover:bg-gray-50 transition"
+    >
+      <img
+        [src]="usuario.avatar || 'assets/imagenes/usuario.jpg'"
+        alt="{{ 'listaUsuarios.avatar_alt' | translate }}"
+        class="w-12 h-12 rounded-full border mr-4"
+      />
+
+      <div class="flex-1">
+        <p class="font-medium text-gray-800">{{ usuario.nombre }}</p>
+        <p class="text-sm text-gray-500">{{ usuario.email }}</p>
+      </div>
+
+      <!-- Opcional: Botón de seguir o dejar de seguir -->
+      <button
+        class="ml-auto text-sm px-3 py-1 rounded border hover:bg-blue-100 text-blue-600 border-blue-600"
+      >
+        {{ 'listaUsuarios.ver_perfil' | translate }}
+      </button>
+    </li>
+    }
+  </ul>
+</div>
+}
+<!-- Sin usuarios -->
+@if(tipoLista && listaUsuarios.length === 0){
+<div class="text-center py-6 text-gray-500">
+  {{ 'listaUsuarios.sin_usuarios' | translate }} {{ tipoLista }} {{ 'listaUsuarios.para_mostrar' | translate }}
+</div>
+}
