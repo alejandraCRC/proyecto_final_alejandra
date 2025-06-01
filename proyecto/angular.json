@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ejemplosAngular": {
+    "page2page": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ejemplos-angular",
+            "outputPath": "dist/page2page",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -42,8 +42,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "3mb",
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "ejemplosAngular:build:production"
+              "buildTarget": "page2page:build:production"
             },
             "development": {
-              "buildTarget": "ejemplosAngular:build:development"
+              "buildTarget": "page2page:build:development"
             }
           },
           "defaultConfiguration": "development"
