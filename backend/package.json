@@ -14,7 +14,7 @@
   "devDependencies": {
     "nodemon": "^3.1.7"
   },
-  "name": "07-servidor-express",
+  "name": "page2page",
   "version": "1.0.0",
   "main": "app.js",
   "type": "module",
