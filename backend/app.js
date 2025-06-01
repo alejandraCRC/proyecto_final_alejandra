@@ -24,11 +24,11 @@ app.use(express.json());
 
 
 //Middleware para manejar las CORS
-// app.use (cors())
-app.use(cors({
-  origin: 'https://proyecto-final-alejandra-haso.vercel.app',
-  credentials: true
-}));
+app.use (cors())
+// app.use(cors({
+//   origin: 'https://proyecto-final-alejandra-haso.vercel.app',
+//   credentials: true
+// }));
 app.use(cookieParser());
 
 //para parsear la peticion al usuario
