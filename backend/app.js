@@ -12,16 +12,10 @@ import { routerClubsUsuarios } from './routes/clubs-usuarios.routes.js';
 import { routerPublicaciones } from './routes/publicaciones.routes.js';
 import { routerResenias } from './routes/resenias.routes.js';
 
-
-
 const app = express();
 import cookieParser from 'cookie-parser';
 //Configurar puerto
 //const PORT = 3000;
-
-// Middleware para parsear JSON
-app.use(express.json());
-
 
 //Middleware para manejar las CORS
 // app.use (cors())
