@@ -174,15 +174,15 @@
 "use strict";
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import { pool } from '../db.js'; // pool de pg
+import { db } from '../db.js'; // pool de pg
 import { SECRET_KEY, REFRESH_SECRET_KEY } from '../config.js';
 import postgres from 'postgres';
-const sql = postgres(DATABASE_URL);
+
 
 export const login = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const users = await sql`SELECT * FROM usuarios WHERE email = ${email}`;
+    const users = await db`SELECT * FROM usuarios WHERE email = ${email}`;
     if (users.length === 0) {
       return res.status(401).json({ message: "Email y/o contraseña incorrectos" });
     }
