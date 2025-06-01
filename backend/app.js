@@ -26,7 +26,7 @@ app.use(express.json());
 //Middleware para manejar las CORS
 // app.use (cors())
 app.use(cors({
-  origin: 'http://localhost:4200',
+  origin: 'https://proyecto-final-alejandra-haso.vercel.app',
   credentials: true
 }));
 app.use(cookieParser());
