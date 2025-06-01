@@ -11,3 +11,5 @@ export const DB_PASSWORD=process.env.DB_PASSWORD;
 export const DB_DATABASE=process.env.DB_DATABASE;
 export const SECRET_KEY= process.env.SECRET_KEY;
 export const REFRESH_SECRET_KEY= process.env.REFRESH_SECRET_KEY;
+export const DATABASE_URL='postgresql://postgres:Acarrod.1605@db.fspiqyaiakqkahzsmfaz.supabase.co:5432/postgres'
+export const DB_TYPE=process.env.DB_TYPE || 'postgres'; //mysql o postgres
