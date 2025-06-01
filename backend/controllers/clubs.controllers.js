@@ -73,9 +73,9 @@ export const addClub = async (req, res) => {
   try {
     const id_creador = req.user.id;
     const {nombre, descripcion,fecha_creacion}=req.body;
-
+    console.log('addClub',req.body, req.user.id);
      const [result]=await pool.query("INSERT INTO clubes_de_lectura (nombre, descripcion,fecha_creacion,id_creador) VALUES (?,?,?,?)", [nombre, descripcion,fecha_creacion, id_creador]);
-
+      console.log(result);
      res.status(201).json({id_club:result.insertId});
 } catch (error) {
     res.status(500).json({

@@ -45,7 +45,7 @@ export const addMiembroClub = async (req, res) => {
   try {
     const [result] = await pool.query(
       "INSERT INTO miembros_club (id_club, id_miembro, fecha_ingreso, rol) VALUES (?, ?, ?, ?) ",
-      [id_club, id_usuario, fecha_ingreso, rol] //si ya existe la combinacion de id_club e id_miembro, actualiza fecha_ingreso y rol
+      [id_club, id_usuario, fecha_ingreso, rol]
     );
 
     res.status(201).json({ id: result.insertId });
