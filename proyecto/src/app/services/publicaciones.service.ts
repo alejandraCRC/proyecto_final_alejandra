@@ -14,7 +14,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class PublicacionesService {
-  public url: string = 'http://localhost:3000';
+  public url: string = 'https://proyecto-final-alejandra.onrender.com';
   //crear el objeto http
   public http = inject(HttpClient);
   private authService = inject(AuthService);

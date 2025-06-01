@@ -12,7 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000'; // Asegurate que coincida con tu backend
+  private apiUrl = 'https://proyecto-final-alejandra.onrender.com'; // Asegurate que coincida con tu backend
 
   private http = inject(HttpClient);
 

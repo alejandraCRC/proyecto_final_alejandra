@@ -14,7 +14,7 @@ import { Libro } from '../models/libro';
   providedIn: 'root',
 })
 export class LibrosUsuarioService {
-  public url: string = 'http://localhost:3000';
+  public url: string = 'https://proyecto-final-alejandra.onrender.com';
   //crear el objeto http
   public http = inject(HttpClient);
   private authService = inject(AuthService);
