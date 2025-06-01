@@ -40,7 +40,7 @@ export const login = async (req, res) => {
     res.cookie("refreshToken", refreshtoken, {
       httpOnly: true, //la cookie es accesible solo por el servidor no javaScript
       secure: true,
-      sameSite: "lax", //protección CSRF
+      sameSite: "none", //protección CSRF
     })
 
     // //enviar un email
