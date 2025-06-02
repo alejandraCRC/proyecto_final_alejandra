@@ -67,7 +67,7 @@ getUsuario() {
     const token = this.getToken();
     return !!token; // Retorna true si hay token, false si no
   }
-
+//refresh
   refreshToken(): Observable<string | null> {
   return this.http.get<{ accessToken: string } | null>(`${this.apiUrl}/refresh-token`, {
     withCredentials: true,
