@@ -117,7 +117,7 @@ export const refreshToken = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
 
   if (!refreshToken) {
-    return res.status(204).end();
+    return res.status(401).end();
   }
 
   try {
