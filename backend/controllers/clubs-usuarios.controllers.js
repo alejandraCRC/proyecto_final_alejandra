@@ -41,11 +41,11 @@ export const addMiembroClub = async (req, res) => {
  const {id_club, id_usuario} = req.params;
  console.log('111', req.params);
  const { fecha_ingreso, rol } = req.body;
- console.log('111', req.body);
+ const fechaFormateada = new Date(fecha_ingreso).toISOString().slice(0, 19).replace('T', ' '); 
   try {
     const [result] = await pool.query(
       "INSERT INTO miembros_club (id_club, id_miembro, fecha_ingreso, rol) VALUES (?, ?, ?, ?) ",
-      [id_club, id_usuario, fecha_ingreso, rol]
+      [id_club, id_usuario, fechaFormateada, rol]
     );
 
     res.status(201).json({ id: result.insertId });

@@ -75,10 +75,11 @@ export const addResenia = async (req, res) => {
     const id_usuario = req.user.id;
 console.log(id_usuario);
     const { id_libro, calificacion, resenia, fecha } = req.body;
+    const fechaFormateada = new Date(fecha).toISOString().slice(0, 19).replace('T', ' '); 
     console.log(req.body);
     const [result] = await pool.query(
       "INSERT INTO resenias (id_usuario, id_libro,calificacion, resenia, fecha) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE fecha = VALUES(fecha), calificacion = VALUES(calificacion), resenia = VALUES(resenia)",
-      [id_usuario, id_libro, calificacion, resenia, fecha]
+      [id_usuario, id_libro, calificacion, resenia, fechaFormateada]
     );
     console.log(result);
 

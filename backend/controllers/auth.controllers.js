@@ -80,6 +80,7 @@ export const autenticarToken=(req, res, next)=>{
 
 export const register = async (req, res) => {
   const {nombre, email, contrasenia, fecha_registro} = req.body;
+  const fechaFormateada = new Date(fecha_registro).toISOString().slice(0, 19).replace('T', ' '); 
   try {
     
     const [resultEmail] = await pool.query("SELECT * FROM usuarios WHERE email=?", [email]);
@@ -89,7 +90,7 @@ export const register = async (req, res) => {
     }
       const hashPassword = await bcrypt.hash(contrasenia, 10)
       // const activacionToken= uuidv4();
-      const [result]=await pool.query("INSERT INTO usuarios (nombre, email, contrasenia, fecha_registro) VALUES (?,?,?,?)", [nombre, email, hashPassword, fecha_registro]);
+      const [result]=await pool.query("INSERT INTO usuarios (nombre, email, contrasenia, fecha_registro) VALUES (?,?,?,?)", [nombre, email, hashPassword, fechaFormateada]);
       // console.log(result);
     
     // const activarLink=`http://localhost:3000/activa/${activacionToken}`;

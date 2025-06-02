@@ -34,7 +34,7 @@ cerrarSesion() {
   }
 //Método para redirigir al perfil del usuario
   redirigirPerfil(id: number) {
-    this.router.navigate(['/app/perfil', id]); // Navegar a la ruta de detalle pasando el ID
+    this.router.navigate(['/app/perfil']); // Navegar a la ruta de detalle pasando el ID
   }
 
 }

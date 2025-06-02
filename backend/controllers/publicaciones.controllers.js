@@ -40,9 +40,10 @@ export const addPublicacion = async (req, res) => {
   try {
     const id_usuario = req.user.id;
     const { id_club, titulo, contenido, fecha_publicacion } = req.body;
+    const fechaFormateada = new Date(fecha_publicacion).toISOString().slice(0, 19).replace('T', ' '); 
     const [result] = await pool.query(
       "INSERT INTO publicaciones (id_usuario, id_club,titulo, contenido, fecha_publicacion) VALUES (?,?,?,?,?) ",
-      [id_usuario, id_club, titulo, contenido, fecha_publicacion]
+      [id_usuario, id_club, titulo, contenido, fechaFormateada]
     );
    
 
