@@ -58,7 +58,7 @@ export const addPublicacion = async (req, res) => {
 
 export const getComentariosPublicaciones = async (req, res) => {
   const { id_publicacion } = req.params;
-
+  console.log(' comentarios id_publicacion', id_publicacion);
   try {
     const [result] = await pool.query(
       "SELECT C.id_usuario, C.contenido, C.fecha_comentario, u.nombre FROM comentarios_publicacion c JOIN usuarios u ON c.id_usuario = u.id_usuario WHERE c.id_publicacion = ?",
