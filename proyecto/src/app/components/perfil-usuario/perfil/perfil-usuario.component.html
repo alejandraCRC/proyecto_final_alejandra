@@ -204,7 +204,7 @@
           <li class=" bg-white p-4 rounded shadow hover:shadow-lg transition-shadow " >
         <h4 class="font-semibold">{{ publicacion.titulo }}</h4>
         <p>{{ publicacion.contenido }}</p>
-        <small class="text-gray-500">{{'home.por' | translate}} <a  class="hover:text-blue-600">{{ publicacion.nombre_usuario }}</a> en <a (click)="redirigirClub(publicacion.id_club)" class="hover:text-blue-600">{{ publicacion.nombre_club }}</a></small>
+        <small class="text-gray-500">{{'home.por' | translate}} <a  class="hover:text-blue-600 cursor-pointer">{{ publicacion.nombre_usuario }}</a> en <a class="cursor-pointer" (click)="redirigirClub(publicacion.id_club)" class="hover:text-blue-600">{{ publicacion.nombre_club }}</a></small>
           
       </li>
     }
