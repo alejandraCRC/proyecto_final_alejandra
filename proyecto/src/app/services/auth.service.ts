@@ -69,24 +69,26 @@ getUsuario() {
   }
 
   refreshToken(): Observable<string | null> {
-  return this.http.get<{ accessToken: string }>(`${this.apiUrl}/refresh-token`, {
+  return this.http.get<{ accessToken: string } | null>(`${this.apiUrl}/refresh-token`, {
     withCredentials: true,
   }).pipe(
-   map(response => {
-  if (response && 'accessToken' in response) {
-    localStorage.setItem('access_token', response.accessToken);
-    return response.accessToken;
-  }
-  return null;
-}),
-catchError(err => {
-  if (err.status === 204 || err.status === 401 || err.status === 403) {
-    return of(null); // no mostrar error si no hay sesión activa
-  }
-  console.error('Error al refrescar token:', err);
-  return throwError(() => new Error('No hay refresh token, inicie sesión nuevamente'));
-})
-  )};
+    map(response => {
+      if (response && response.accessToken) {
+        localStorage.setItem('access_token', response.accessToken);
+        return response.accessToken;
+      }
+      return null; // respuesta vacía o sin token
+    }),
+    catchError(err => {
+      if (err.status === 204 || err.status === 401 || err.status === 403) {
+        // No hay sesión activa, no mostramos error
+        return of(null);
+      }
+      console.error('Error al refrescar token:', err);
+      return throwError(() => new Error('No hay refresh token, inicie sesión nuevamente'));
+    })
+  );
+}
 
   logout() {
     this.cookies.delete('token');
