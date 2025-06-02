@@ -26,8 +26,10 @@ export class AppComponent {
      this.servicioAuth.refreshToken().subscribe({
       next: token => {
         // Guarda el nuevo access token (en memoria, localStorage, etc.)
+        if( token) {
         localStorage.setItem('access_token', token);
         console.log('Token refrescado con éxito');
+        }
       },
       error: err => {
         console.error('Error al refrescar token:', err);
