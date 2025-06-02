@@ -80,7 +80,7 @@ getUsuario() {
   return null;
 }),
 catchError(err => {
-  if (err.status === 204 || err.status === 403) {
+  if (err.status === 204 || err.status === 401 || err.status === 403) {
     return of(null); // no mostrar error si no hay sesión activa
   }
   console.error('Error al refrescar token:', err);
