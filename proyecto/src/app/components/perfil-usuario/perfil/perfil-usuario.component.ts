@@ -12,6 +12,7 @@ import { ReseniasService } from '../../../services/resenias.service';
 import { forkJoin } from 'rxjs';
 import { EstrellasPipe } from '../../../pipes/estrellas.pipe';
 import { FormatoFechaPipe } from '../../../pipes/fecha.pipe';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-perfil-usuario',
@@ -46,9 +47,10 @@ export class PerfilUsuarioComponent {
   private servicioLibros = inject(LibrosService);
     private servicioPublicaciones = inject(PublicacionesService);
     private servicioResenias = inject(ReseniasService);
+  private authService = inject(AuthService);
   private router = inject(Router);
 
-  idUsuario = this.ruta.snapshot.paramMap.get('idUsuario');
+  idUsuario = this.ruta.snapshot.paramMap.get('idUsuario') || this.authService.getUsuario().id_usuario; //obtiene el id del usuario de la ruta o del usuario autenticado
 
   ngOnInit() {
     this.getUsuario(); //obtiene el usuario
