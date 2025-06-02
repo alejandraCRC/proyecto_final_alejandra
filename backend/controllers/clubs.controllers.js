@@ -112,8 +112,10 @@ export const addLecturaActual = async (req, res) => {
   try {
     const {id_club} = req.params
     const {id_libro,fecha_inicio, fecha_fin, personas_leido}=req.body;
+    const fechaFormateada_inicio = new Date(fecha_inicio).toISOString().slice(0, 19).replace('T', ' '); 
+    const fechaFormateada_fin = new Date(fecha_fin).toISOString().slice(0, 19).replace('T', ' '); 
     console.log(req.body)
-     const [result]=await pool.query("INSERT INTO lectura_actual (id_club, id_libro,fecha_inicio, fecha_fin, personas_leido) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE id_libro = VALUES(id_libro), fecha_inicio = VALUES(fecha_inicio), fecha_fin = VALUES(fecha_fin), personas_leido = VALUES(personas_leido);", [id_club, id_libro,fecha_inicio, fecha_fin, personas_leido]);
+     const [result]=await pool.query("INSERT INTO lectura_actual (id_club, id_libro,fecha_inicio, fecha_fin, personas_leido) VALUES (?,?,?,?,?) ON DUPLICATE KEY UPDATE id_libro = VALUES(id_libro), fecha_inicio = VALUES(fecha_inicio), fecha_fin = VALUES(fecha_fin), personas_leido = VALUES(personas_leido);", [id_club, id_libro,fechaFormateada_inicio, fechaFormateada_fin, personas_leido]);
 
      res.status(201).json({id_club:result.insertId});
 } catch (error) {
