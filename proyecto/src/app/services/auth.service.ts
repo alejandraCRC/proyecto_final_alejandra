@@ -4,7 +4,7 @@ import {
   HttpErrorResponse,
   HttpHeaders,
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -68,14 +68,25 @@ getUsuario() {
     return !!token; // Retorna true si hay token, false si no
   }
 
-  refreshToken(): Observable<string> {
+  refreshToken(): Observable<string | null> {
   return this.http.get<{ accessToken: string }>(`${this.apiUrl}/refresh-token`, {
     withCredentials: true,
   }).pipe(
     map(response => {
-      localStorage.setItem('access_token', response.accessToken);
-      return response.accessToken;
+      if (response?.accessToken) {
+        localStorage.setItem('access_token', response.accessToken);
+        return response.accessToken;
+      }
+      return null;
     }),
+    catchError(err => {
+      if (err.status === 204 || err.status === 403) {
+        // No hay sesión iniciada: no mostrar error
+        return of(null);
+      }
+      console.error('Error al refrescar token:', err);
+      return throwError(() => new Error('No hay refresh token, inicie sesión nuevamente'));
+    })
   );
 }
 

@@ -57,26 +57,27 @@ export const login = async (req, res) => {
   }
 };
 
-export const autenticarToken=(req, res, next)=>{
-    //extraer el token de la peticion (req)
-    const autHeader = req.headers['authorization'];
+app.get('/refresh-token', (req, res) => {
+  const refreshToken = req.cookies.refreshToken;
 
-    //extraer el token de la constante autheader
-    if(!autHeader){
-      return res.status(403).json({message: 'token no proporcionado'})
+  if (!refreshToken) {
+    // No hay refresh token => No hay sesión iniciada
+    return res.status(204).end(); // 204 = No Content
+  }
+
+  jwt.verify(refreshToken, SECRET_KEY, (err, user) => {
+    if (err) {
+      return res.status(403).json({ message: 'Refresh token no válido' });
     }
-    const token = autHeader.split(' ')[1];
-    // console.log(token);
-    
-    //verificar la autenticidad del token
-    jwt.verify(token, SECRET_KEY, (err, user)=>{
-      if(err){//no es correcto el token
-        return res.status(403).json({message: 'token no válido'})
-      }
-      req.user = user; //adquirir al usuario del token
-      next(); //sigue el proceso
-    })
-}
+
+    // Generar nuevo token de acceso
+    const accessToken = jwt.sign({ id: user.id, email: user.email }, SECRET_KEY, {
+      expiresIn: '15m'
+    });
+
+    res.json({ accessToken });
+  });
+});
 
 export const register = async (req, res) => {
   const {nombre, email, contrasenia, fecha_registro} = req.body;
