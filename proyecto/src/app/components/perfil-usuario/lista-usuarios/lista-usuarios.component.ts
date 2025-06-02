@@ -14,6 +14,7 @@ export class ListaUsuariosComponent {
   listaUsuarios: any[] = [];
 
   private ruta = inject(ActivatedRoute);
+  private router = inject(Router);
   private servicioUsuarios = inject(UsuariosService);
 
   ngOnInit() {
@@ -52,6 +53,10 @@ export class ListaUsuariosComponent {
 
   cargarPerfil(idUsuario: string | null) {
     // Perfil + estadísticas normales
+  }
+
+  redirigirPerfil(id: number) {
+    this.router.navigate(['/app/perfil', id]);  // Navegar a la ruta de detalle pasando el ID
   }
 
 }

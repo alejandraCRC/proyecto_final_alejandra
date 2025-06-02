@@ -10,6 +10,7 @@ import {
 import { Usuario } from '../../models/usuario';
 import { AuthService } from '../../services/auth.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar',
@@ -21,6 +22,7 @@ export class RegistrarComponent {
 
   //inyectar servicios a partir de la versión 17
   private fb = inject(FormBuilder);
+  private router = inject(Router);
   private authService = inject(AuthService);
 
   public frm!: FormGroup; //la exclamación para no tener que inicializar
@@ -119,6 +121,7 @@ export class RegistrarComponent {
       .subscribe({
         next: (respuesta) => {
           console.log('Usuario registrado:', respuesta);
+          this.router.navigate(['/login']); // Redirige al login después del registro
           // podrías mostrar un mensaje, redirigir, etc.
         },
         error: (error) => {

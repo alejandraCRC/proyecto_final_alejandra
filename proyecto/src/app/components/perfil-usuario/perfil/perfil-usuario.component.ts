@@ -250,7 +250,7 @@ llenarArrayLibros = () => {
     if (tipo === 'leyendo') {
       this.servicioLibrosUsuario.setLibros(this.leyendo);
     }
-    if (tipo === 'leido') {
+    if (tipo === 'leidos') {
       this.servicioLibrosUsuario.setLibros(this.leidos);
     }    
     this.router.navigate(['app/libros-guardados', this.idUsuario]); 
