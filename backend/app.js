@@ -4,7 +4,6 @@ import cors from 'cors';
 
 import { PORT } from './config.js';
 import { routerAuth } from './routes/auth.routes.js';
-import { routerLibros } from './routes/libros.routes.js';
 import { routerLibrosUsuarios } from './routes/libros-usuarios.routes.js';
 import { routerUsuarios } from './routes/usuarios.routes.js';
 import { routerClubs } from './routes/clubs.routes.js';
@@ -32,7 +31,6 @@ app.use(express.json());
 app.use(routerAuth);
 
 // Usar las rutas directas); // No necesitas añadir un prefijo aquí
-app.use(routerLibros);
 app.use(routerLibrosUsuarios);
 app.use(routerUsuarios);
 app.use(routerClubs);
