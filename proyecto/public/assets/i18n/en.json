@@ -109,8 +109,9 @@
 
 "buscarLibros": {
   "titulo": "Book Search",
-  "placeholder_libros": "Buscar libros...",
-  "No_encontraron_libros": "No se encontraron libros."
+  "placeholder_libros": "Search for books...",
+  "No_encontraron_libros": "No books found."
+  
 },
 
 "libro": {
