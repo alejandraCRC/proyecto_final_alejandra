@@ -65,11 +65,11 @@
         </button>
         }@else {
         <p>{{ "club.no_lectura" | translate }}</p>
-        } }@else { @if (libro.volumeInfo.imageLinks.smallThumbnail) {
+        } }@else { @if (libro?.volumeInfo.imageLinks.smallThumbnail) {
         <div class="flex justify-center mt-2">
           <img
-            [src]="libro.volumeInfo.imageLinks.smallThumbnail"
-            alt="{{ libro.volumeInfo.title }}"
+            [src]="libro?.volumeInfo.imageLinks.smallThumbnail"
+            alt="{{ libro?.volumeInfo.title }}"
             class="w-24 h-auto rounded border"
           />
         </div>

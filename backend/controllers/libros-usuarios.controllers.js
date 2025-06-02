@@ -20,7 +20,9 @@ export const addLibroUsuario = async (req, res) => {
     const id_usuario = req.user.id;
 
     const { id_libro, fecha, estado } = req.body;
+    console.log('fecha', fecha);
     const fechaFormateada = fecha.toISOString().slice(0, 19).replace('T', ' '); 
+    console.log('fechaFormateada', fechaFormateada);
     const [result] = await pool.query(
       "INSERT INTO libros_usuario (id_libro, id_usuario, fecha, estado) VALUES (?,?,?,?) ON DUPLICATE KEY UPDATE fecha = VALUES(fecha), estado = VALUES(estado)",
       [id_libro,id_usuario, fechaFormateada, estado]

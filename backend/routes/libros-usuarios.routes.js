@@ -1,7 +1,6 @@
 "use strict"
 
 import { Router } from 'express';
-import {pool} from '../db.js'
 import { updateLibroUsuario, addLibroUsuario, getLibrosUsuario, delLibroUsuario } from '../controllers/libros-usuarios.controllers.js';
 import { autenticarToken } from '../controllers/auth.controllers.js';
 const router = Router();
