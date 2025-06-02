@@ -5,7 +5,7 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
@@ -72,16 +72,16 @@ getUsuario() {
   return this.http.get<{ accessToken: string } | null>(`${this.apiUrl}/refresh-token`, {
     withCredentials: true,
   }).pipe(
+    tap(response => console.log('refreshToken response:', response)),
     map(response => {
       if (response && response.accessToken) {
         localStorage.setItem('access_token', response.accessToken);
         return response.accessToken;
       }
-      return null; // respuesta vacía o sin token
+      return null;
     }),
     catchError(err => {
       if (err.status === 204 || err.status === 401 || err.status === 403) {
-        // No hay sesión activa, no mostramos error
         return of(null);
       }
       console.error('Error al refrescar token:', err);
