@@ -76,7 +76,6 @@ getUsuario() {
       localStorage.setItem('access_token', response.accessToken);
       return response.accessToken;
     }),
-    catchError(this.handleError)
   );
 }
 
