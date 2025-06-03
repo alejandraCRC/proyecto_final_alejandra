@@ -6,17 +6,24 @@ import { Usuario } from '../../../models/usuario';
 import { Libro } from '../../../models/libro';
 import { LibrosUsuarioService } from '../../../services/libros-usuario.service';
 import { LibrosService } from '../../../services/libros.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PublicacionesService } from '../../../services/publicaciones.service';
 import { ReseniasService } from '../../../services/resenias.service';
 import { forkJoin } from 'rxjs';
 import { EstrellasPipe } from '../../../pipes/estrellas.pipe';
 import { FormatoFechaPipe } from '../../../pipes/fecha.pipe';
 import { AuthService } from '../../../services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-perfil-usuario',
-  imports: [CommonModule,RouterLink, TranslateModule, EstrellasPipe, FormatoFechaPipe,],
+  imports: [
+    CommonModule,
+    RouterLink,
+    TranslateModule,
+    EstrellasPipe,
+    FormatoFechaPipe,
+  ],
   templateUrl: './perfil-usuario.component.html',
   styles: ``,
 })
@@ -39,18 +46,21 @@ export class PerfilUsuarioComponent {
   leidos: any[] = [];
 
   //variables de publicaciones y reseñas
-   public publicacionesResenias: any[] = [];
+  public publicacionesResenias: any[] = [];
 
   private ruta = inject(ActivatedRoute);
   private servicioUsuarios = inject(UsuariosService);
   private servicioLibrosUsuario = inject(LibrosUsuarioService);
   private servicioLibros = inject(LibrosService);
-    private servicioPublicaciones = inject(PublicacionesService);
-    private servicioResenias = inject(ReseniasService);
+  private servicioPublicaciones = inject(PublicacionesService);
+  private servicioResenias = inject(ReseniasService);
   private authService = inject(AuthService);
   private router = inject(Router);
+  private translate = inject(TranslateService);
 
-  idUsuario = this.ruta.snapshot.paramMap.get('idUsuario') || this.authService.getUsuario().id_usuario; //obtiene el id del usuario de la ruta o del usuario autenticado
+  idUsuario =
+    this.ruta.snapshot.paramMap.get('idUsuario') ||
+    this.authService.getUsuario().id_usuario; //obtiene el id del usuario de la ruta o del usuario autenticado
 
   ngOnInit() {
     this.getUsuario(); //obtiene el usuario
@@ -87,7 +97,6 @@ export class PerfilUsuarioComponent {
         next: (data) => {
           const aSeguidores = data; //almacena los seguidores del usuario
           this.cantidadSeguidores = aSeguidores.length; //almacena la cantidad de seguidores
-
         },
       });
     } else {
@@ -95,7 +104,6 @@ export class PerfilUsuarioComponent {
         next: (data) => {
           const aSeguidores = data; //almacena los seguidores del usuario
           this.cantidadSeguidores = aSeguidores.length; //almacena la cantidad de seguidores
-
         },
       });
     }
@@ -106,7 +114,6 @@ export class PerfilUsuarioComponent {
         next: (data) => {
           const aSeguidos = data; //almacena los Seguidos del usuario
           this.cantidadSeguidos = aSeguidos.length; //almacena la cantidad de Seguidos
-          
         },
       });
     } else {
@@ -114,7 +121,6 @@ export class PerfilUsuarioComponent {
         next: (data) => {
           const aSeguidos = data; //almacena los Seguidos del usuario
           this.cantidadSeguidos = aSeguidos.length; //almacena la cantidad de Seguidos
-
         },
       });
     }
@@ -142,10 +148,28 @@ export class PerfilUsuarioComponent {
   seguir = () => {
     this.servicioUsuarios.seguirUsuario(Number(this.idUsuario)).subscribe({
       next: (data) => {
+        Swal.fire({
+          toast: true,
+          position: 'top-start',
+          icon: 'success',
+          title: this.translate.instant('perfil.alert_seguir_exito'),
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+        });
         console.log(data); // Ver en consola la respuesta del servidor
         this.sigueAlUsuario = true; //actualiza el estado de seguimiento
       },
       error: (error) => {
+        Swal.fire({
+          toast: true,
+          position: 'top-start',
+          icon: 'error',
+          title: this.translate.instant('perfil.alert_seguir_error'),
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+        });
         console.error('Error al seguir al usuario:', error);
       },
     });
@@ -155,10 +179,28 @@ export class PerfilUsuarioComponent {
     if (this.idUsuario) {
       this.servicioUsuarios.dejarDeSeguir(Number(this.idUsuario)).subscribe({
         next: (data) => {
+          Swal.fire({
+            toast: true,
+            position: 'top-start',
+            icon: 'success',
+            title: this.translate.instant('perfil.alert_dejar_seguir_exito'),
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+          });
           console.log(data); // Ver en consola la respuesta del servidor
           this.sigueAlUsuario = false; //actualiza el estado de seguimiento
         },
         error: (error) => {
+          Swal.fire({
+            toast: true,
+            position: 'top-start',
+            icon: 'error',
+            title: this.translate.instant('perfil.alert_dejar_seguir_error'),
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+          });
           console.error('Error al dejar de seguir al usuario:', error);
         },
       });
@@ -170,82 +212,74 @@ export class PerfilUsuarioComponent {
     this.router.navigate(['/app/editar-perfil', this.usuario.id_usuario]);
   };
 
-llenarArrayLibros = () => {
-   const librosTemp: any[] = [];
-        let totalCargados = 0;
+  llenarArrayLibros = () => {
+    const librosTemp: any[] = [];
+    let totalCargados = 0;
 
-        // Recorre cada id y hace la petición del libro por separado
-        this.librosUsuarios.forEach((item, index, array) => {
-          this.servicioLibros.obtenerLibroPorId(item.id_libro).subscribe({
-            next: (libro) => {
-              librosTemp.push({
-                //crea un objeto con los datos de libro y del objeto item y lo almacena en el array temporal
-                ...libro,
-                estado: item.estado,
-                fecha: item.fecha, 
-              });
+    // Recorre cada id y hace la petición del libro por separado
+    this.librosUsuarios.forEach((item, index, array) => {
+      this.servicioLibros.obtenerLibroPorId(item.id_libro).subscribe({
+        next: (libro) => {
+          librosTemp.push({
+            //crea un objeto con los datos de libro y del objeto item y lo almacena en el array temporal
+            ...libro,
+            estado: item.estado,
+            fecha: item.fecha,
+          });
 
-              totalCargados++;
+          totalCargados++;
 
-              // Cuando todos los libros estén cargados
-              if (totalCargados === array.length) {
-                // Ordena por fecha
-                librosTemp.sort((a, b) => {
-                  return (
-                    new Date(b.fecha).getTime() - new Date(a.fecha).getTime()
-                  );
-                });
+          // Cuando todos los libros estén cargados
+          if (totalCargados === array.length) {
+            // Ordena por fecha
+            librosTemp.sort((a, b) => {
+              return new Date(b.fecha).getTime() - new Date(a.fecha).getTime();
+            });
 
-                this.aLibros = librosTemp;
+            this.aLibros = librosTemp;
 
-                // Filtra los tres más recientes por estado
-                this.quieroLeer = librosTemp
-                  .filter((l) => l.estado === 'quiero leer')
-                  .slice(0, 3);
-                this.leyendo = librosTemp
-                  .filter((l) => l.estado === 'leyendo')
-                  .slice(0, 3);
-                this.leidos = librosTemp
-                  .filter((l) => l.estado === 'leido')
-                  .slice(0, 3);
-              }
-            },
-            
-        });
-      
-
+            // Filtra los tres más recientes por estado
+            this.quieroLeer = librosTemp
+              .filter((l) => l.estado === 'quiero leer')
+              .slice(0, 3);
+            this.leyendo = librosTemp
+              .filter((l) => l.estado === 'leyendo')
+              .slice(0, 3);
+            this.leidos = librosTemp
+              .filter((l) => l.estado === 'leido')
+              .slice(0, 3);
+          }
+        },
+      });
     });
-  }
+  };
 
   llenarArrayLibrosSegunUsuario = () => {
-    
-    if(this.idUsuario){
+    if (this.idUsuario) {
       this.servicioLibrosUsuario.getLibrosUsuario(this.idUsuario).subscribe({
-      next: (data) => {
-        this.librosUsuarios = data;
-        this.llenarArrayLibros();
+        next: (data) => {
+          this.librosUsuarios = data;
+          this.llenarArrayLibros();
         },
         error: (err) => {
-              console.error('Error al obtener libro por ID:', err);
-            },
-          });
-    }else{
+          console.error('Error al obtener libro por ID:', err);
+        },
+      });
+    } else {
       this.servicioLibrosUsuario.getLibrosUsuario().subscribe({
-      next: (data) => {
-        this.librosUsuarios = data;
-        this.llenarArrayLibros();
+        next: (data) => {
+          this.librosUsuarios = data;
+          this.llenarArrayLibros();
         },
         error: (err) => {
-              console.error('Error al obtener libro por ID:', err);
-            },
-          });
+          console.error('Error al obtener libro por ID:', err);
+        },
+      });
     }
-    
-       
   };
 
   //Dirigir a los libros guardados
-   redirigirLibrosGuardados(tipo: string) {
+  redirigirLibrosGuardados(tipo: string) {
     if (tipo === 'quiero leer') {
       this.servicioLibrosUsuario.setLibros(this.quieroLeer);
     }
@@ -254,45 +288,51 @@ llenarArrayLibros = () => {
     }
     if (tipo === 'leidos') {
       this.servicioLibrosUsuario.setLibros(this.leidos);
-    }    
-    this.router.navigate(['app/libros-guardados', this.idUsuario]); 
+    }
+    this.router.navigate(['app/libros-guardados', this.idUsuario]);
   }
 
   //publicaciones y reseñas
- ObtenerPublicacionesYResenias() {
-  const publicaciones$ = this.servicioPublicaciones.getPublicacionesUsuario(this.idUsuario);
-  const resenias$ = this.servicioResenias.getReseniasPorUsuarioId(this.idUsuario);
+  ObtenerPublicacionesYResenias() {
+    const publicaciones$ = this.servicioPublicaciones.getPublicacionesUsuario(
+      this.idUsuario
+    );
+    const resenias$ = this.servicioResenias.getReseniasPorUsuarioId(
+      this.idUsuario
+    );
 
-  forkJoin([publicaciones$, resenias$]).subscribe({
-    next: ([publicaciones, resenias]) => {
-      const publicacionesConTipo = publicaciones.map((pub) => ({
-        ...pub,
-        tipo: 'publicacion',
-      }));
+    forkJoin([publicaciones$, resenias$]).subscribe({
+      next: ([publicaciones, resenias]) => {
+        const publicacionesConTipo = publicaciones.map((pub) => ({
+          ...pub,
+          tipo: 'publicacion',
+        }));
 
-      const reseniasConTipo = resenias.map((resenia) => ({
-        ...resenia,
-        tipo: 'resenia',
-      }));
+        const reseniasConTipo = resenias.map((resenia) => ({
+          ...resenia,
+          tipo: 'resenia',
+        }));
 
-      this.publicacionesResenias = [...publicacionesConTipo, ...reseniasConTipo];
+        this.publicacionesResenias = [
+          ...publicacionesConTipo,
+          ...reseniasConTipo,
+        ];
 
-      // Ordenar por fecha descendente
-      this.publicacionesResenias.sort(
-        (a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime()
-      );
+        // Ordenar por fecha descendente
+        this.publicacionesResenias.sort(
+          (a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime()
+        );
 
-      console.log(this.publicacionesResenias); // Ver en consola
-    },
-    error: (err) => {
-      console.error('Error al obtener publicaciones o reseñas:', err);
-    },
-  });
-}
+        console.log(this.publicacionesResenias); // Ver en consola
+      },
+      error: (err) => {
+        console.error('Error al obtener publicaciones o reseñas:', err);
+      },
+    });
+  }
 
-// Método para llevar al club correspondiente
+  // Método para llevar al club correspondiente
   redirigirClub(id: Number) {
     this.router.navigate(['/app/club', id]); // Navegar a la pagina del club
   }
-  
 }

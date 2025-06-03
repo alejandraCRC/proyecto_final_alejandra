@@ -169,7 +169,11 @@
     "leidos": "Leídos",
     "no_hay_lista": "No tienes libros guardados en esta lista.",
     "perfil_actualizado_exito": "Perfil actualizado correctamente",
-    "perfil_actualizado_error": "Error al actualizar el perfil"
+    "perfil_actualizado_error": "Error al actualizar el perfil",
+    "alert_seguir_exito": "Ahora sigues a este usuario.",
+    "alert_seguir_error": "No se pudo seguir al usuario. Inténtalo de nuevo.",
+    "alert_dejar_seguir_exito": "Has dejado de seguir al usuario.",
+    "alert_dejar_seguir_error": "No se pudo dejar de seguir al usuario. Inténtalo de nuevo."
   },
 
   "login":{

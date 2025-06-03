@@ -173,7 +173,11 @@
     "leidos": "Read",
     "no_hay_lista": "No books saved in this list.",
     "perfil_actualizado_exito": "Profile successfully updated",
-    "perfil_actualizado_error": "Error updating the profile"
+    "perfil_actualizado_error": "Error updating the profile",
+    "alert_seguir_exito": "You are now following this user.",
+    "alert_seguir_error": "Could not follow the user. Please try again.",
+    "alert_dejar_seguir_exito": "You have unfollowed the user.",
+    "alert_dejar_seguir_error": "Could not unfollow the user. Please try again."
   },
 
   "login":{
