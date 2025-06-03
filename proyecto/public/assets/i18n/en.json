@@ -141,7 +141,8 @@
 "resenia": {
   "placeholder": "Write your review here...",
   "guardar": "Save",
-  "cancelar": "Cancel"
+  "cancelar": "Cancel",
+  "alert_Dato_requerido": "You must provide either a rating or a review to save."
 },
 
 "editarPerfil": {

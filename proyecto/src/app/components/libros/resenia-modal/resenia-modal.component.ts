@@ -19,12 +19,18 @@ export class ReseniaModalComponent {
   resenia: string = '';
   calificacion: number = 0;
   hover: number = 0;
+  mostrarError: boolean = false;
 
   cerrar() {
     this.cerrarModal.emit();
   }
 
   guardar() {
+    if (!this.resenia.trim() && this.calificacion === 0) {
+    this.mostrarError = true;
+    return;
+  }
+  this.mostrarError = false;
     this.guardarResenia.emit({
       resenia: this.resenia.trim(),
       calificacion: this.calificacion,

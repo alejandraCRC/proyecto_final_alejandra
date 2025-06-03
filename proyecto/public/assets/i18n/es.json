@@ -137,7 +137,8 @@
 "resenia": {
   "placeholder": "Escribe tu reseña aquí...",
   "guardar": "Guardar",
-  "cancelar": "Cancelar"
+  "cancelar": "Cancelar",
+  "alert_Dato_requerido": "Debes ingresar una calificación o una reseña para guardar."
 },
 
 "editarPerfil": {

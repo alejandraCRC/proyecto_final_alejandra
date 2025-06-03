@@ -22,9 +22,11 @@
       placeholder="{{ 'resenia.placeholder' | translate }}"
     ></textarea>
     <br />
+    @if(mostrarError) {
+    <span class="text-red-600 italic">{{ 'resenia.alert_Dato_requerido' | translate }}</span>
+    }
     <div class="flex justify-between">
       <button
-        [disabled]="!resenia.trim() && calificacion === 0"
         class="bg-[#F2A71B] mt-5 p-1 px-3 cursor-pointer text-white border-t-[7px] border-t-[#FFD666] border-l-[7px] border-l-[#F2A71B] border border-b-[7px] border-b-[#C98914] border-r-[7px] border-r-[#C98914] rounded"
         (click)="guardar()"
       >
