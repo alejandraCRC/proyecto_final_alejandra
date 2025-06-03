@@ -38,8 +38,8 @@ eliminarLibro(id_libro: string) {
     icon: 'warning',
     iconColor: '#ef4444', // rojo Tailwind
     showCancelButton: true,
-    confirmButtonText: 'Sí, eliminar',
-    cancelButtonText: 'Cancelar',
+    confirmButtonText: this.translate.instant('sweetAlert_confirmar_eliminar'),
+    cancelButtonText: this.translate.instant('sweetAlert_cancelar_eliminar'),
     background: '#f9fafb', // gris claro Tailwind
     color: '#1f2937', // texto gris oscuro
     confirmButtonColor: '#ef4444', // rojo Tailwind
@@ -81,7 +81,7 @@ eliminarLibro(id_libro: string) {
             color: '#991b1b',
             iconColor: '#dc2626',
             confirmButtonColor: '#dc2626',
-            confirmButtonText: 'Entendido',
+            confirmButtonText: this.translate.instant('sweetAlert_entendido'),
             customClass: {
               popup: 'rounded-lg shadow-md',
               confirmButton: 'bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded'

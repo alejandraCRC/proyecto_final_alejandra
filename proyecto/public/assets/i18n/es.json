@@ -128,7 +128,9 @@
   "eliminado_libro": "Eliminado",
   "eliminado_libro_texto": "El libro ha sido eliminado correctamente",
   "error_eliminar_libro_titulo": "Error",
-  "error_eliminar_libro_texto": "No se pudo eliminar el libro"
+  "error_eliminar_libro_texto": "No se pudo eliminar el libro",
+  "alert_guardado_exito": "Libro guardado con éxito",
+  "alert_guardado_error": "Error al guardar el libro. Inténtalo de nuevo."
 },
 
 "resenia": {
@@ -188,7 +190,15 @@
     "registrarse": "Registrarse",
     "nombre_usuario_formato_incorrecto": "Debe tener un máximo de 30 caracteres",
     "email_formato_incorrecto":"Formato de correo electrónico incorrecto",
-    "password_formato_incorrecto": "La contraseña debe tener un mínimo de 8 caracteres y máximo 20"
+    "password_formato_incorrecto": "La contraseña debe tener un mínimo de 8 caracteres y máximo 20",
+    "alert_registro_exito": "Usuario creado con éxito",
+    "alert_registro_error": "Error al crear el usuario. Inténtalo de nuevo."
+  },
+  "sweetAlert":{
+    "confirmar_eliminar": "Sí, eliminar",
+    "cancelar": "Cancelar",
+    "confirmar_guardar": "Sí, guardar",
+    "entendido": "Entendido"
   }
 
 }

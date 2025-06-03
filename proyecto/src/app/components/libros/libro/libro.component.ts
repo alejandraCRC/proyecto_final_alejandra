@@ -9,11 +9,19 @@ import { ReseniasService } from '../../../services/resenias.service';
 import { Resenia } from '../../../models/resenia';
 import { EstrellasPipe } from '../../../pipes/estrellas.pipe';
 import { FormatoFechaPipe } from '../../../pipes/fecha.pipe';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-libros.component',
-  imports: [CommonModule, FormsModule, ReseniaModalComponent, EstrellasPipe, FormatoFechaPipe, TranslateModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReseniaModalComponent,
+    EstrellasPipe,
+    FormatoFechaPipe,
+    TranslateModule,
+  ],
   templateUrl: './libro.component.html',
   styles: ``,
 })
@@ -26,6 +34,7 @@ export class LibroComponent {
 
   private ruta = inject(ActivatedRoute);
   private router = inject(Router);
+  private translate = inject(TranslateService);
   private servicioLibros = inject(LibrosService);
   private servicioLibrosUsuario = inject(LibrosUsuarioService);
   private servicioResenia = inject(ReseniasService);
@@ -97,10 +106,28 @@ export class LibroComponent {
         )
         .subscribe({
           next: (respuesta) => {
+            Swal.fire({
+              toast: true,
+              position: 'top-start',
+              icon: 'success',
+              title: this.translate.instant('libro.alert_guardado_exito'),
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+            });
             console.log('libro guardado:', respuesta);
             // podrías mostrar un mensaje, redirigir, etc.
           },
           error: (error) => {
+            Swal.fire({
+              toast: true,
+              position: 'top-start',
+              icon: 'error',
+              title: this.translate.instant('libro.alert_guardado_error'),
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+            });
             console.error('Error al guardar libro:', error);
             // aquí podrías mostrar un mensaje de error al usuario
           },
@@ -112,7 +139,6 @@ export class LibroComponent {
     if (id_libro) {
       this.servicioResenia.getReseniasPorLibroId(id_libro).subscribe({
         next: (data) => {
-          console.log(data); // Ver en consola la respuesta del servidor
           this.resenias = data; //rellena el array de reseñas
           this.resenias.sort(
             (a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime()
@@ -127,6 +153,6 @@ export class LibroComponent {
 
   //Método para redirigir al perfil del usuario
   redirigirPerfil(id: number) {
-    this.router.navigate(['/app/perfil', id]);  // Navegar a la ruta de detalle pasando el ID
+    this.router.navigate(['/app/perfil', id]); // Navegar a la ruta de detalle pasando el ID
   }
 }

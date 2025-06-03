@@ -9,8 +9,9 @@ import {
 } from '@angular/forms';
 import { Usuario } from '../../models/usuario';
 import { AuthService } from '../../services/auth.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registrar',
@@ -24,6 +25,7 @@ export class RegistrarComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private authService = inject(AuthService);
+  private translate = inject(TranslateService);
 
   public frm!: FormGroup; //la exclamación para no tener que inicializar
   public aUsuarios: Usuario[] = [];
@@ -120,12 +122,30 @@ export class RegistrarComponent {
       .register(nombre, email, contrasenia, fecha_registro)
       .subscribe({
         next: (respuesta) => {
-          console.log('Usuario registrado:', respuesta);
+          Swal.fire({
+                      toast: true,
+                      position: 'top-start',
+                      icon: 'success',
+                      title: this.translate.instant('register.alert_registro_exito'),
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                    });
+          console.log('Usuario registrado:', respuesta);          
           this.router.navigate(['/login']); // Redirige al login después del registro
           // podrías mostrar un mensaje, redirigir, etc.
         },
         error: (error) => {
-          console.error('Error al registrar usuario:', error);
+          Swal.fire({
+                      toast: true,
+                      position: 'top-start',
+                      icon: 'error',
+                      title: this.translate.instant('registro.alert_registro_error'),
+                      showConfirmButton: false,
+                      timer: 3000,
+                      timerProgressBar: true,
+                    });
+          console.error('Error al registrar usuario:', error);          
           // aquí podrías mostrar un mensaje de error al usuario
         },
       });

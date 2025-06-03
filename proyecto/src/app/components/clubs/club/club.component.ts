@@ -277,8 +277,10 @@ export class ClubComponent {
       showCancelButton: true,
       confirmButtonColor: '#d33',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Sí, eliminar',
-      cancelButtonText: 'Cancelar',
+      confirmButtonText: this.translate.instant('sweetAlert_confirmar_eliminar'),
+      cancelButtonText: this.translate.instant('sweetAlert_cancelar'),
+      // confirmButtonText: 'Sí, eliminar',
+      // cancelButtonText: 'Cancelar',
     }).then((result) => {
       if (result.isConfirmed) {
         // Solo si el usuario confirma, se hace la petición
@@ -390,8 +392,8 @@ export class ClubComponent {
       text: this.translate.instant('club.pregunta_guardar_libro_texto'),
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Sí, guardar',
-      cancelButtonText: 'Cancelar',
+      confirmButtonText: this.translate.instant('sweetAlert_confirmar_guardar'),
+      cancelButtonText: this.translate.instant('sweetAlert_cancelar'),
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(this.libro, 'libro');

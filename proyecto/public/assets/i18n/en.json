@@ -131,7 +131,10 @@
   "eliminado_libro": "Deleted",
   "eliminado_libro_texto": "The book has been successfully deleted",
   "error_eliminar_libro_titulo": "Error",
-  "error_eliminar_libro_texto": "The book could not be deleted"
+  "error_eliminar_libro_texto": "The book could not be deleted",
+  "alert_guardado_exito": "Book saved successfully",
+  "alert_guardado_error": "Error saving the book. Please try again."
+
 },
 
 "resenia": {
@@ -191,8 +194,16 @@
     "registrarse": "Register",
     "nombre_usuario_formato_incorrecto": "Must be a maximum of 30 characters",
     "email_formato_incorrecto": "Invalid email format",
-    "password_formato_incorrecto": "Password must be between 8 and 20 characters"
-  }
+    "password_formato_incorrecto": "Password must be between 8 and 20 characters",
+    "alert_registro_exito": "User successfully created",
+    "alert_registro_error": "Error creating the user. Please try again."
 
-  
+  },
+  "sweetAlert": {
+  "confirmar_eliminar": "Yes, delete",
+  "cancelar": "Cancel",
+  "confirmar_guardar": "Yes, save",
+  "entendido": "Got it"
+}
+ 
 }
