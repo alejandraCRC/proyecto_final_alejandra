@@ -4,16 +4,20 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 import Swal from 'sweetalert2';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ReseniasService } from '../../../services/resenias.service';
+import { FormatoFechaPipe } from '../../../pipes/fecha.pipe';
+import { EstrellasPipe } from '../../../pipes/estrellas.pipe';
 
 @Component({
   selector: 'app-libros-guardados',
-  imports: [TranslateModule],
+  imports: [TranslateModule, FormatoFechaPipe, EstrellasPipe],
   templateUrl: './lista-libros-guardados.component.html',
   styles: ``
 })
 export class ListaLibrosGuardadosComponent {
 
   libros: any[] = [];
+  resenias: any[] = [];
   idUsuarioActual?: number;
   idUsuarioDelPerfil?: number;
 
@@ -21,6 +25,7 @@ export class ListaLibrosGuardadosComponent {
   private router = inject(Router);
   private servicioLibrosUsuario = inject(LibrosUsuarioService);
   private authService = inject(AuthService); 
+  private servicioResenia = inject(ReseniasService); 
   private translate = inject(TranslateService);
 
   ngOnInit() {
@@ -29,6 +34,7 @@ export class ListaLibrosGuardadosComponent {
     console.log('Usuario actual:', usuario);
   this.idUsuarioActual = usuario?.id;
     this.libros = this.servicioLibrosUsuario.getLibros();
+    this.obtenerResenias();
   }
 
 eliminarLibro(id_libro: string) {
@@ -91,6 +97,20 @@ eliminarLibro(id_libro: string) {
       });
     }
   });
+}
+
+obtenerResenias(){
+  this.servicioResenia.getReseniasPorUsuarioId(Number(this.idUsuarioDelPerfil)).subscribe({
+    next: (data) => {
+      this.resenias = data;
+      console.log('Reseñas del usuario:', data);
+      // Aquí puedes manejar las reseñas obtenidas
+    }
+})
+}
+
+obtenerReseniaDeCadaLibro(idLibro: string) {
+  return this.resenias.find((resenia) => resenia.id_libro === idLibro);
 }
 
 

@@ -12,6 +12,12 @@
     <p class="text-sm text-gray-600 mt-1">
       {{'libro.autores' | translate}} {{ libro.volumeInfo?.authors?.join(", ") || "Autor desconocido" }}
     </p>
+    @let resenia = obtenerReseniaDeCadaLibro(libro.id); 
+      @if (resenia) {
+        <div class="mt-2 text-sm text-gray-700">
+           {{ resenia.calificacion | estrellas}}  {{ resenia.fecha | formatoFecha }}
+        </div>
+      }
   </div>
 
   <!-- Imagen del libro -->
