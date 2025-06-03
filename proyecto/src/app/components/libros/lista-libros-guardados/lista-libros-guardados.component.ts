@@ -29,7 +29,7 @@ export class ListaLibrosGuardadosComponent {
   private translate = inject(TranslateService);
 
   ngOnInit() {
-    this.idUsuarioDelPerfil = this.ruta.snapshot.params['idUsuario'];
+    this.idUsuarioDelPerfil = this.ruta.snapshot.params['idUsuario'] || this.authService.getUsuario()?.id;
     const usuario = this.authService.getUsuario();
     console.log('Usuario actual:', usuario);
   this.idUsuarioActual = usuario?.id;
