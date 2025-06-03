@@ -83,7 +83,7 @@ export class PerfilUsuarioComponent {
   };
   getSeguidores = () => {
     if (this.idUsuario) {
-      this.servicioUsuarios.getSeguidores(Number(this.idUsuario)).subscribe({
+      this.servicioUsuarios.getSeguidores(this.idUsuario).subscribe({
         next: (data) => {
           const aSeguidores = data; //almacena los seguidores del usuario
           this.cantidadSeguidores = aSeguidores.length; //almacena la cantidad de seguidores
@@ -102,7 +102,7 @@ export class PerfilUsuarioComponent {
   };
   getSeguidos = () => {
     if (this.idUsuario) {
-      this.servicioUsuarios.getSeguidos(Number(this.idUsuario)).subscribe({
+      this.servicioUsuarios.getSeguidos(this.idUsuario).subscribe({
         next: (data) => {
           const aSeguidos = data; //almacena los Seguidos del usuario
           this.cantidadSeguidos = aSeguidos.length; //almacena la cantidad de Seguidos
@@ -260,8 +260,8 @@ llenarArrayLibros = () => {
 
   //publicaciones y reseñas
  ObtenerPublicacionesYResenias() {
-  const publicaciones$ = this.servicioPublicaciones.getPublicacionesUsuario(Number(this.idUsuario));
-  const resenias$ = this.servicioResenias.getReseniasPorUsuarioId(Number(this.idUsuario));
+  const publicaciones$ = this.servicioPublicaciones.getPublicacionesUsuario(this.idUsuario);
+  const resenias$ = this.servicioResenias.getReseniasPorUsuarioId(this.idUsuario);
 
   forkJoin([publicaciones$, resenias$]).subscribe({
     next: ([publicaciones, resenias]) => {

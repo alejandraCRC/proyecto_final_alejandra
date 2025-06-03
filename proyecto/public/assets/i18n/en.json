@@ -126,6 +126,7 @@
   "guardar_libro": "Save book",
   "titulo_resenias": "Reviews",
   "sin_resenias": "There are no reviews for this book.",
+  "sin_descripcion": "No description is currently available for this book.",
   "eliminar_libro_warning_titulo": "Delete this book?",
   "eliminar_libro_warning_texto": "This action cannot be undone",
   "eliminado_libro": "Deleted",

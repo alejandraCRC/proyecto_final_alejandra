@@ -123,6 +123,7 @@
   "guardar_libro": "Guardar libro",
   "titulo_resenias": "Reseñas",
   "sin_resenias": "No hay reseñas para este libro.",
+  "sin_descripcion": "No hay descripción disponible actualmente para este libro.",
   "eliminar_libro_warning_titulo": "¿Eliminar este libro?",
   "eliminar_libro_warning_texto": "Esta acción no se puede deshacer",
   "eliminado_libro": "Eliminado",
