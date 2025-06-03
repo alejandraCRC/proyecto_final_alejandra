@@ -2,7 +2,7 @@
 
   <!-- lista de clubes  -->
   <div
-    class="clubs order-1 lg:order-1  md:h-screen md:w-[25%] bg-[#FAF0E6] flex flex-col items-center gap-4"
+    class="clubs order-1 md:order-1  md:h-screen md:w-[25%] bg-[#FAF0E6] flex flex-col items-center gap-4"
   >
   <button
           (click)="crearClub()"
@@ -40,7 +40,7 @@
       {{'home.publicaciones' | translate}}
     </h3>
     }@else{
-    <ul class="order-3 lg:order-2 flex flex-col gap-4 w-[80%] p-5">
+    <ul class="order-3 md:order-2 flex flex-col gap-4 w-[80%] p-5">
       @for(publicacion of publicacionesResenias; track $index){
         @if(publicacion.tipo == 'resenia') {
       <li class=" bg-white p-4 rounded shadow hover:shadow-lg transition-shadow " >
@@ -71,7 +71,7 @@
 
 
   <!-- libros guardados -->
-<div class="mis-librosmis-libros order-2 lg:order-3 bg-[#FAF0E6] flex flex-col gap-4 justify-start items-center px-2 py-5">
+<div class="mis-librosmis-libros order-2 md:order-3 bg-[#FAF0E6] flex flex-col gap-4 justify-start items-center px-2 py-5">
 
   <!-- quiero leer -->
   <div
