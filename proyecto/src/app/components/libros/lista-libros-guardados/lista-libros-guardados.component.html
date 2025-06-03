@@ -1,8 +1,8 @@
-<div class="bg-[#FAF0E6] w-full p-6 flex flex-col justify-center align-middle">
+<div class="bg-[#FAF0E6] w-full p-6 flex flex-row flex-wrap justify-center align-middle">
 @for (libro of libros; track $index) {
 <div
   (click)="redirigirLibro(libro.id)"
-  class=" flex items-center  justify-between mb-4 gap-4 p-4 px-10 bg-white shadow-md rounded-lg hover:bg-gray-50 cursor-pointer transition"
+  class=" flex items-center  justify-between m-5 gap-4 p-4 px-10 bg-white shadow-md rounded-lg hover:bg-gray-50 cursor-pointer transition"
 >
   <!-- Información del libro -->
   <div class="flex-1">
