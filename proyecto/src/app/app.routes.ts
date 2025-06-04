@@ -57,7 +57,7 @@ export const routes: Routes = [
           ).then((c) => c.BuscarLibrosComponent),
       },
       {
-        path: 'detalle/:idLibro',
+        path: 'libro/:idLibro',
         loadComponent: () =>
           import('./components/libros/libro/libro.component').then(
             (c) => c.LibroComponent

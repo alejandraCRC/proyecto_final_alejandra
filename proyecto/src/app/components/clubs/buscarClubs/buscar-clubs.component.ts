@@ -49,12 +49,12 @@ export class BuscarClubsComponent {
 
   //Método para redirigir al perfil del usuario
   redirigirPerfil(id: number) {
-    this.router.navigate(['/app/perfil', id]);  // Navegar a la ruta de detalle pasando el ID
+    this.router.navigate(['/app/perfil', id]);  // Navegar a la ruta de perfil pasando el ID
   }
 
   // Método para redirigir al club seleccionado
   redirigirClub(id: number) {
-    this.router.navigate(['/app/club', id]); // Navegar a la ruta de detalle pasando el ID
+    this.router.navigate(['/app/club', id]); // Navegar a la ruta de club pasando el ID
   }
 
 }

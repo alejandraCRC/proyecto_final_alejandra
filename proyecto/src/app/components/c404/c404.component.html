@@ -1,9 +1,17 @@
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8 text-center mt-5">
-      <h1 class="display-4">{{ 'ERROR_404_TITLE' | translate }}</h1>
-      <p>{{ 'ERROR_404_MESSAGE' | translate }}</p>
-      <a routerLink="/body" class="btn btn-primary">{{ 'ERROR_404_BUTTON' | translate }}</a>
-    </div>
+<div class="min-h-screen flex flex-col items-center justify-center bg-[#FAF0E6] px-6">
+  <div class="max-w-xl text-center bg-white shadow-lg rounded-lg p-10 border border-[#F2A71B]">
+    <h1 class="text-6xl font-extrabold text-[#8C3535] mb-4">404</h1>
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+      {{ 'error_404.titulo' | translate }}
+    </h2>
+    <p class="text-gray-600 mb-6">
+      {{ 'error_404.mensaje' | translate }}
+    </p>
+    <a
+      routerLink="/home"
+      class="inline-block bg-[#A6175A] text-white py-2 px-6 rounded border-t-[6px] border-t-[#C7387A] border-l-[6px] border-l-[#A6175A] border-b-[6px] border-b-[#891248] border-r-[6px] border-r-[#891248] transition duration-300 hover:bg-[#C7387A]"
+    >
+      {{ 'error_404.boton' | translate }}
+    </a>
   </div>
 </div>

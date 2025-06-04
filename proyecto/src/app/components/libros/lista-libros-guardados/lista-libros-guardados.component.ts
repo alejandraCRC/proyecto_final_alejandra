@@ -116,6 +116,6 @@ obtenerReseniaDeCadaLibro(idLibro: string) {
 
     // Método para manejar el clic en un libro y obtener sus detalles
   redirigirLibro(id: string) {
-    this.router.navigate(['/app/detalle', id]);  // Navegar a la ruta de detalle pasando el ID
+    this.router.navigate(['/app/libro', id]);  // Navegar a la ruta de detalle pasando el ID
   }
 }

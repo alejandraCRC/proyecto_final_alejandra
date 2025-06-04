@@ -29,7 +29,7 @@ export class BuscarLibrosComponent {
 
   // Método para manejar el clic en un libro y obtener sus detalles
   redirigirLibro(id: string) {
-    this.router.navigate(['/app/detalle', id]);  // LLeva a la página de detalles del libro
+    this.router.navigate(['/app/libro', id]);  // LLeva a la página de detalles del libro
   }
   
 }
