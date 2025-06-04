@@ -65,7 +65,9 @@
     "alert_texto_eliminar_publicacion": "This action cannot be undone.",
     "eliminar": "Delete",
     "unido_exito": "You've successfully joined the club!",
-    "unido_exito_texto": "You can now participate in the club's readings and posts."
+    "unido_exito_texto": "You can now participate in the club's readings and posts.",
+    "salido_exito": "You have successfully left the club.",
+    "salido_exito_texto": "You will no longer receive updates from this club."
   },
 
   "lectura": {
