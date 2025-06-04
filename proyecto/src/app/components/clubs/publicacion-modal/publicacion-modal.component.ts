@@ -25,7 +25,7 @@ export class PublicacionModalComponent {
   }
 
   guardar() {
-    if (this.titulo == '' && this.contenido == '') {
+    if (this.titulo == '' || this.contenido == '') {
     this.mostrarError = true;
     return;
   }
