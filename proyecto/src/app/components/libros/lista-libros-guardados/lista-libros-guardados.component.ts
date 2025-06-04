@@ -45,7 +45,7 @@ eliminarLibro(id_libro: string) {
     iconColor: '#ef4444', // rojo Tailwind
     showCancelButton: true,
     confirmButtonText: this.translate.instant('sweetAlert.confirmar_eliminar'),
-    cancelButtonText: this.translate.instant('sweetAlert.cancelar_eliminar'),
+    cancelButtonText: this.translate.instant('sweetAlert.cancelar'),
     background: '#f9fafb', // gris claro Tailwind
     color: '#1f2937', // texto gris oscuro
     confirmButtonColor: '#ef4444', // rojo Tailwind
