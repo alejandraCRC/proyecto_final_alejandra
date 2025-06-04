@@ -59,8 +59,7 @@ export class PerfilUsuarioComponent {
   private translate = inject(TranslateService);
 
   idUsuario =
-    this.ruta.snapshot.paramMap.get('idUsuario') ||
-    this.authService.getUsuario().id_usuario; //obtiene el id del usuario de la ruta o del usuario autenticado
+    this.ruta.snapshot.paramMap.get('idUsuario') 
 
   ngOnInit() {
     this.getUsuario(); //obtiene el usuario
@@ -93,7 +92,7 @@ export class PerfilUsuarioComponent {
   };
   getSeguidores = () => {
     if (this.idUsuario) {
-      this.servicioUsuarios.getSeguidores(this.idUsuario).subscribe({
+      this.servicioUsuarios.getSeguidores(Number(this.idUsuario)).subscribe({
         next: (data) => {
           const aSeguidores = data; //almacena los seguidores del usuario
           this.cantidadSeguidores = aSeguidores.length; //almacena la cantidad de seguidores
@@ -110,7 +109,7 @@ export class PerfilUsuarioComponent {
   };
   getSeguidos = () => {
     if (this.idUsuario) {
-      this.servicioUsuarios.getSeguidos(this.idUsuario).subscribe({
+      this.servicioUsuarios.getSeguidos(Number(this.idUsuario)).subscribe({
         next: (data) => {
           const aSeguidos = data; //almacena los Seguidos del usuario
           this.cantidadSeguidos = aSeguidos.length; //almacena la cantidad de Seguidos
@@ -294,11 +293,12 @@ export class PerfilUsuarioComponent {
 
   //publicaciones y reseñas
   ObtenerPublicacionesYResenias() {
+    const idUsuario = this.authService.getUsuario().id_usuario;
     const publicaciones$ = this.servicioPublicaciones.getPublicacionesUsuario(
-      this.idUsuario
+      idUsuario
     );
     const resenias$ = this.servicioResenias.getReseniasPorUsuarioId(
-      this.idUsuario
+      idUsuario
     );
 
     forkJoin([publicaciones$, resenias$]).subscribe({

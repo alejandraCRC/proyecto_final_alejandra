@@ -277,8 +277,8 @@ export class ClubComponent {
       showCancelButton: true,
       confirmButtonColor: '#d33',
       cancelButtonColor: '#3085d6',
-      confirmButtonText: this.translate.instant('sweetAlert_confirmar_eliminar'),
-      cancelButtonText: this.translate.instant('sweetAlert_cancelar'),
+      confirmButtonText: this.translate.instant('sweetAlert.confirmar_eliminar'),
+      cancelButtonText: this.translate.instant('sweetAlert.cancelar'),
       // confirmButtonText: 'Sí, eliminar',
       // cancelButtonText: 'Cancelar',
     }).then((result) => {
@@ -392,8 +392,8 @@ export class ClubComponent {
       text: this.translate.instant('club.pregunta_guardar_libro_texto'),
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: this.translate.instant('sweetAlert_confirmar_guardar'),
-      cancelButtonText: this.translate.instant('sweetAlert_cancelar'),
+      confirmButtonText: this.translate.instant('sweetAlert.confirmar_guardar'),
+      cancelButtonText: this.translate.instant('sweetAlert.cancelar'),
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(this.libro, 'libro');

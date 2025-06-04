@@ -35,12 +35,13 @@
   </div>
 
   <!-- publicaciones y reseñas de seguidos  -->
+   <div class="order-3 md:order-2">
    @if(publicacionesResenias.length == 0){
    <h3 class="text-[#8C3535] font-bold italic m-5">
       {{'home.publicaciones' | translate}}
     </h3>
     }@else{
-    <ul class="order-3 md:order-2 flex flex-col justify-center align-middle gap-4 md:w-[80%] p-5">
+    <ul class=" flex flex-col justify-center align-middle gap-4 md:w-[80%] p-5">
       @for(publicacion of publicacionesResenias; track $index){
         @if(publicacion.tipo == 'resenia') {
       <li class=" bg-white p-4 rounded shadow hover:shadow-lg transition-shadow " >
@@ -68,7 +69,7 @@
       }
     </ul>
     }
-
+</div>
 
   <!-- libros guardados -->
 <div class="mis-libros order-2 md:order-3 bg-[#FAF0E6] flex flex-col gap-4 justify-center md:justify-start items-center px-2 py-5">

@@ -53,6 +53,17 @@ export class PublicacionesService {
       .pipe(catchError(this.handleError));
   }
 
+  //eliminar publicacion
+  eliminarPublicacion(id_publicacion: Number): Observable<any> {
+    //crear cabeceras
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authService.getToken()}`, //la autorizacion va con esta estructura
+    });
+    return this.http
+      .delete(`${this.url}/publicaciones/${id_publicacion}`, { headers })
+      .pipe(catchError(this.handleError));
+  }
+
   //solicitar las publicaciones del clubs
   getComentariosPublicacion(id_publicacion: Number): Observable<Comentario[]> {
     return this.http
@@ -75,54 +86,17 @@ export class PublicacionesService {
       .post(`${this.url}/comentarios`, body, { headers })
       .pipe(catchError(this.handleError));
   }
-  //     //   //solicitar una tarea segun su usuario
-  //   getClubsUsuario():Observable<Club[]>{
-  //     //crear cabeceras
-  //     const headers=new HttpHeaders({
-  //       'Authorization': `Bearer ${this.authService.getToken()}` //la autorizacion va con esta estructura
-  //     })
-  //     return this.http.get<Club[]>(`${this.url}/clubsUsuario`, { headers }).pipe(
-  //       catchError(this.handleError)
-  //     );
-  //   }
 
-  //     //solicitar un club
-  // obtenerClubPorId(id_club:number):Observable<Club[]>{
-  //   return this.http.get<Club[]>(`${this.url}/club/${id_club}`).pipe(
-  //     catchError(this.handleError)
-  //   )
-  // }
-
-  //   //solicitar una tarea segun su estado
-  //   getTareasEstado(estado:string):Observable<Tarea[]>{
-  //     //crear cabeceras
-  //     return this.http.get<Tarea[]>(`${this.url}/tareas/estado/${estado}`).pipe(
-  //       catchError(this.handleError)
-  //     );
-  //   }
-
-  //   //eliminar tarea
-  // deleteTarea(id:number):Observable<{message:string}>{
-  //   return this.http.delete<{message:string}>(`${this.url}/tareas/${id}`).pipe(
-  //     catchError(this.handleError)
-  //   );
-  // }
-
-  // //añadir tarea
-  // postTarea(tarea:Tarea):Observable<{id:number}>{
-  //   return this.http.post<{id:number}>(`${this.url}/tareas`,tarea).pipe(
-  //     catchError(this.handleError)
-  //   );
-
-  // }
-
-  // //editar tarea
-  // putTarea(tarea:Tarea):Observable<{message:string}>{
-  //   return this.http.put<{message:string}>(`${this.url}/tareas/${tarea.idTarea}`,tarea).pipe(
-  //     catchError(this.handleError)
-  //   );
-
-  // }
+  //eliminar comentario de publicacion
+  eliminarComentarioPublicacion(id_comentario: Number): Observable<any> {
+    //crear cabeceras
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authService.getToken()}`, //la autorizacion va con esta estructura
+    });
+    return this.http
+      .delete(`${this.url}/comentarios/${id_comentario}`, { headers })
+      .pipe(catchError(this.handleError));
+  }
 
   // //metodo para manejar los errores
   private handleError(err: HttpErrorResponse) {
@@ -135,12 +109,5 @@ export class PublicacionesService {
     return throwError(() => {
       new Error(errorMessage);
     });
-  }
-
-  //leer todos los usuarios
-  getUsuarios(): Observable<Usuario[]> {
-    return this.http
-      .get<Usuario[]>(`${this.url}/usuarios`)
-      .pipe(catchError(this.handleError));
   }
 }

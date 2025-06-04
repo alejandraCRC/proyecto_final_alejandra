@@ -56,6 +56,28 @@ export const addPublicacion = async (req, res) => {
   }
 };
 
+export const delPublicacion = async (req, res) => {
+  try {
+    const { id_publicacion } = req.params;
+    const [result] = await pool.query("DELETE FROM publicaciones WHERE id_publicacion=?", [id_publicacion]);
+
+    if (result.affectedRows == 0) {
+      return res.status(400).json({
+        message: "no existe",
+      });
+    } else {
+      return res.status(200).json({
+        message: "ha sido borrado",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Error en el servidor",
+      error: error.message,
+    });
+  }
+}
+
 export const getComentariosPublicaciones = async (req, res) => {
   const { id_publicacion } = req.params;
   console.log(' comentarios id_publicacion', id_publicacion);
@@ -92,6 +114,28 @@ export const addComentarioPublicacion = async (req, res) => {
     });
   }
 };
+
+export const delComentarioPublicacion = async (req, res) => {
+  try {
+    const { id_comentario } = req.params;
+    const [result] = await pool.query("DELETE FROM comentarios_publicacion WHERE id_comentario=?", [id_comentario]);
+
+    if (result.affectedRows == 0) {
+      return res.status(400).json({
+        message: "no existe",
+      });
+    } else {
+      return res.status(200).json({
+        message: "ha sido borrado",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Error en el servidor",
+      error: error.message,
+    });
+  }
+}
 
 // export const getmiembrosClub = async (req, res) => {
 //   const {id_club} = req.params;
