@@ -461,44 +461,70 @@ export class ClubComponent {
       });
   }
 
-  confirmarGuardarLibro() {
+  confirmarGuardarLibro(): void {
+  Swal.fire({
+    title: this.translate.instant('club.pregunta_guardar_libro'),
+    text: this.translate.instant('club.pregunta_guardar_libro_texto'),
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: this.translate.instant('sweetAlert.confirmar_guardar'),
+    cancelButtonText: this.translate.instant('sweetAlert.cancelar'),
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.navegarADetalleLibro();
+    }
+  });
+}
+
+navegarADetalleLibro(): void {
+  if (this.libro?.id_libro) {
+    this.router.navigate(['/app/libro', this.libro.id_libro]);
+  } else {
+    console.error('Libro no definido o sin ID');
     Swal.fire({
-      title: this.translate.instant('club.pregunta_guardar_libro'),
-      text: this.translate.instant('club.pregunta_guardar_libro_texto'),
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: this.translate.instant('sweetAlert.confirmar_guardar'),
-      cancelButtonText: this.translate.instant('sweetAlert.cancelar'),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        console.log(this.libro, 'libro');
-        this.router.navigate(['/app/libro', this.libro.id_libro]);
-      }
+      icon: 'error',
+      title: this.translate.instant('sweetAlert.error'),
+      text: this.translate.instant('club.error_libro_no_definido'),
     });
   }
+}
 
-  comprobarLeidoLecturaActual() {
-    this.servicioLibrosUsuario.getLibrosUsuario().subscribe({
-      next: (data) => {
-        this.leido_lecturaActual = data.some(
-          (libro: any) => libro.id_libro === this.libro.id_libro
-        );
+comprobarLeidoLecturaActual(): void {
+  this.servicioLibrosUsuario.getLibrosUsuario().subscribe({
+    next: (data) => {
+      this.leido_lecturaActual = data.some(
+        (libro: any) => libro.id_libro === this.libro?.id_libro
+      );
+    },
+    error: (err) => {
+      console.error('Error al obtener libros del usuario:', err);
+      Swal.fire({
+        icon: 'error',
+        title: this.translate.instant('sweetAlert.error'),
+        text: this.translate.instant('club.error_obtener_libros_usuario'),
+      });
+    },
+  });
+}
+
+marcarComoLeido(): void {
+  if (!this.leido_lecturaActual && this.club?.id_club) {
+    this.servicioClubs.actualizarLecturaActual(this.club.id_club).subscribe({
+      next: () => {
+        this.confirmarGuardarLibro(); // Abre diálogo para guardar
       },
       error: (err) => {
-        console.error('Error al obtener libro:', err);
+        console.error('Error al marcar como leído:', err);
+        Swal.fire({
+          icon: 'error',
+          title: this.translate.instant('sweetAlert.error'),
+          text: this.translate.instant('club.error_marcar_leido'),
+        });
       },
     });
   }
-  marcarComoLeido() {
-    if (!this.leido_lecturaActual) {
-      this.servicioClubs.actualizarLecturaActual(this.club.id_club).subscribe({
-        next: () => {
-          this.confirmarGuardarLibro(); //pregunta si el usuario quiere guardar el libro
-          
-        },
-      });
-    }
-  }
+}
+
 
   //Método para redirigir al perfil del usuario
   redirigirPerfil(id: number) {
