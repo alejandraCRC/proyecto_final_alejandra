@@ -94,6 +94,9 @@ export class ClubComponent {
               publi.mostrarComentarios = false; // por defecto no se muestran los comentarios
             });
         });
+        // Ordena las publicaciones por fecha de publicación (de más reciente a más antigua)
+        data.sort((a, b) => new Date(b.fecha_publicacion).getTime() - new Date(a.fecha_publicacion).getTime());
+
         this.publicaciones = data; //almacena las publicaciones en el array de publicaciones
 
         this.actualizarPaginacion(); //prepara el array de publicaciones paginadas
