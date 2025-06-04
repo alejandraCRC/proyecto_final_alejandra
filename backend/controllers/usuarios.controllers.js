@@ -1,5 +1,5 @@
 import { pool } from "../db.js";
-const path = require("path");
+
 
 export const getUsuario = async (req, res) => {
   try {
