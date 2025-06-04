@@ -201,6 +201,7 @@ export class HomeComponent {
             const publicaciones = publicacionesArray.flat().map((pub) => ({
               ...pub,
               tipo: 'publicacion',
+              fecha: pub.fecha_publicacion
             }));
 
             const resenias = reseniasArray.flat().map((resenia) => ({

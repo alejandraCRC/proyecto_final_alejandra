@@ -317,6 +317,7 @@ export class PerfilUsuarioComponent {
         const publicacionesConTipo = publicaciones.map((pub) => ({
           ...pub,
           tipo: 'publicacion',
+          fecha: pub.fecha_publicacion
         }));
 
         const reseniasConTipo = resenias.map((resenia) => ({
