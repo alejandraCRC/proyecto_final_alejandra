@@ -235,9 +235,9 @@
         <!-- comentarios de la publicación -->
         @if(publicacion.mostrarComentarios){
         <div class="mt-4 pl-4 border-l-2 border-yellow-300 space-y-2">
-          <div class="flex justify-between items-start">
+          <div>
             @for(comentario of publicacion.comentarios; track $index) {
-            <div>
+            <div class="flex justify-between items-start">
               <p class="text-sm text-gray-700">
                 <span class="font-semibold text-gray-800">{{
                   comentario.nombre
