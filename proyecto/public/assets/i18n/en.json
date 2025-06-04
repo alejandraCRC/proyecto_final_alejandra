@@ -68,7 +68,9 @@
     "unido_exito": "You've successfully joined the club!",
     "unido_exito_texto": "You can now participate in the club's readings and posts.",
     "salido_exito": "You have successfully left the club.",
-    "salido_exito_texto": "You will no longer receive updates from this club."
+    "salido_exito_texto": "You will no longer receive updates from this club.",
+    "publicacion_guardada": "Post saved!",
+    "publicacion_guardada_texto": "Your post has been successfully saved."
   },
 
   "lectura": {
@@ -99,7 +101,8 @@
     "cancelar": "Cancel",
     "guardar": "Save",
     "placeholder_titulo": "Title",
-    "placeholder_contenido": "Write your post here..."
+    "placeholder_contenido": "Write your post here...",
+    "alert_Dato_requerido": "You must enter a title and content to save."
   },
 
   "home": {

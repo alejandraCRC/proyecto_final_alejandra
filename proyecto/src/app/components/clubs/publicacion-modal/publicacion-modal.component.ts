@@ -18,12 +18,18 @@ export class PublicacionModalComponent {
 
   titulo: string = '';
   contenido: string = '';
+  mostrarError: boolean = false;
 
   cerrar() {
     this.cerrarModal.emit();
   }
 
   guardar() {
+    if (this.titulo == '' && this.contenido == '') {
+    this.mostrarError = true;
+    return;
+  }
+    this.mostrarError = false;
     this.guardarPublicacion.emit({
       titulo: this.titulo.trim(),
       contenido: this.contenido.trim(),

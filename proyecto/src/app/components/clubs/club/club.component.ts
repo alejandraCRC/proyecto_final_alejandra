@@ -127,6 +127,16 @@ export class ClubComponent {
       )
       .subscribe({
         next: () => {
+          Swal.fire({
+            icon: 'success',
+            title: this.translate.instant('club.publicacion_guardada'),
+            text: this.translate.instant('club.publicacion_guardada_texto'),
+            toast: true,
+            position: 'top-start',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+          });
           console.log('Publicacion guardada');
           this.cerrarModalPublicacion();
         },
