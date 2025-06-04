@@ -57,8 +57,11 @@
     "titulo_error": "Error",
     "texto_error": "The club could not be deleted",
     "pregunta_guardar_libro": "Mark as read?",
-    "pregunta_guardar_libro_texto": "Do you want to mark this book as read?"
-
+    "pregunta_guardar_libro_texto": "Do you want to mark this book as read?",
+    "alert_seguro_eliminar_comentario": "Are you sure you want to delete this comment?",
+    "alert_texto_eliminar_comentario": "This action cannot be undone.",
+    "alert_seguro_eliminar_publicacion": "Are you sure you want to delete this post?",
+    "alert_texto_eliminar_publicacion": "This action cannot be undone."
   },
 
   "lectura": {

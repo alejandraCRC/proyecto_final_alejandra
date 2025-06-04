@@ -134,6 +134,34 @@ export class ClubComponent {
       });
   }
 
+  //eliminar publicacion
+  eliminarPublicacion(id_publicacion: number) {
+    Swal.fire({
+      title: this.translate.instant('club.alert_seguro_eliminar_publicacion'),
+      text: this.translate.instant('club.alert_texto_eliminar_publicacion'),
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: this.translate.instant('sweetAlert.confirmar_eliminar'),
+      cancelButtonText: this.translate.instant('sweetAlert.cancelar'),
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Solo si el usuario confirma, se hace la petición
+        this.servicioPublicaciones
+          .eliminarPublicacion(id_publicacion)
+          .subscribe({
+            next: () => {
+              console.log('Publicación eliminada');
+              this.getPublicaciones(); // Actualiza las publicaciones
+            },
+            error: (err) =>
+              console.error('Error al eliminar la publicación:', err),
+          });
+      }
+    });
+  }
+
   // modal comentario publicacion
   cerrarModalComentarioPublicacion() {
     //controla el cierre del modal
@@ -167,6 +195,34 @@ export class ClubComponent {
         error: (err) => console.error('Error al guardar el comentario:', err),
       });
   }
+
+  eliminarComentario(id_comentario: number) {
+    Swal.fire({
+      title: this.translate.instant('club.alert_seguro_eliminar_comentario'),
+      text: this.translate.instant('club.alert_texto_eliminar_comentario'),
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: this.translate.instant('sweetAlert.confirmar_eliminar'),
+      cancelButtonText: this.translate.instant('sweetAlert.cancelar'),
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Solo si el usuario confirma, se hace la petición
+        this.servicioPublicaciones
+          .eliminarComentarioPublicacion(id_comentario)
+          .subscribe({
+            next: () => {
+              console.log('Comentario eliminado');
+              this.getPublicaciones(); // Actualiza las publicaciones
+            },
+            error: (err) =>
+              console.error('Error al eliminar el comentario:', err),
+          });
+      }
+    });
+  }
+
 
   //funciones para paginacion de publicaciones
   //metodos para la paginacion de las publicaciones

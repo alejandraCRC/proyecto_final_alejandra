@@ -57,7 +57,11 @@
     "titulo_error": "Error",
     "texto_error": "No se pudo eliminar el club",
     "pregunta_guardar_libro": "¿Guardar como leído?",
-    "pregunta_guardar_libro_texto": "¿Deseas marcar este libro como leído?"
+    "pregunta_guardar_libro_texto": "¿Deseas marcar este libro como leído?",
+    "alert_seguro_eliminar_comentario": "¿Estás seguro de que deseas eliminar este comentario?",
+    "alert_texto_eliminar_comentario": "Esta acción no se puede deshacer.",
+    "alert_seguro_eliminar_publicacion": "¿Estás seguro de que deseas eliminar esta publicación?",
+    "alert_texto_eliminar_publicacion": "Esta acción no se puede deshacer."
   },
 
   "lectura": {

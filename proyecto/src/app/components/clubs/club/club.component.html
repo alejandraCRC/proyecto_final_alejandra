@@ -1,7 +1,8 @@
 <div class="bg-[#FAF0E6] w-full">
   <!-- tarjeta con datos del club y boton de unirse -->
-  <div class="bg-white shadow-lg rounded-lg p-6 border border-gray-200 mb-6 flex flex-col md:flex-row justify-between gap-4">
-
+  <div
+    class="bg-white shadow-lg rounded-lg p-6 border border-gray-200 mb-6 flex flex-col md:flex-row justify-between gap-4"
+  >
     <!-- parte izquierda  -->
     <div>
       <!-- datos del club  -->
@@ -14,7 +15,7 @@
         {{ club?.descripcion }}
       </p>
       <small class="text-gray-500 italic">
-        {{'home.creado_por' | translate}}
+        {{ "home.creado_por" | translate }}
         <span class="font-medium text-gray-700">{{ creador?.nombre }}</span> ·
         {{ club?.fecha_creacion | formatoFecha }}
       </small>
@@ -97,15 +98,14 @@
           class="mt-4 bg-red-500 text-sm text-white px-2 py-1 rounded hover:bg-red-600 transition-colors items-center"
         >
           @if(leido_lecturaActual){
-            <i class="fas fa-check-circle"></i>
+          <i class="fas fa-check-circle"></i>
           }@else {
-            <i class="fas fa-circle"></i>
+          <i class="fas fa-circle"></i>
           }
           {{ "club.lectura_leido" | translate }}
           <!-- ícono de check redondo -->
         </button>
-        }
-      }
+        } }
       </div>
       <div class="flex justify-end">
         @if(usuarioEsAdministrador){
@@ -178,13 +178,26 @@
         <!-- boton para dejar un comentario -->
         <div class="flex flex-col justify-end items-start">
           <!-- solo pueden comentar los miembros del club  -->
-          @if(usuarioEsMiembro){
-          <button
-            (click)="abrirModalComentario(publicacion)"
-            class="text-sm text-blue-600 hover:underline mt-2"
-          >
-            {{ "club.comentar" | translate }}
-          </button>
+          <div>
+            @if(usuarioEsMiembro){
+            <button
+              (click)="abrirModalComentario(publicacion)"
+              class="text-sm text-blue-600 hover:underline mt-2"
+            >
+              {{ "club.comentar" | translate }}
+            </button>
+            }
+          </div>
+          @if(usuarioEsAdministrador || publicacion.id_usuario ===
+          usuario?.id_usuario){
+          <div>
+            <button
+              (click)="eliminarPublicacion(publicacion.id_publicacion)"
+              class="text-sm text-red-600 hover:underline"
+            >
+              {{ "club.eliminar" | translate }}
+            </button>
+          </div>
           }
           <!-- Modal de añadir comentario de publicacion -->
           @if (publicacionSeleccionada?.id_publicacion ===
@@ -233,7 +246,17 @@
                 comentario.fecha_comentario | formatoFecha
               }}</small>
             </div>
-            }
+            @if(usuarioEsAdministrador || comentario.id_usuario ===
+            usuario?.id_usuario){
+            <div class="ml-2">
+              <button
+                (click)="eliminarComentario(comentario.id_comentario)"
+                class="text-sm text-red-600 hover:underline"
+              >
+                {{ "club.eliminar" | translate }}
+              </button>
+            </div>
+            } }
           </div>
           <ng-template #sinComentarios>
             <p class="text-gray-400 italic">
