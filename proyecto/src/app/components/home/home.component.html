@@ -1,32 +1,32 @@
-<div class="flex flex-col justify-center align-middle md:flex-row md:justify-between gap-4">
-
+<div
+  class="flex flex-col justify-center align-middle md:flex-row md:justify-between gap-4"
+>
   <!-- lista de clubes  -->
   <div
-    class="clubs order-1 md:order-1  md:h-screen md:w-[25%] bg-[#FAF0E6] flex flex-col items-center gap-4"
+    class="clubs order-1 md:order-1 md:h-screen md:w-[25%] bg-[#FAF0E6] flex flex-col items-center gap-4"
   >
-  <button
-          (click)="crearClub()"
-          class="mt-4 bg-[#A6175A] text-sm text-white px-2 py-1 rounded hover:bg-[#891248] transition-colors"
-        >
-          {{'home.crear_club' | translate}} <i class="fas fa-user-plus"></i>
-        </button>
+    <button
+      (click)="crearClub()"
+      class="mt-4 bg-[#A6175A] text-sm text-white px-2 py-1 rounded hover:bg-[#891248] transition-colors"
+    >
+      {{ "home.crear_club" | translate }} <i class="fas fa-user-plus"></i>
+    </button>
     @if(aClubs.length == 0){
     <h3 class="text-[#8C3535] font-bold italic m-5">
-      {{'home.no_clubs' | translate}}
+      {{ "home.no_clubs" | translate }}
     </h3>
     }@else{
     <ul
-      class="flex flex-col justify-center items-center  rounded-lg text-[#8C3535] font-bold m-3"
+      class="flex flex-col justify-center items-center rounded-lg text-[#8C3535] font-bold m-3"
     >
       @for(club of aClubs; track $index){
-      <li (click)="redirigirClub(club.id_club)"   class="cursor-pointer flex flex-col justify-center items-center 
-         bg-[#FFD6A5] hover:bg-[#FFC185] 
-         rounded-lg text-[#843030] font-bold 
-         py-1 px-3 m-3 transition-colors duration-200"
-  >
+      <li
+        (click)="redirigirClub(club.id_club)"
+        class="cursor-pointer flex flex-col justify-center items-center bg-[#FFD6A5] hover:bg-[#FFC185] rounded-lg text-[#843030] font-bold py-1 px-3 m-3 transition-colors duration-200"
+      >
         <p>{{ club.nombre }}</p>
         <small class="text-xs font-normal"
-          >{{'home.creado_por' | translate}} {{ club.nombre_usuario }}</small
+          >{{ "home.creado_por" | translate }} {{ club.nombre_usuario }}</small
         >
       </li>
       }
@@ -35,149 +35,176 @@
   </div>
 
   <!-- publicaciones y reseñas de seguidos  -->
-   <div class="order-3 md:order-2">
-   @if(publicacionesResenias.length == 0){
-   <h3 class="text-[#8C3535] font-bold italic m-5">
-      {{'home.publicaciones' | translate}}
+  <div class="order-3 md:order-2">
+    @if(publicacionesResenias.length == 0){
+    <h3 class="text-[#8C3535] font-bold italic m-5">
+      {{ "home.publicaciones" | translate }}
     </h3>
     }@else{
-    <ul class=" flex flex-col justify-center align-middle gap-4 md:w-[80%] p-5">
+    <ul class="flex flex-col justify-center align-middle gap-4 md:w-[80%] p-5">
       @for(publicacion of publicacionesResenias; track $index){
-        @if(publicacion.tipo == 'resenia') {
-      <li class=" bg-white p-4 rounded shadow hover:shadow-lg transition-shadow " >
-       <div class="flex justify-between items-center mb-2">
-            <span class="text-sm text-gray-600 font-medium cursor-pointer" (click)="redirigirPerfil(publicacion.id_usuario)">
-              {{ publicacion.tituloLibro }}
-            </span>
-            <span class=" font-semibold" [innerHTML]='publicacion.calificacion | estrellas'></span>
-          </div>
-          <div class="flex justify-between items-center mb-2">
+      @if(publicacion.tipo == 'resenia') {
+      <li class="bg-white p-4 rounded shadow hover:shadow-lg transition-shadow">
+        <div class="flex justify-between items-center mb-2">
+          <span
+            class="text-sm text-gray-600 font-medium cursor-pointer"
+            (click)="redirigirPerfil(publicacion.id_usuario)"
+          >
+            {{ publicacion.tituloLibro }}
+          </span>
+          <span
+            class="font-semibold"
+            [innerHTML]="publicacion.calificacion | estrellas"
+          ></span>
+        </div>
+        <div class="flex justify-between items-center mb-2">
           <p class="text-gray-700 text-sm leading-snug">
             {{ publicacion.resenia }}
           </p>
-          <small class="text-gray-700">{{ publicacion.fecha | formatoFecha }}</small>
+          <small class="text-gray-700">{{
+            publicacion.fecha | formatoFecha
+          }}</small>
         </div>
-        <small class="text-sm text-gray-500">{{'home.reseña_de' | translate}} {{ publicacion.nombre }}</small>
-        }@else{
-          <li class=" bg-white p-4 rounded shadow hover:shadow-lg transition-shadow flex justify-between" >
-        <div>
-        <h4 class="font-semibold">{{ publicacion.titulo }}</h4>
-        <p>{{ publicacion.contenido }}</p>
-        <small class="text-gray-500">{{'home.por' | translate}} <a class="cursor-pointer" (click)="redirigirPerfil(publicacion.id_usuario)" class="hover:text-blue-600">{{ publicacion.nombre_usuario }}</a> en <a (click)="redirigirClub(publicacion.id_club)" class="hover:text-blue-600">{{ publicacion.nombre_club }}</a></small>
-          </div>
-          <small class="text-gray-500">{{ publicacion.fecha | formatoFecha }}</small>
+        <small class="text-sm text-gray-500"
+          >{{ "home.reseña_de" | translate }} {{ publicacion.nombre }}</small
+        >
       </li>
-    }
-      }
+      }@else{
+      <li
+        class="bg-white p-4 rounded shadow hover:shadow-lg transition-shadow flex justify-between"
+      >
+        <div>
+          <h4 class="font-semibold">{{ publicacion.titulo }}</h4>
+          <p>{{ publicacion.contenido }}</p>
+          <small class="text-gray-500"
+            >{{ "home.por" | translate }}
+            <a
+              class="cursor-pointer"
+              (click)="redirigirPerfil(publicacion.id_usuario)"
+              class="hover:text-blue-600"
+              >{{ publicacion.nombre_usuario }}</a
+            >
+            en
+            <a
+              (click)="redirigirClub(publicacion.id_club)"
+              class="hover:text-blue-600"
+              >{{ publicacion.nombre_club }}</a
+            ></small
+          >
+        </div>
+        <small class="text-gray-500">{{
+          publicacion.fecha | formatoFecha
+        }}</small>
+      </li>
+      } }
     </ul>
     }
-</div>
+  </div>
 
   <!-- libros guardados -->
-<div class="mis-libros order-2 md:order-3 bg-[#FAF0E6] flex flex-col gap-4 justify-center md:justify-start items-center px-2 py-5">
-
-  <!-- quiero leer -->
   <div
-    class="quiero-leer relative  rounded pt-8 pb-2 px-5 cursor-pointer"
-    (click)="redirigirLibrosGuardados('quiero leer')"
+    class="mis-libros order-2 md:order-3 bg-[#FAF0E6] flex flex-col gap-4 justify-center md:justify-start items-center px-2 py-5"
   >
-    <h3 class="text-[#8C3535] font-bold italic absolute top-0 left-2">
-      {{ 'perfil.quiero_leer' | translate }}
-    </h3>
+    <!-- quiero leer -->
+    <div
+      class="quiero-leer relative rounded pt-8 pb-2 px-5 cursor-pointer"
+      (click)="redirigirLibrosGuardados('quiero leer')"
+    >
+      <h3 class="text-[#8C3535] font-bold italic absolute top-0 left-2">
+        {{ "perfil.quiero_leer" | translate }}
+      </h3>
 
-    <div class="relative h-28 w-[10rem]">
-      @if (quieroLeer.length === 0) {
+      <div class="relative h-28 w-[10rem]">
+        @if (quieroLeer.length === 0) {
         <h3 class="text-[#8C3535] font-bold italic m-5">
-          {{ 'perfil.no_hay_lista' | translate:{ lista: ('perfil.quiero_leer' | translate) } }}
+          {{
+            "perfil.no_hay_lista"
+              | translate : { lista: ("perfil.quiero_leer" | translate) }
+          }}
         </h3>
-      } @else {
-        @for (libro of quieroLeer; track $index) {
-          @if (libro.volumeInfo?.imageLinks?.thumbnail) {
-            <img
-              [src]="libro.volumeInfo.imageLinks.thumbnail"
-              alt="{{ libro.volumeInfo.title }}"
-              class="absolute top-0 w-20 h-28 rounded border-2 border-[#FAF0E6] hover:scale-105 transition-transform duration-300"
-              [ngStyle]="{ left: ($index * 1.5) + 'rem', zIndex: 10 - $index }"
-            />
-          } @else {
-            <div
-              class="absolute top-0 w-20 h-28 bg-slate-600 rounded border"
-              [ngStyle]="{ left: ($index * 1.5) + 'rem', zIndex: 10 - $index }"
-            ></div>
-          }
-        }
-      }
+        } @else { @for (libro of quieroLeer; track $index) { @if
+        (libro.volumeInfo?.imageLinks?.thumbnail) {
+        <img
+          [src]="libro.volumeInfo.imageLinks.thumbnail"
+          alt="{{ libro.volumeInfo.title }}"
+          class="absolute top-0 w-20 h-28 rounded border-2 border-[#FAF0E6] hover:scale-105 transition-transform duration-300"
+          [ngStyle]="{ left: $index * 1.5 + 'rem', zIndex: 10 - $index }"
+        />
+        } @else {
+        <div
+          class="absolute top-0 w-20 h-28 bg-slate-600 rounded border"
+          [ngStyle]="{ left: $index * 1.5 + 'rem', zIndex: 10 - $index }"
+        ></div>
+        } } }
+      </div>
+    </div>
+
+    <!-- leyendo -->
+    <div
+      class="leyendo relative rounded pt-8 pb-2 px-5 cursor-pointer"
+      (click)="redirigirLibrosGuardados('leyendo')"
+    >
+      <h3 class="text-[#8C3535] font-bold italic absolute top-0 left-2">
+        {{ "perfil.leyendo" | translate }}
+      </h3>
+
+      <div class="relative h-28 w-[10rem]">
+        @if (leyendo.length === 0) {
+        <h3 class="text-[#8C3535] font-bold italic m-5">
+          {{
+            "perfil.no_hay_lista"
+              | translate : { lista: ("perfil.leyendo" | translate) }
+          }}
+        </h3>
+        } @else { @for (libro of leyendo; track $index) { @if
+        (libro.volumeInfo?.imageLinks?.thumbnail) {
+        <img
+          [src]="libro.volumeInfo.imageLinks.thumbnail"
+          alt="{{ libro.volumeInfo.title }}"
+          class="absolute top-0 w-20 h-28 rounded border-2 border-[#FAF0E6] hover:scale-105 transition-transform duration-300"
+          [ngStyle]="{ left: $index * 1.5 + 'rem', zIndex: 10 - $index }"
+        />
+        } @else {
+        <div
+          class="absolute top-0 w-20 h-28 bg-slate-600 rounded border"
+          [ngStyle]="{ left: $index * 1.5 + 'rem', zIndex: 10 - $index }"
+        ></div>
+        } } }
+      </div>
+    </div>
+
+    <!-- leídos -->
+    <div
+      class="leidos relative rounded pt-8 pb-2 px-5 cursor-pointer"
+      (click)="redirigirLibrosGuardados('leidos')"
+    >
+      <h3 class="text-[#8C3535] font-bold italic absolute top-0 left-2">
+        {{ "perfil.leidos" | translate }}
+      </h3>
+
+      <div class="relative h-28 w-[10rem]">
+        @if (leidos.length === 0) {
+        <h3 class="text-[#8C3535] font-bold italic m-5">
+          {{
+            "perfil.no_hay_lista"
+              | translate : { lista: ("perfil.leidos" | translate) }
+          }}
+        </h3>
+        } @else { @for (libro of leidos; track $index) { @if
+        (libro.volumeInfo?.imageLinks?.thumbnail) {
+        <img
+          [src]="libro.volumeInfo.imageLinks.thumbnail"
+          alt="{{ libro.volumeInfo.title }}"
+          class="absolute top-0 w-20 h-28 rounded border-2 border-[#FAF0E6] hover:scale-105 transition-transform duration-300"
+          [ngStyle]="{ left: $index * 1.5 + 'rem', zIndex: 10 - $index }"
+        />
+        } @else {
+        <div
+          class="absolute top-0 w-20 h-28 bg-slate-600 rounded border"
+          [ngStyle]="{ left: $index * 1.5 + 'rem', zIndex: 10 - $index }"
+        ></div>
+        } } }
+      </div>
     </div>
   </div>
-
-  <!-- leyendo -->
-  <div
-    class="leyendo relative  rounded pt-8 pb-2 px-5 cursor-pointer"
-    (click)="redirigirLibrosGuardados('leyendo')"
-  >
-    <h3 class="text-[#8C3535] font-bold italic absolute top-0 left-2">
-      {{ 'perfil.leyendo' | translate }}
-    </h3>
-
-    <div class="relative h-28 w-[10rem]">
-      @if (leyendo.length === 0) {
-        <h3 class="text-[#8C3535] font-bold italic m-5">
-          {{ 'perfil.no_hay_lista' | translate:{ lista: ('perfil.leyendo' | translate) } }}
-        </h3>
-      } @else {
-        @for (libro of leyendo; track $index) {
-          @if (libro.volumeInfo?.imageLinks?.thumbnail) {
-            <img
-              [src]="libro.volumeInfo.imageLinks.thumbnail"
-              alt="{{ libro.volumeInfo.title }}"
-              class="absolute top-0 w-20 h-28 rounded border-2 border-[#FAF0E6] hover:scale-105 transition-transform duration-300"
-              [ngStyle]="{ left: ($index * 1.5) + 'rem', zIndex: 10 - $index }"
-            />
-          } @else {
-            <div
-              class="absolute top-0 w-20 h-28 bg-slate-600 rounded border"
-              [ngStyle]="{ left: ($index * 1.5) + 'rem', zIndex: 10 - $index }"
-            ></div>
-          }
-        }
-      }
-    </div>
-  </div>
-
-  <!-- leídos -->
-  <div
-    class="leidos relative  rounded pt-8 pb-2 px-5 cursor-pointer"
-    (click)="redirigirLibrosGuardados('leidos')"
-  >
-    <h3 class="text-[#8C3535] font-bold italic absolute top-0 left-2">
-      {{ 'perfil.leidos' | translate }}
-    </h3>
-
-    <div class="relative h-28 w-[10rem]">
-      @if (leidos.length === 0) {
-        <h3 class="text-[#8C3535] font-bold italic m-5">
-          {{ 'perfil.no_hay_lista' | translate:{ lista: ('perfil.leidos' | translate) } }}
-        </h3>
-      } @else {
-        @for (libro of leidos; track $index) {
-          @if (libro.volumeInfo?.imageLinks?.thumbnail) {
-            <img
-              [src]="libro.volumeInfo.imageLinks.thumbnail"
-              alt="{{ libro.volumeInfo.title }}"
-              class="absolute top-0 w-20 h-28 rounded border-2 border-[#FAF0E6] hover:scale-105 transition-transform duration-300"
-              [ngStyle]="{ left: ($index * 1.5) + 'rem', zIndex: 10 - $index}"
-            />
-          } @else {
-            <div
-              class="absolute top-0 w-20 h-28 bg-slate-600 rounded border"
-              [ngStyle]="{ left: ($index * 1.5) + 'rem', zIndex: 10 - $index }"
-            ></div>
-          }
-        }
-      }
-    </div>
-  </div>
-</div>
-
-
 </div>
