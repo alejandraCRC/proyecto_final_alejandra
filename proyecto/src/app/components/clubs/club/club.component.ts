@@ -402,6 +402,7 @@ export class ClubComponent {
             .obtenerLibroPorId(this.lecturaActual.id_libro)
             .subscribe((res: any) => {
               this.libro = res; // Almacena los detalles del libro
+              this.comprobarLeidoLecturaActual();
             });
         }
       },
@@ -493,7 +494,7 @@ comprobarLeidoLecturaActual(): void {
   this.servicioLibrosUsuario.getLibrosUsuario().subscribe({
     next: (data) => {
       this.leido_lecturaActual = data.some(
-        (libro: any) => libro.id_libro === this.libro?.id_libro
+        (libro: any) => libro.id_libro === this.libro?.id
       );
     },
     error: (err) => {
