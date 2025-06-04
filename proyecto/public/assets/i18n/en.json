@@ -168,7 +168,8 @@
   "titulo_seguidores": "list of followers",
   "avatar_alt": "Avatar",
   "ver_perfil": "View profile",
-  "sin_usuarios": "No",
+  "sin_seguidos": "No users followed yet.",
+  "sin_seguidores": "No followers yet.",
   "para_mostrar": "to show."
 },
 

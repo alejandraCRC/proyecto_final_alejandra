@@ -165,7 +165,8 @@
   "titulo_seguidores": "Lista de seguidores",
   "avatar_alt": "Avatar",
   "ver_perfil": "Ver perfil",
-  "sin_usuarios": "No hay",
+  "sin_seguidos": "Aún no sigues a ningún usuario.",
+  "sin_seguidores": "Aún no tienes seguidores.",
   "para_mostrar": "para mostrar."
 },
 

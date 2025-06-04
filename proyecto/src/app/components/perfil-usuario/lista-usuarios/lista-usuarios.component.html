@@ -41,6 +41,10 @@
 <!-- Sin usuarios -->
 @if(tipoLista && listaUsuarios.length === 0){
 <div class="text-center py-6 text-gray-500">
-  {{ 'listaUsuarios.sin_usuarios' | translate }} {{ tipoLista }} {{ 'listaUsuarios.para_mostrar' | translate }}
+  @if(tipoLista === "seguidores"){
+  {{ 'listaUsuarios.sin_seguidores' | translate }} {{ 'listaUsuarios.para_mostrar' | translate }}
+  }@else {
+  {{ 'listaUsuarios.sin_seguidos' | translate }} {{ 'listaUsuarios.para_mostrar' | translate }}
+  }
 </div>
 }

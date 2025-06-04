@@ -279,6 +279,12 @@ export class PerfilUsuarioComponent {
 
   //Dirigir a los libros guardados
   redirigirLibrosGuardados(tipo: string) {
+    let idUsuario: number;
+    if(!this.idUsuario) {
+       idUsuario = this.authService.getUsuario().id_usuario;
+    }else{
+      idUsuario = Number(this.idUsuario);
+    }   
     if (tipo === 'quiero leer') {
       this.servicioLibrosUsuario.setLibros(this.quieroLeer);
     }
@@ -288,12 +294,17 @@ export class PerfilUsuarioComponent {
     if (tipo === 'leidos') {
       this.servicioLibrosUsuario.setLibros(this.leidos);
     }
-    this.router.navigate(['app/libros-guardados', this.idUsuario]);
+    this.router.navigate(['app/libros-guardados', idUsuario]);
   }
 
   //publicaciones y reseñas
   ObtenerPublicacionesYResenias() {
-    const idUsuario = this.authService.getUsuario().id_usuario;
+    let idUsuario: number;
+    if(!this.idUsuario) {
+       idUsuario = this.authService.getUsuario().id_usuario;
+    }else{
+      idUsuario = Number(this.idUsuario);
+    }    
     const publicaciones$ = this.servicioPublicaciones.getPublicacionesUsuario(
       idUsuario
     );
