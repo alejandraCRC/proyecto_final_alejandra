@@ -494,6 +494,7 @@ export class ClubComponent {
       this.servicioClubs.actualizarLecturaActual(this.club.id_club).subscribe({
         next: () => {
           this.confirmarGuardarLibro(); //pregunta si el usuario quiere guardar el libro
+          
         },
       });
     }
