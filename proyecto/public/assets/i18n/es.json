@@ -70,7 +70,9 @@
     "salido_exito": "Has salido del club con éxito.",
     "salido_exito_texto": "Ya no eres miembro de este club.",
     "publicacion_guardada": "¡Publicación guardada!",
-    "publicacion_guardada_texto": "Tu publicación se ha guardado correctamente."
+    "publicacion_guardada_texto": "Tu publicación se ha guardado correctamente.",
+    "comentario_guardado": "Comment saved!",
+    "comentario_guardado_texto": "Your comment has been added successfully."
   },
 
   "lectura": {
