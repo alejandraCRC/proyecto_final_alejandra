@@ -299,6 +299,16 @@ export class ClubComponent {
       .unirseClub(id_club, this.usuario.id_usuario)
       .subscribe({
         next: () => {
+          Swal.fire({
+            icon: 'success',
+            title: this.translate.instant('club.unido_exito'),
+            text: this.translate.instant('club.unido_exito_texto'),
+            toast: true,
+            position: 'top-start',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+          });
           console.log('Usuario se ha unido al club');
           this.getMiembros(); // Actualiza la lista de miembros
         },

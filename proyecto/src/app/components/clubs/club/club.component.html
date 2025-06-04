@@ -176,7 +176,7 @@
           }}</small>
         </div>
         <!-- boton para dejar un comentario -->
-        <div class="flex flex-col justify-end items-start">
+        <div class="flex justify-between items-center mt-2">
           <!-- solo pueden comentar los miembros del club  -->
           <div>
             @if(usuarioEsMiembro){
@@ -233,7 +233,7 @@
         <!-- comentarios de la publicación -->
         @if(publicacion.mostrarComentarios){
         <div class="mt-4 pl-4 border-l-2 border-yellow-300 space-y-2">
-          <div>
+          <div class="flex justify-between items-start">
             @for(comentario of publicacion.comentarios; track $index) {
             <div>
               <p class="text-sm text-gray-700">
