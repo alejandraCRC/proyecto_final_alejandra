@@ -43,6 +43,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'creditos-soporte',
+        loadComponent: () =>
+          import('./components/creditos-soporte/creditos-soporte.component').then(
+            (c) => c.CreditosSoporteComponent
+          ),
+      },
+      {
         path: 'libros',
         loadComponent: () =>
           import(
