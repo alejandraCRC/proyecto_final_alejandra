@@ -58,12 +58,11 @@ export const addMiembroClub = async (req, res) => {
 }
 
 export const delMiembroClub = async (req, res) => {
-  const { id_club, id_miembro } = req.params;
-  console.log('delMiembroClub', req.params);
+  const { id_club, id_usuario } = req.params;
   try {
     const [result] = await pool.query(
       "DELETE FROM miembros_club WHERE id_club = ? AND id_miembro = ?",
-      [id_club, id_miembro]
+      [id_club, id_usuario]
     );
 
     if (result.affectedRows == 0) {

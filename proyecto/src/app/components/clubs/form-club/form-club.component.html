@@ -1,25 +1,22 @@
-<!-- contenedor principal  -->
-<div
-  class="crear-club h-screen w-screen bg-[url('assets/imagenes/fondo.jpg')] bg-cover bg-center"
->
-  
-
-  <div class="flex flex-col h-screen justify-center items-center">
-    <h1
+<!-- contenedor principal -->
+<div class="crear-club min-h-screen w-full bg-[url('assets/imagenes/fondo.jpg')] bg-cover bg-center">
+  <div class="flex flex-col min-h-screen justify-center items-center p-4">
     
-    class="text-xl font-bold bg-[#8C3535] text-center text-white rounded p-3"
-  >
-    {{ club?.id_club ? ('formClub.editar_club' | translate) : ('formClub.crear_club' | translate) }}
-  </h1>
+    <h1 class="text-2xl md:text-3xl font-bold bg-[#8C3535] text-center text-white rounded p-3 w-full max-w-xl">
+      {{ club?.id_club ? ('formClub.editar_club' | translate) : ('formClub.crear_club' | translate) }}
+    </h1>
+
     <form
       [formGroup]="formClub"
       autocomplete="off"
       (ngSubmit)="guardarCambios()"
-      class="bg-[#FAF0E6]/70 rounded py-[40px] px-[70px] w-[50%]"
+      class="bg-[#FAF0E6]/70 rounded py-10 px-4 md:px-10 w-full max-w-xl mt-6 shadow-lg"
     >
       <!-- Nombre del club -->
       <div class="mb-5">
-        <label for="nombre" class="form-label">{{ 'formClub.nombre' | translate }}</label><br />
+        <label for="nombre" class="form-label block mb-1">
+          {{ 'formClub.nombre' | translate }}
+        </label>
         <input
           type="text"
           class="p-2 rounded bg-[#FAF0E6] w-full"
@@ -27,14 +24,17 @@
           formControlName="nombre"
         />
         @if(formClub.get('nombre')?.invalid && formClub.get('nombre')?.touched){
-          <br />
-          <small class="text-red-600 italic">{{ 'login.dato_requerido' | translate }}</small>
+          <small class="text-red-600 italic block mt-1">
+            {{ 'login.dato_requerido' | translate }}
+          </small>
         }
       </div>
 
       <!-- Descripción del club -->
       <div class="mb-5">
-        <label for="descripcion" class="form-label">{{ 'formClub.descripcion' | translate }}</label><br />
+        <label for="descripcion" class="form-label block mb-1">
+          {{ 'formClub.descripcion' | translate }}
+        </label>
         <textarea
           rows="3"
           class="p-2 rounded bg-[#FAF0E6] w-full"
@@ -42,8 +42,9 @@
           formControlName="descripcion"
         ></textarea>
         @if(formClub.get('descripcion')?.invalid && formClub.get('descripcion')?.touched){
-          <br />
-          <small class="text-red-600 italic">{{ 'login.dato_requerido' | translate }}</small>
+          <small class="text-red-600 italic block mt-1">
+            {{ 'login.dato_requerido' | translate }}
+          </small>
         }
       </div>
 
