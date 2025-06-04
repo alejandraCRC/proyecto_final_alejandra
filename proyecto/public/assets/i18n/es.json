@@ -61,7 +61,8 @@
     "alert_seguro_eliminar_comentario": "¿Estás seguro de que deseas eliminar este comentario?",
     "alert_texto_eliminar_comentario": "Esta acción no se puede deshacer.",
     "alert_seguro_eliminar_publicacion": "¿Estás seguro de que deseas eliminar esta publicación?",
-    "alert_texto_eliminar_publicacion": "Esta acción no se puede deshacer."
+    "alert_texto_eliminar_publicacion": "Esta acción no se puede deshacer.",
+    "eliminar": "Eliminar"
   },
 
   "lectura": {

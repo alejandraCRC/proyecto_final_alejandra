@@ -1,7 +1,6 @@
 "use strict"
 
 import { Router } from 'express';
-import {pool} from '../db.js'
 import { getPublicaciones,getPublicacionesUsuario, addPublicacion, getComentariosPublicaciones, addComentarioPublicacion, delPublicacion, delComentarioPublicacion } from '../controllers/publicaciones.controllers.js';
 import { autenticarToken } from '../controllers/auth.controllers.js';
 const router = Router();
@@ -10,12 +9,12 @@ const router = Router();
 router.get('/publicaciones/:id_club', getPublicaciones);
 router.get('/publicacionesUsuario/:id_usuario', getPublicacionesUsuario);
 router.post('/publicaciones',autenticarToken,addPublicacion);
-router.delete('/publicaciones/:id_publicacion',  delPublicacion);
+router.delete('/publicaciones/:id_publicacion',autenticarToken,  delPublicacion);
 
 //comentarios de publicaciones
 router.get('/comentarios/:id_publicacion', getComentariosPublicaciones);
 router.post('/comentarios',autenticarToken, addComentarioPublicacion);
-router.delete('/comentarios/:id_comentario',  delComentarioPublicacion);
+router.delete('/comentarios/:id_comentario',autenticarToken,  delComentarioPublicacion);
 
 
 export { router as routerPublicaciones };

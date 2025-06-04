@@ -118,6 +118,7 @@ export const addComentarioPublicacion = async (req, res) => {
 export const delComentarioPublicacion = async (req, res) => {
   try {
     const { id_comentario } = req.params;
+    console.log('borrar comentario', id_comentario);
     const [result] = await pool.query("DELETE FROM comentarios_publicacion WHERE id_comentario=?", [id_comentario]);
 
     if (result.affectedRows == 0) {
