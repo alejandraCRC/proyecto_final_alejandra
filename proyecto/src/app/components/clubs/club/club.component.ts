@@ -477,8 +477,8 @@ export class ClubComponent {
 }
 
 navegarADetalleLibro(): void {
-  if (this.libro?.id_libro) {
-    this.router.navigate(['/app/libro', this.libro.id_libro]);
+  if (this.libro?.id) {
+    this.router.navigate(['/app/libro', this.libro.id]);
   } else {
     console.error('Libro no definido o sin ID');
     Swal.fire({
