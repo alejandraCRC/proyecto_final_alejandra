@@ -62,7 +62,9 @@
     "alert_texto_eliminar_comentario": "Esta acción no se puede deshacer.",
     "alert_seguro_eliminar_publicacion": "¿Estás seguro de que deseas eliminar esta publicación?",
     "alert_texto_eliminar_publicacion": "Esta acción no se puede deshacer.",
-    "eliminar": "Eliminar"
+    "eliminar": "Eliminar",
+     "unido_exito": "¡Te has unido al club con éxito!",
+    "unido_exito_texto": "Ahora puedes participar en las lecturas y publicaciones del club."
   },
 
   "lectura": {

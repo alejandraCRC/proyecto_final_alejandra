@@ -62,7 +62,9 @@
     "alert_texto_eliminar_comentario": "This action cannot be undone.",
     "alert_seguro_eliminar_publicacion": "Are you sure you want to delete this post?",
     "alert_texto_eliminar_publicacion": "This action cannot be undone.",
-    "eliminar": "Delete"
+    "eliminar": "Delete",
+    "unido_exito": "You've successfully joined the club!",
+    "unido_exito_texto": "You can now participate in the club's readings and posts."
   },
 
   "lectura": {
