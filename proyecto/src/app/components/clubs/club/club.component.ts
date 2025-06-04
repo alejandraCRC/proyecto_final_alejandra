@@ -318,11 +318,20 @@ export class ClubComponent {
 
   dejarClub() {
     const id_club = this.club.id_club;
-
     this.servicioMiembrosClub
       .salirClub(id_club, this.usuario.id_usuario)
       .subscribe({
         next: () => {
+          Swal.fire({
+            icon: 'success',
+            title: this.translate.instant('club.salido_exito'),
+            text: this.translate.instant('club.salido_exito_texto'),
+            toast: true,
+            position: 'top-start',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+          });
           console.log('Usuario ha salido del club');
           this.getMiembros(); // Actualiza la lista de miembros
         },
