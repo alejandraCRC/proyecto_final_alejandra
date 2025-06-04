@@ -30,7 +30,7 @@
   },
 
    "club": {
-    "editar_perfil": "Editar perfil",
+    "editar_club": "Editar club",
     "solicitar_unirse": "Solicitar unirse",
     "dejar_club": "Dejar club",
     "eliminar_club": "Eliminar club",
@@ -151,7 +151,8 @@
 },
 
 "listaUsuarios": {
-  "titulo": "Lista de",
+  "titulo_seguidos": "Lista de seguidos",
+  "titulo_seguidores": "Lista de seguidores",
   "avatar_alt": "Avatar",
   "ver_perfil": "Ver perfil",
   "sin_usuarios": "No hay",

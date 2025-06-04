@@ -155,7 +155,8 @@
 },
 
 "listaUsuarios": {
-  "titulo": "List of",
+   "titulo_seguidos": "list of followed users",
+  "titulo_seguidores": "list of followers",
   "avatar_alt": "Avatar",
   "ver_perfil": "View profile",
   "sin_usuarios": "No",

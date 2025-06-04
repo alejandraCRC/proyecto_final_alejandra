@@ -77,10 +77,10 @@ export const addComentarioPublicacion = async (req, res) => {
   try {
     const id_usuario = req.user.id;
     const { id_publicacion, contenido, fecha_comentario } = req.body;
-
+    const fechaFormateada = new Date(fecha_comentario).toISOString().slice(0, 19).replace('T', ' ')
     const [result] = await pool.query(
       "INSERT INTO comentarios_publicacion (id_usuario, id_publicacion, contenido, fecha_comentario) VALUES (?,?,?,?) ",
-      [id_usuario, id_publicacion, contenido, fecha_comentario]
+      [id_usuario, id_publicacion, contenido, fechaFormateada]
     );
     console.log(result);
 

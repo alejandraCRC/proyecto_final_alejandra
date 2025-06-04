@@ -1,8 +1,15 @@
 @if(tipoLista && listaUsuarios && listaUsuarios.length > 0){
 <div class="p-4">
-  <h2 class="text-xl font-bold mb-4 capitalize">
-    {{ 'listaUsuarios.titulo' | translate }} {{ tipoLista }}
+  @if(tipoLista === "seguidores"){
+<h2 class="text-xl font-bold mb-4 capitalize">
+    {{ 'listaUsuarios.titulo_seguidores' | translate }}
   </h2>
+  }@else {
+<h2 class="text-xl font-bold mb-4 capitalize">
+    {{ 'listaUsuarios.titulo_seguidos' | translate }}
+    </h2>
+  }
+  
 
   <ul class="space-y-3">
     @for(usuario of listaUsuarios; track $index){

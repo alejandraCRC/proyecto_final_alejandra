@@ -1,6 +1,6 @@
-<div class="crear-club h-screen w-screen bg-[url('assets/imagenes/fondo.jpg')] bg-cover bg-center">
-  <div class="flex flex-col h-screen justify-center items-center">
-    <h1 class="text-xl font-bold bg-[#8C3535] text-center text-white rounded p-3">
+<div class="crear-club min-h-screen w-full bg-[url('assets/imagenes/fondo.jpg')] bg-cover bg-center">
+  <div class="flex flex-col min-h-screen justify-center items-center p-4">
+    <h1 class="text-2xl md:text-3xl font-bold bg-[#8C3535] text-center text-white rounded p-3 w-full max-w-xl">
       {{ 'lectura.titulo' | translate }}
     </h1>
 
@@ -8,26 +8,30 @@
       [formGroup]="formLectura"
       autocomplete="off"
       (ngSubmit)="guardarLectura()"
-      class="bg-[#FAF0E6]/70 rounded py-[40px] px-[70px] w-[50%]"
+      class="bg-[#FAF0E6]/70 rounded py-10 px-4 md:px-[70px] w-full max-w-xl mt-6 shadow-lg"
     >
       <!-- Fecha fin -->
       <div class="mb-5">
-        <label for="fecha_fin" class="form-label">{{ 'lectura.elige_fecha' | translate }}</label><br />
+        <label for="fecha_fin" class="form-label block mb-1">
+          {{ 'lectura.elige_fecha' | translate }}
+        </label>
         <input
           type="date"
           id="fecha_fin"
           formControlName="fecha_fin"
+          [min]="fechaMinima"
           class="p-2 rounded bg-[#FAF0E6] w-full"
         />
         @if(formLectura.get('fecha_fin')?.invalid && formLectura.get('fecha_fin')?.touched){
-          <br />
-          <small class="text-red-600 italic">{{ 'login.dato_requerido' | translate }}</small>
+          <small class="text-red-600 italic block mt-1">
+            {{ 'login.dato_requerido' | translate }}
+          </small>
         }
       </div>
 
       <!-- Buscador -->
       <div class="mb-5">
-        <label class="form-label">{{ 'lectura.elige_libro' | translate }}</label><br />
+        <label class="form-label block mb-1">{{ 'lectura.elige_libro' | translate }}</label>
         <input
           type="text"
           (input)="buscar($event)"
@@ -38,7 +42,7 @@
 
       <!-- Lista de resultados -->
       @if (aLibros.length > 0) {
-        <div class="max-w-2xl mx-auto mt-6 px-4 z-10">
+        <div class="mt-6 z-10">
           <ul class="space-y-4">
             @for (libro of aLibros; track $index) {
               <li 
@@ -60,7 +64,10 @@
       <!-- Libro seleccionado -->
       @if(libroSeleccionado){
         <div class="text-center m-2">
-          <p>{{ 'lectura.libro_seleccionado' | translate }} <b>{{ libroSeleccionado.volumeInfo.title }}</b></p>
+          <p>
+            {{ 'lectura.libro_seleccionado' | translate }} 
+            <b>{{ libroSeleccionado.volumeInfo.title }}</b>
+          </p>
         </div>
 
         @if (libroSeleccionado.volumeInfo.imageLinks.smallThumbnail) {

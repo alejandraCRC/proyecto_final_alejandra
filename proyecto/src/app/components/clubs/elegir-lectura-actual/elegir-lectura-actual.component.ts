@@ -18,6 +18,7 @@ export class ElegirLecturaActualComponent {
   libroSeleccionado: any = null;
   aLibros: any[] = [];
   id_club: number = 0;
+  fechaMinima: Date = new Date();
 
   private servicioClubs = inject(ClubsService);
   private servicioLibros = inject(LibrosService);
@@ -27,6 +28,7 @@ export class ElegirLecturaActualComponent {
   private translate = inject(TranslateService);
 
   ngOnInit() {
+    this.fechaMinima = new Date(); 
     this.id_club = Number(this.ruta.snapshot.paramMap.get('idClub'));
     this.formLectura = this.fb.group({
       fecha_fin: ['', Validators.required],

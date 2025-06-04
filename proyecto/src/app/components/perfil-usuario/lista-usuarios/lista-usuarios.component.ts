@@ -30,7 +30,7 @@ export class ListaUsuariosComponent {
         this.cargarSeguidores(idUsuario);
       } else {
         this.tipoLista = null;
-        this.cargarPerfil(idUsuario);
+        this.redirigirPerfil(Number(idUsuario));
       }
     });
   }
@@ -49,10 +49,6 @@ export class ListaUsuariosComponent {
         this.listaUsuarios = data; //almacena los seguidores del usuario
       }
     });
-  }
-
-  cargarPerfil(idUsuario: string | null) {
-    // Perfil + estadísticas normales
   }
 
   redirigirPerfil(id: number) {

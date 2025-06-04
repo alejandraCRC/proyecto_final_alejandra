@@ -20,7 +20,7 @@ export class ReseniaModalComponent {
   calificacion: number = 0;
   hover: number = 0;
   mostrarError: boolean = false;
-
+  
   cerrar() {
     this.cerrarModal.emit();
   }

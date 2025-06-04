@@ -14,7 +14,7 @@
         {{ club?.descripcion }}
       </p>
       <small class="text-gray-500 italic">
-        {{'home.creado_por' | translate}}:
+        {{'home.creado_por' | translate}}
         <span class="font-medium text-gray-700">{{ creador?.nombre }}</span> ·
         {{ club?.fecha_creacion | formatoFecha }}
       </small>
@@ -25,7 +25,7 @@
           (click)="editarClub()"
           class="mt-4 bg-[#F2A71B] text-sm text-white px-2 py-1 rounded hover:bg-[#C98914] transition-colors"
         >
-          {{ "club.editar_perfil" | translate }} <i class="fas fa-pen"></i>
+          {{ "club.editar_club" | translate }} <i class="fas fa-pen"></i>
         </button>
         }@else{
         <!-- boton para unirse o dejar el club  -->
