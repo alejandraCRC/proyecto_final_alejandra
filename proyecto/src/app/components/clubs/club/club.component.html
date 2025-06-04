@@ -55,8 +55,7 @@
         class="flex flex-col text-center justify-center rounded bg-[#FAF0E6] px-5 py-2"
       >
         <h3 class="font-bold">{{ "club.lectura_actual" | translate }}</h3>
-        @if(!lecturaActual ){ 
-          @if(usuarioEsAdministrador){
+        @if(!lecturaActual ){ @if(usuarioEsAdministrador){
         <button
           (click)="crearLecturaActual()"
           class="mt-4 bg-red-500 text-sm text-white px-2 py-1 rounded hover:bg-red-600 transition-colors"
@@ -66,8 +65,7 @@
         </button>
         }@else {
         <p>{{ "club.no_lectura" | translate }}</p>
-        } 
-      }@else { @if (libro?.volumeInfo.imageLinks.smallThumbnail) {
+        } }@else { @if (libro?.volumeInfo.imageLinks.smallThumbnail) {
         <div class="flex justify-center mt-2">
           <img
             [src]="libro?.volumeInfo.imageLinks.smallThumbnail"
@@ -94,22 +92,23 @@
           {{ "club.finalizar_lectura" | translate }}
           <i class="fas fa-book"></i>
         </button>
-        }@else{
-          @if(usuarioEsMiembro){
+        }@else{ @if(usuarioEsMiembro && !leido_lecturaActual) {
         <button
           (click)="confirmarGuardarLibro()"
-          class="mt-4 bg-red-500 text-sm text-white px-2 py-1 rounded hover:bg-red-600 transition-colors items-center"
+          class="mt-4 bg-green-600 text-xs text-white px-3 py-1 rounded-full shadow-sm hover:bg-green-700 transition-all flex items-center gap-2"
         >
-          @if(leido_lecturaActual){
-          <i class="fas fa-check-circle"></i>
-          }@else {
-          <i class="fas fa-circle"></i>
-          }
+          <i class="fas fa-check-circle text-white"></i>
           {{ "club.lectura_leido" | translate }}
-          <!-- ícono de check redondo -->
         </button>
-      }
-        } }
+        } @else {
+        <button
+          class="mt-4 bg-gray-300 text-xs text-gray-700 px-3 py-1 rounded-full shadow-sm cursor-default flex items-center gap-2"
+          disabled
+        >
+          <i class="fas fa-circle text-gray-500"></i>
+          {{ "club.lectura_leido" | translate }}
+        </button>
+        } } }
       </div>
       <div class="flex justify-end">
         @if(usuarioEsAdministrador){
@@ -180,30 +179,30 @@
           }}</small>
         </div>
         <!-- boton para dejar un comentario -->
-         <div>
-        <div class="flex justify-between items-center mt-2">
-          <!-- solo pueden comentar los miembros del club  -->
-          <div>
-            @if(usuarioEsMiembro){
-            <button
-              (click)="abrirModalComentario(publicacion)"
-              class="text-sm text-blue-600 hover:underline mt-2"
-            >
-              {{ "club.comentar" | translate }}
-            </button>
+        <div>
+          <div class="flex justify-between items-center mt-2">
+            <!-- solo pueden comentar los miembros del club  -->
+            <div>
+              @if(usuarioEsMiembro){
+              <button
+                (click)="abrirModalComentario(publicacion)"
+                class="text-sm text-blue-600 hover:underline mt-2"
+              >
+                {{ "club.comentar" | translate }}
+              </button>
+              }
+            </div>
+            @if(usuarioEsAdministrador || publicacion.id_usuario ===
+            usuario?.id_usuario){
+            <div>
+              <button
+                (click)="eliminarPublicacion(publicacion.id_publicacion)"
+                class="text-sm text-red-600 hover:underline"
+              >
+                {{ "club.eliminar" | translate }}
+              </button>
+            </div>
             }
-          </div>
-          @if(usuarioEsAdministrador || publicacion.id_usuario ===
-          usuario?.id_usuario){
-          <div>
-            <button
-              (click)="eliminarPublicacion(publicacion.id_publicacion)"
-              class="text-sm text-red-600 hover:underline"
-            >
-              {{ "club.eliminar" | translate }}
-            </button>
-          </div>
-          }
           </div>
           <!-- Modal de añadir comentario de publicacion -->
           @if (publicacionSeleccionada?.id_publicacion ===
