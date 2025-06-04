@@ -1,7 +1,7 @@
 "use strict"
 
 import { Router } from 'express';
-import {pool} from '../db.js'
+import {upload} from '../middlewares/upload.js';
 import {getUsuario, getUsuariosPorNombre, getSeguidos, getSeguidores, seguirUsuario, dejarSeguirUsuario, updateUsuario} from '../controllers/usuarios.controllers.js'
 import { autenticarToken } from '../controllers/auth.controllers.js';
 const router = Router();
@@ -9,7 +9,7 @@ const router = Router();
 router.get('/usuario',autenticarToken,  getUsuario);
 router.get('/usuario/:idUsuario',autenticarToken,  getUsuario);
 router.get('/buscarUsuarios/:nombre',  getUsuariosPorNombre);
-router.put('/usuarios/:id_usuario', updateUsuario);
+router.put('/usuarios/:id_usuario', upload.single('avatar'), updateUsuario);
 
 router.get('/seguidos/:id_seguidor',autenticarToken, getSeguidos);
 router.get('/seguidos',autenticarToken, getSeguidos);

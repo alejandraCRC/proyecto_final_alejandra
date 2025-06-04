@@ -1,4 +1,5 @@
 import { pool } from "../db.js";
+const path = require("path");
 
 export const getUsuario = async (req, res) => {
   try {
@@ -11,12 +12,10 @@ export const getUsuario = async (req, res) => {
     const usuario = result[0];
     res.status(200).json(usuario);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Error al obtener usuarios seguidos",
-        error: error.message,
-      });
+    res.status(500).json({
+      message: "Error al obtener usuarios seguidos",
+      error: error.message,
+    });
   }
 };
 
@@ -49,12 +48,10 @@ export const getSeguidos = async (req, res) => {
     result;
     res.status(200).json(result);
   } catch (error) {
-    res
-      .status(500)
-      .json({
-        message: "Error al obtener usuarios seguidos",
-        error: error.message,
-      });
+    res.status(500).json({
+      message: "Error al obtener usuarios seguidos",
+      error: error.message,
+    });
   }
 };
 
@@ -114,31 +111,35 @@ export const dejarSeguirUsuario = async (req, res) => {
   }
 };
 
-  export const updateUsuario = async (req, res) => {
-    try {
-      console.log('update',req.body);
-      const { nombre, email,  avatar, biografia } = req.body;
-      const { id_usuario } = req.params;
+export const updateUsuario = async (req, res) => {
+  try {
+    const id_usuario = req.params.id_usuario || req.user?.id;
+    const { nombre, email, biografia } = req.body;
+    let avatarPath = null;
 
-      const [result] = await pool.query(
-        "UPDATE usuarios SET nombre=?, email=?,  avatar=?, biografia=? WHERE id_usuario=?",
-        [nombre, email,  avatar, biografia, id_usuario]
-      );
+    if (req.file) {
+      avatarPath = `/uploads/avatars/${req.file.filename}`; // Ruta para mostrar en frontend
+    }
 
-      console.log(result);
-      //Comprueba que se hayan cambiado los datos de la fila
-      if (result.affectedRows == 0) {
-        return res.status(400).json({
-          message: "no existe",
-        });
-      } else {
-        return res.status(200).json({
-          message: "ha sido actualizado",
-        });
-      }
-    } catch (error) {
-      res.status(500).json({
-        message: "Error en el servidor",
+    const [result] = await pool.query(
+      "UPDATE usuarios SET nombre=?, email=?,  avatar=?, biografia=? WHERE id_usuario=?",
+      [nombre, email, avatarPath, biografia, id_usuario]
+    );
+
+    console.log(result);
+    //Comprueba que se hayan cambiado los datos de la fila
+    if (result.affectedRows == 0) {
+      return res.status(400).json({
+        message: "no existe",
+      });
+    } else {
+      return res.status(200).json({
+        message: "ha sido actualizado",
       });
     }
-  };
+  } catch (error) {
+    res.status(500).json({
+      message: "Error en el servidor",
+    });
+  }
+};

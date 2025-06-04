@@ -27,6 +27,9 @@ app.use(cookieParser());
 //para parsear la peticion al usuario
 app.use(express.json());
 
+//hace pública la carpeta 'uploads'
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 //ruta de autenticación
 app.use(routerAuth);
 

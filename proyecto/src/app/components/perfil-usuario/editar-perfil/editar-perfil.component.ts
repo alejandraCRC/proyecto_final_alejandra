@@ -33,31 +33,45 @@ export class EditarPerfilComponent {
     });
   }
 
-  cambiarImagen(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        if (this.usuario) {
-          this.usuario.avatar = reader.result as string;
-        }
-      };
-      reader.readAsDataURL(file);
-    }
+ avatarSeleccionado: File | null = null;
+
+cambiarImagen(event: any) {
+  const file = event.target.files[0];
+  if (file) {
+    this.avatarSeleccionado = file;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (this.usuario) {
+        this.usuario.avatar = reader.result as string;
+      }
+    };
+    reader.readAsDataURL(file);
   }
+}
 
   guardarCambios() {
-  this.servicioUsuarios.actualizarUsuario(this.usuario).subscribe({
+  const formData = new FormData();
+  formData.append('nombre', this.usuario.nombre);
+  formData.append('email', this.usuario.email);
+  formData.append('biografia', this.usuario.biografia || '');
+
+  if (this.avatarSeleccionado) {
+    formData.append('avatar', this.avatarSeleccionado);
+  }
+
+  this.servicioUsuarios.actualizarUsuario(this.usuario.id_usuario, formData).subscribe({
     next: () => {
       Swal.fire({
         toast: true,
-        position: 'top-start', 
+        position: 'top-start',
         icon: 'success',
         title: this.translate.instant('perfil.actualizado_exito'),
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true
       });
+      this.router.navigate(['/app/perfil']);
     },
     error: (err) => {
       console.error('Error al actualizar', err);
@@ -72,7 +86,6 @@ export class EditarPerfilComponent {
       });
     }
   });
-    console.log('Cambios guardados', this.usuario);
-    this.router.navigate(['/app/perfil']); // Redirige al perfil del usuario (ajusta ID)
-  }
+}
+
 }
