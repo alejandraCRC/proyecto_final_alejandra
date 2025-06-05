@@ -4,66 +4,75 @@
   
   @if(usuario){
   <form 
-      autocomplete="off"
-      (submit)="guardarCambios()"
-      class="bg-[#f5f5dc]/70 rounded py-[40px] px-[70px]">
-    <!-- Imagen de perfil -->
-    <div class="text-center">
-      <img
-        [src]="usuario.avatar || '../assets/imagenes/usuario.jpg'"
-        alt="{{ 'editarPerfil.avatar_alt' | translate }}"
-        class="w-24 h-24 mx-auto rounded-full border"
-      />
-      <input
-        type="file"
-        (change)="cambiarImagen($event)"
-        accept="image/*"
-        class="mt-2 block w-full text-sm"
-      />
-    </div>
+  [formGroup]="perfilForm"
+  autocomplete="off"
+  (submit)="guardarCambios()"
+  class="bg-[#f5f5dc]/70 rounded py-[40px] px-[70px]"
+>
+  <!-- Imagen de perfil -->
+  <div class="text-center">
+    <img
+      [src]="usuario.avatar || '../assets/imagenes/usuario.jpg'"
+      alt="{{ 'editarPerfil.avatar_alt' | translate }}"
+      class="w-24 h-24 mx-auto rounded-full border"
+    />
+    <input
+      type="file"
+      (change)="cambiarImagen($event)"
+      accept="image/*"
+      class="mt-2 block w-full text-sm"
+    />
+  </div>
 
-    <!-- Nombre -->
-    <div>
-      <label class="block text-sm font-medium">{{ 'editarPerfil.nombre' | translate }}</label>
-      <input
-        type="text"
-        name="nombre"
-        [(ngModel)]="usuario.nombre"
-        required
-        class="w-full px-3 py-2 border rounded"
-      />
-    </div>
+  <!-- Nombre -->
+  <div>
+    <label class="block text-sm font-medium">{{ 'editarPerfil.nombre' | translate }}</label>
+    <input
+      type="text"
+      formControlName="nombre"
+      class="w-full px-3 py-2 border rounded"
+    />
+    @if(perfilForm.get('nombre')?.invalid && perfilForm.get('nombre')?.touched) {
+      <small class="text-red-600 italic mt-1 block">{{ 'login.dato_requerido' | translate }}</small>
+    }
+  </div>
 
-    <!-- Email -->
-    <div>
-      <label class="block text-sm font-medium">{{ 'editarPerfil.email' | translate }}</label>
-      <input
-        type="email"
-        name="email"
-        [(ngModel)]="usuario.email"
-        required
-        class="w-full px-3 py-2 border rounded"
-      />
-    </div>
+  <!-- Email -->
+  <div>
+    <label class="block text-sm font-medium">{{ 'editarPerfil.email' | translate }}</label>
+    <input
+      type="email"
+      formControlName="email"
+      class="w-full px-3 py-2 border rounded"
+    />
+    @if(perfilForm.get('email')?.invalid && perfilForm.get('email')?.touched) {
+      @if(perfilForm.get('email')?.errors?.['required']) {
+        <small class="text-red-600 italic mt-1 block">{{ 'login.dato_requerido' | translate }}</small>
+      } @else if (perfilForm.get('email')?.errors?.['email']) {
+        <small class="text-red-600 italic mt-1 block">{{ 'register.email_formato_incorrecto' | translate }}</small>
+      }
+    }
+  </div>
 
-    <!-- Bio (opcional) -->
-    <div>
-      <label class="block text-sm font-medium">{{ 'editarPerfil.bio' | translate }}</label>
-      <textarea
-        name="bio"
-        [(ngModel)]="usuario.biografia"
-        rows="3"
-        class="w-full px-3 py-2 border rounded"
-      ></textarea>
-    </div>
+  <!-- Bio -->
+  <div>
+    <label class="block text-sm font-medium">{{ 'editarPerfil.bio' | translate }}</label>
+    <textarea
+      formControlName="biografia"
+      rows="3"
+      class="w-full px-3 py-2 border rounded"
+    ></textarea>
+  </div>
 
-    <!-- Botón -->
-    <button
-      type="submit"
-      class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
-    >
-      {{ 'editarPerfil.guardar_cambios' | translate }}
-    </button>
-  </form>
+  <!-- Botón -->
+  <button
+    type="submit"
+    class="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+    [disabled]="perfilForm.invalid"
+  >
+    {{ 'editarPerfil.guardar_cambios' | translate }}
+  </button>
+</form>
+
   }
 </div>
