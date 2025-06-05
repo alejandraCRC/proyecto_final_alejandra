@@ -140,7 +140,7 @@ export class RegistrarComponent {
                       toast: true,
                       position: 'top-start',
                       icon: 'error',
-                      title: this.translate.instant('registro.alert_registro_error'),
+                      title: this.translate.instant('register.alert_registro_error'),
                       showConfirmButton: false,
                       timer: 3000,
                       timerProgressBar: true,

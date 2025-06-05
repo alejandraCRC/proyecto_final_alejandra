@@ -195,7 +195,11 @@
     "alert_seguir_exito": "You are now following this user.",
     "alert_seguir_error": "Could not follow the user. Please try again.",
     "alert_dejar_seguir_exito": "You have unfollowed the user.",
-    "alert_dejar_seguir_error": "Could not unfollow the user. Please try again."
+    "alert_dejar_seguir_error": "Could not unfollow the user. Please try again.",
+    "eliminar_titulo": "Are you sure?",
+    "eliminar_texto": "This action cannot be undone. Your account will be permanently deleted.",
+    "eliminado_exito": "Your account has been successfully deleted.",
+    "eliminado_error": "There was an error deleting the account"
   },
 
   "login":{

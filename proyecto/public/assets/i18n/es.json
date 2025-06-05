@@ -192,7 +192,11 @@
     "alert_seguir_exito": "Ahora sigues a este usuario.",
     "alert_seguir_error": "No se pudo seguir al usuario. Inténtalo de nuevo.",
     "alert_dejar_seguir_exito": "Has dejado de seguir al usuario.",
-    "alert_dejar_seguir_error": "No se pudo dejar de seguir al usuario. Inténtalo de nuevo."
+    "alert_dejar_seguir_error": "No se pudo dejar de seguir al usuario. Inténtalo de nuevo.",
+    "eliminar_titulo": "¿Estás seguro?",
+    "eliminar_texto": "Esta acción no se puede deshacer. Se eliminará tu cuenta permanentemente.",
+    "eliminado_exito": "Tu cuenta ha sido eliminada correctamente.",
+    "eliminado_error": "Hubo un error al eliminar la cuenta"
   },
 
   "login":{

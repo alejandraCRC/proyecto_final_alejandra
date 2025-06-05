@@ -116,4 +116,38 @@ export class EditarPerfilComponent {
   get emailFormatoInvalido() {
     return this.perfilForm.get('email')?.errors?.['email'] && this.perfilForm.get('email')?.touched;
   }
+
+  //Método para eliminar el usuario
+  eliminarCuenta() {
+    Swal.fire({
+      title: this.translate.instant('perfil.eliminar_titulo'),
+      text: this.translate.instant('perfil.eliminar_texto'),
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: this.translate.instant('sweetAlert.confirmar_eliminar'),
+      cancelButtonText: this.translate.instant('sweetAlert.cancelar')
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.servicioUsuarios.eliminarUsuario().subscribe({
+          next: () => {
+            Swal.fire({
+              icon: 'success',
+              title: this.translate.instant('perfil.eliminado_exito'),
+              showConfirmButton: false,
+              timer: 3000
+            });
+            this.router.navigate(['/login']);
+          },
+          error: (err) => {
+            console.error('Error al eliminar usuario', err);
+            Swal.fire({
+              icon: 'error',
+              title: this.translate.instant('perfil.eliminado_error'),
+              text: err.message
+            });
+          }
+        });
+      }
+    });
+  }
 }

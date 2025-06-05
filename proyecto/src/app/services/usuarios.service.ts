@@ -94,6 +94,16 @@ getSeguidores(id_seguido?: number): Observable<Usuario[]> {
     );
   }
 
+  eliminarUsuario():Observable<{message:string}>{
+    //crear cabeceras 
+    const headers=new HttpHeaders({
+      'Authorization': `Bearer ${this.authService.getToken()}` //la autorizacion va con esta estructura   
+    })
+    return this.http.delete<{message:string}>(`${this.url}/usuarios`,{headers}).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   // //metodo para manejar los errores
   private handleError(err: HttpErrorResponse){
     let errorMessage:string="";

@@ -3,7 +3,7 @@
 import { Router } from 'express';
 import upload from '../middlewares/upload.js';
 
-import {getUsuario, getUsuariosPorNombre, getSeguidos, getSeguidores, seguirUsuario, dejarSeguirUsuario, updateUsuario} from '../controllers/usuarios.controllers.js'
+import {getUsuario, getUsuariosPorNombre, getSeguidos, getSeguidores, seguirUsuario, dejarSeguirUsuario, updateUsuario, delUsuario} from '../controllers/usuarios.controllers.js'
 import { autenticarToken } from '../controllers/auth.controllers.js';
 const router = Router();
 
@@ -11,6 +11,7 @@ router.get('/usuario',autenticarToken,  getUsuario);
 router.get('/usuario/:idUsuario',autenticarToken,  getUsuario);
 router.get('/buscarUsuarios/:nombre',  getUsuariosPorNombre);
 router.put('/usuarios/:id_usuario', upload.single('avatar'), updateUsuario);
+router.delete('/usuarios', autenticarToken, delUsuario); // Asumiendo que el delete también actualiza el usuario
 
 router.get('/seguidos/:id_seguidor',autenticarToken, getSeguidos);
 router.get('/seguidos',autenticarToken, getSeguidos);

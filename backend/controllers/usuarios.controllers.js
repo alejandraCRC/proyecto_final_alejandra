@@ -143,3 +143,26 @@ export const updateUsuario = async (req, res) => {
     });
   }
 };
+
+export const delUsuario = async (req, res) => {
+  try {
+    const id_usuario =  req.user.id;
+    const [result] = await pool.query("DELETE FROM usuarios WHERE id_usuario=?", [
+      id_usuario,
+    ]);
+    console.log("borrado", result);
+    if (result.affectedRows == 0) {
+      return res.status(400).json({
+        message: "no existe",
+      });
+    } else {
+      return res.status(200).json({
+        message: "ha sido borrado",
+      });
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: "Error en el servidor",
+    });
+  }
+}
