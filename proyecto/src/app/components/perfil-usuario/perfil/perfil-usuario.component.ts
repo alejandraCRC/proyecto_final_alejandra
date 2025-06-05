@@ -294,7 +294,11 @@ export class PerfilUsuarioComponent {
     if (tipo === 'leidos') {
       this.servicioLibrosUsuario.setLibros(this.leidos);
     }
+    if( this.idUsuario) {
     this.router.navigate(['app/libros-guardados', idUsuario]);
+    }else{
+      this.router.navigate(['app/libros-guardados']);
+    }
   }
 
   //publicaciones y reseñas

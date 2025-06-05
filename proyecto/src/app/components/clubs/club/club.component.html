@@ -92,7 +92,9 @@
           {{ "club.finalizar_lectura" | translate }}
           <i class="fas fa-book"></i>
         </button>
-        }@else{ @if(usuarioEsMiembro && !leido_lecturaActual) {
+        }@else{
+          @if(usuarioEsMiembro){          
+          @if(!leido_lecturaActual) {
         <button
           (click)="confirmarGuardarLibro()"
           class="mt-4 bg-gray-300 text-xs text-gray-700 px-3 py-1 rounded-full hover:bg-slate-200 shadow-sm flex items-center gap-2 cursor-pointer"
@@ -107,7 +109,7 @@
           <i class="fas fa-check-circle text-white"></i>
           {{ "club.lectura_leido" | translate }}
         </button>
-        } } }
+        } } } }
       </div>
       <div class="flex justify-end">
         @if(usuarioEsAdministrador){
