@@ -4,7 +4,7 @@
   <div
     class="absolute top-0 w-screen bg-[#8C3535] text-center text-white rounded p-2"
   >
-  <div class="flex">
+  <div class="flex justify-center items-center">
     <h1>{{'register.bienvenido_a' | translate}} {{ title }}</h1>
       <!-- Botones de idioma -->
         <div
@@ -137,5 +137,9 @@
         </button>
       </div>
     </form>
+  </div>
+  <div class="text-white bg-black/20 mt-4 px-4 py-2 rounded max-w-md text-center">
+    {{'register.volver_login' | translate}}
+    <a routerLink="/login" class="font-bold underline cursor-pointer ml-1">{{'register.iniciar_sesion' | translate}}</a>
   </div>
 </div>

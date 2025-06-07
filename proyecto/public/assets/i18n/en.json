@@ -225,8 +225,9 @@
     "email_formato_incorrecto": "Invalid email format",
     "password_formato_incorrecto": "Password must be between 8 and 20 characters",
     "alert_registro_exito": "User successfully created",
-    "alert_registro_error": "Error creating the user. Please try again."
-
+    "alert_registro_error": "Error creating the user. Please try again.",
+    "volver_login": "Back to ",
+    "iniciar_sesion": "Login"
   },
   "sweetAlert": {
   "confirmar_eliminar": "Yes, delete",
