@@ -76,7 +76,7 @@
         <div>
           <h4 class="font-semibold">{{ publicacion.titulo }}</h4>
           <p>{{ publicacion.contenido }}</p>
-          <small class="text-gray-500"
+          <small class="text-gray-500 cursor-pointer"
             >{{ "home.por" | translate }}
             <a
               class="cursor-pointer"
@@ -87,7 +87,7 @@
             en
             <a
               (click)="redirigirClub(publicacion.id_club)"
-              class="hover:text-blue-600"
+              class="hover:text-blue-600 cursor-pointer"
               >{{ publicacion.nombre_club }}</a
             ></small
           >
