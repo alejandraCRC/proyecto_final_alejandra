@@ -131,7 +131,7 @@ export class PerfilUsuarioComponent {
   //comprobar si el usuario registrado sigue a este usuario
   sigueUsuario = () => {
     if (this.idUsuario) {
-      this.servicioUsuarios.getSeguidos().subscribe({
+      this.servicioUsuarios.getSeguidos(Number(this.idUsuario)).subscribe({
         next: (data) => {
           const aSeguidos = data; //almacena los usuarios seguidos por el usuario
           console.log('seguidos', aSeguidos);
