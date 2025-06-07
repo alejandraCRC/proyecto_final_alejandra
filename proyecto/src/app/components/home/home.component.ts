@@ -246,6 +246,7 @@ export class HomeComponent {
     const inicio = (this.paginaActual - 1) * this.publicacionesPorPagina;
     const fin = inicio + this.publicacionesPorPagina;
     this.publicacionesPaginadas = this.publicacionesResenias.slice(inicio, fin);
+    console.log('publicacionesPaginadas',this.publicacionesPaginadas); // Ver en consola las publicaciones paginadas
   }
 
   cambiarPagina(pagina: number) {
