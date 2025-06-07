@@ -16,6 +16,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginComponent {
   public title: string = 'Gestión de tareas colaborativas';
+  idiomaActual = 'es';
 
   //inyectar servicios 
   private fb= inject(FormBuilder);
@@ -32,6 +33,11 @@ export class LoginComponent {
       password: ['', [Validators.required]],
 
     })
+  }
+
+    traducir(idioma: string) {
+    this.translate.use(idioma);
+    localStorage.setItem('idioma', idioma);
   }
 
 //getters
