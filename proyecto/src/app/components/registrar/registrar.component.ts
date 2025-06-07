@@ -10,12 +10,12 @@ import {
 import { Usuario } from '../../models/usuario';
 import { AuthService } from '../../services/auth.service';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registrar',
-  imports: [ReactiveFormsModule, CommonModule, TranslateModule],
+  imports: [ReactiveFormsModule, CommonModule, TranslateModule, RouterLink],
   templateUrl: './registrar.component.html',
 })
 export class RegistrarComponent {
