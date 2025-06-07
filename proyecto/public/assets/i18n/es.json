@@ -148,9 +148,9 @@
   "error_eliminar_libro_texto": "No se pudo eliminar el libro",
   "alert_guardado_exito": "Libro guardado con éxito",
   "alert_guardado_error": "Error al guardar el libro. Inténtalo de nuevo.",
-  "libro.ordenar_por_calificacion": "Ordenar por calificación",
-  "libro.de_mayor_a_menor": "De mayor a menor",
-  "libro.de_menor_a_mayor": "De menor a mayor"
+  "ordenar_por_calificacion": "Ordenar por calificación",
+  "de_mayor_a_menor": "De mayor a menor",
+  "de_menor_a_mayor": "De menor a mayor"
 },
 
 "resenia": {
