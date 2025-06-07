@@ -179,11 +179,12 @@ export class LibroComponent {
   //metodo para ordenar las reseñas por calificacion
 ordenarPorCalificacion(): void {
   if (this.ordenSeleccionado === 'asc') {
-    this.reseniasPaginadas.sort((a, b) => a.calificacion - b.calificacion);
-  } else {
-    this.reseniasPaginadas.sort((a, b) => b.calificacion - a.calificacion);
+    this.resenias.sort((a, b) => a.calificacion - b.calificacion);
+  } else if (this.ordenSeleccionado === 'desc') {
+    this.resenias.sort((a, b) => b.calificacion - a.calificacion);
   }
-  this.actualizarPaginacion(); // Vuelve a paginar si es necesario
+  this.paginaActual = 1; // Reinicia a la primera página
+  this.actualizarPaginacion();
 }
 
   //Método para redirigir al perfil del usuario
