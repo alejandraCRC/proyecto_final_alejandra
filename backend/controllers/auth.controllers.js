@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs'
 import { pool } from '../db.js'
 import { SECRET_KEY, REFRESH_SECRET_KEY } from '../config.js';
 // import {v4 as uuidv4} from 'uuid';
-// import { sendMail } from '../mailer.js';
+// import { sendMail } from '../mailer.js'; 
 
 
 export const login = async (req, res) => {

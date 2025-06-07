@@ -317,7 +317,6 @@ export class ClubComponent {
 
   unirseClub() {
     const id_club = this.club.id_club;
-
     this.servicioMiembrosClub
       .unirseClub(id_club, this.usuario.id_usuario)
       .subscribe({
