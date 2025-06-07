@@ -31,7 +31,8 @@ export class LibroComponent {
   mostrarModalResenia: boolean = false;
   datos: { id_libro: string | null; fecha: Date; estado: any } | null = null;
   resenias: Resenia[] = []; // Almacena las reseñas del libro
-  //variables de paginacion
+  ordenSeleccionado: 'desc' | 'asc' = 'desc';
+  //variables de  paginacion
   reseniasPaginadas: any[] = []; 
    paginaActual: number = 1;
    reseniasPorPagina: number = 10;
@@ -174,6 +175,16 @@ export class LibroComponent {
       this.actualizarPaginacion();
     }
   }
+
+  //metodo para ordenar las reseñas por calificacion
+ordenarPorCalificacion(): void {
+  if (this.ordenSeleccionado === 'asc') {
+    this.resenias.sort((a, b) => a.calificacion - b.calificacion);
+  } else {
+    this.resenias.sort((a, b) => b.calificacion - a.calificacion);
+  }
+  this.actualizarPaginacion(); // Vuelve a paginar si es necesario
+}
 
   //Método para redirigir al perfil del usuario
   redirigirPerfil(id: number) {

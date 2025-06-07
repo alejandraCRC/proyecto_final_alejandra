@@ -72,6 +72,22 @@
     {{ "libro.guardar_libro" | translate }}
   </button>
 
+<!-- Selector para ordenar reseñas -->
+<div class="flex justify-end mb-4">
+  <label for="ordenResenias" class="mr-2 text-gray-700 font-medium">
+    {{ "libro.ordenar_por_calificacion" | translate }}:
+  </label>
+  <select
+    id="ordenResenias"
+    [(ngModel)]="ordenSeleccionado"
+    (change)="ordenarPorCalificacion()"
+    class="p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+  >
+    <option value="desc">{{ "libro.de_mayor_a_menor" | translate }}</option>
+    <option value="asc">{{ "libro.de_menor_a_mayor" | translate }}</option>
+  </select>
+</div>
+
   <!-- Reseñas -->
   <div class="resenias mt-6">
     @if(resenias.length > 0) {
