@@ -162,6 +162,17 @@
           }}
         </button>
       </div>
+      <!-- Contenido de Términos y Condiciones -->
+       @if(mostrarTerminos) {
+      <div
+        class="bg-white/80 border border-gray-300 p-4 rounded text-sm text-gray-800 mb-4 max-w-sm mx-auto max-h-[200px] overflow-y-auto"
+      >
+        <h2 class="font-semibold mb-2">
+          {{ "register.titulo_terminos" | translate }}
+        </h2>
+        <p>{{ "register.texto_terminos" | translate }}</p>
+      </div>
+    }
       
 
       <div class="flex justify-end">
@@ -173,17 +184,7 @@
         </button>
       </div>
     </form>
-    <!-- Contenido de Términos y Condiciones -->
-       @if(mostrarTerminos) {
-      <div
-        class="bg-white/80 border border-gray-300 p-4 rounded text-sm text-gray-800 mb-4 max-w-sm mx-auto max-h-[200px] overflow-y-auto"
-      >
-        <h2 class="font-semibold mb-2">
-          {{ "register.titulo_terminos" | translate }}
-        </h2>
-        <p>{{ "register.texto_terminos" | translate }}</p>
-      </div>
-    }
+    
      <div
     class="text-white bg-black/20 mt-4 px-4 py-2 rounded max-w-md text-center"
   >
