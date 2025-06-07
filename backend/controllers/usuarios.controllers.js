@@ -57,7 +57,7 @@ export const getSeguidos = async (req, res) => {
 
 export const getSeguidores = async (req, res) => {
   try {
-    const { id_seguido } = req.params || req.user?.id;
+    const { id_seguido } = req.params.id_seguido || req.user?.id;
     "id", req.params;
     const [result] = await pool.query(
       "SELECT u.id_usuario, u.nombre, u.email, u.avatar FROM seguimientos s JOIN usuarios u ON s.id_seguidor = u.id_usuario WHERE s.id_seguido = ?",
