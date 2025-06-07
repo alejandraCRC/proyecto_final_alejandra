@@ -152,7 +152,8 @@
   "alert_guardado_error": "Error saving the book. Please try again.",
   "ordenar_por_calificacion": "Sort by rating",
   "de_mayor_a_menor": "From highest to lowest",
-  "de_menor_a_mayor": "From lowest to highest"
+  "de_menor_a_mayor": "From lowest to highest",
+  "sin_ordenar": "Unsorted"
 },
 
 "resenia": {

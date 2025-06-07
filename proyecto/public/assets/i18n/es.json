@@ -151,7 +151,8 @@
   "alert_guardado_error": "Error al guardar el libro. Inténtalo de nuevo.",
   "ordenar_por_calificacion": "Ordenar por calificación",
   "de_mayor_a_menor": "De mayor a menor",
-  "de_menor_a_mayor": "De menor a mayor"
+  "de_menor_a_mayor": "De menor a mayor",
+  "sin_ordenar": "Sin ordenar"
 },
 
 "resenia": {

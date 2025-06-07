@@ -179,9 +179,9 @@ export class LibroComponent {
   //metodo para ordenar las reseñas por calificacion
 ordenarPorCalificacion(): void {
   if (this.ordenSeleccionado === 'asc') {
-    this.resenias.sort((a, b) => a.calificacion - b.calificacion);
+    this.reseniasPaginadas.sort((a, b) => a.calificacion - b.calificacion);
   } else {
-    this.resenias.sort((a, b) => b.calificacion - a.calificacion);
+    this.reseniasPaginadas.sort((a, b) => b.calificacion - a.calificacion);
   }
   this.actualizarPaginacion(); // Vuelve a paginar si es necesario
 }
