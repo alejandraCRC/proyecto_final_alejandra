@@ -51,7 +51,6 @@ export class PerfilUsuarioComponent {
    paginaActual: number = 1;
    publicacionesPorPagina: number = 10;
    totalPaginas: number = 0;
-   publicacionSeleccionada: any = null;
 
   private ruta = inject(ActivatedRoute);
   private servicioUsuarios = inject(UsuariosService);

@@ -31,6 +31,11 @@ export class LibroComponent {
   mostrarModalResenia: boolean = false;
   datos: { id_libro: string | null; fecha: Date; estado: any } | null = null;
   resenias: Resenia[] = []; // Almacena las reseñas del libro
+  //variables de paginacion
+  reseniasPaginadas: any[] = []; 
+   paginaActual: number = 1;
+   reseniasPorPagina: number = 10;
+   totalPaginas: number = 0;
 
   private ruta = inject(ActivatedRoute);
   private router = inject(Router);
@@ -143,11 +148,30 @@ export class LibroComponent {
           this.resenias.sort(
             (a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime()
           ); // Ordenar por fecha
+          this.actualizarPaginacion(); // Actualiza la paginación después de obtener las reseñas
         },
         error: (error) => {
           console.error('Error al obtener las reseñas:', error);
         },
       });
+    }
+  }
+
+    //funciones para paginacion de resenias
+  //metodos para la paginacion de las resenias
+  actualizarPaginacion() {
+    this.totalPaginas = Math.ceil(
+      this.resenias.length / this.reseniasPorPagina
+    );
+    const inicio = (this.paginaActual - 1) * this.reseniasPorPagina;
+    const fin = inicio + this.reseniasPorPagina;
+    this.reseniasPaginadas = this.resenias.slice(inicio, fin);
+  }
+
+  cambiarPagina(pagina: number) {
+    if (pagina >= 1 && pagina <= this.totalPaginas) {
+      this.paginaActual = pagina;
+      this.actualizarPaginacion();
     }
   }
 

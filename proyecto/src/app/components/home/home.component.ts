@@ -42,7 +42,6 @@ export class HomeComponent {
    paginaActual: number = 1;
    publicacionesPorPagina: number = 10;
    totalPaginas: number = 0;
-   publicacionSeleccionada: any = null;
 
   private servicioClubs = inject(ClubsService);
   private servicioLibrosUsuario = inject(LibrosUsuarioService);
