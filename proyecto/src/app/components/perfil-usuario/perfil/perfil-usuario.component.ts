@@ -46,7 +46,12 @@ export class PerfilUsuarioComponent {
   leidos: any[] = [];
 
   //variables de publicaciones y reseñas
-  public publicacionesResenias: any[] = [];
+   publicacionesResenias: any[] = [];
+   publicacionesPaginadas: any[] = []; 
+   paginaActual: number = 1;
+   publicacionesPorPagina: number = 10;
+   totalPaginas: number = 0;
+   publicacionSeleccionada: any = null;
 
   private ruta = inject(ActivatedRoute);
   private servicioUsuarios = inject(UsuariosService);
@@ -338,6 +343,7 @@ export class PerfilUsuarioComponent {
         this.publicacionesResenias.sort(
           (a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime()
         );
+this.actualizarPaginacion(); //prepara el array de publicaciones paginadas
 
         console.log(this.publicacionesResenias); // Ver en consola
       },
@@ -346,6 +352,25 @@ export class PerfilUsuarioComponent {
       },
     });
   }
+
+  //funciones para paginacion de reseñas y publicaciones
+  //metodos para la paginacion de las reseñas y publicaciones
+  actualizarPaginacion() {
+    this.totalPaginas = Math.ceil(
+      this.publicacionesResenias.length / this.publicacionesPorPagina
+    );
+    const inicio = (this.paginaActual - 1) * this.publicacionesPorPagina;
+    const fin = inicio + this.publicacionesPorPagina;
+    this.publicacionesPaginadas = this.publicacionesResenias.slice(inicio, fin);
+  }
+
+  cambiarPagina(pagina: number) {
+    if (pagina >= 1 && pagina <= this.totalPaginas) {
+      this.paginaActual = pagina;
+      this.actualizarPaginacion();
+    }
+  }
+
 
   // Método para llevar al club correspondiente
   redirigirClub(id: Number) {
