@@ -258,9 +258,15 @@ export class HomeComponent {
 
   //Método para redirigir al perfil del usuario
   redirigirPerfil(id: number) {
-    this.router.navigate(['/app/perfil', id]); // Navegar a la ruta de detalle pasando el ID
+    this.router.navigate(['/app/perfil', id]); // Navegar a la ruta de perfil pasando el ID
   }
 
+    //Método para redirigir al libro
+  redirigirLibro(id: number) {
+    this.router.navigate(['/app/libro', id]); // Navegar a la ruta del libro pasando el ID
+  }
+
+  //Método para redirigir al formulario de creación de club
   crearClub(){
     this.router.navigate(['/app/form-club']);
   }

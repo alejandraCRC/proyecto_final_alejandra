@@ -47,8 +47,8 @@
       <li class="bg-white p-4 rounded shadow hover:shadow-lg transition-shadow">
         <div class="flex justify-between items-center mb-2">
           <span
-            class="text-sm text-gray-600 font-medium cursor-pointer"
-            (click)="redirigirPerfil(publicacion.id_usuario)"
+            class="text-sm text-gray-600 hover:text-[#8C3535] font-medium cursor-pointer"
+            (click)="redirigirLibro(publicacion.id_libro)"
           >
             {{ publicacion.tituloLibro }}
           </span>
@@ -65,7 +65,7 @@
             publicacion.fecha | formatoFecha
           }}</small>
         </div>
-        <small class="text-sm text-gray-500"
+        <small class="text-sm text-gray-500 hover:text-blue-600 cursor-pointer" (click)="redirigirPerfil(publicacion.id_usuario)"
           >{{ "home.reseña_de" | translate }} {{ publicacion.nombre }}</small
         >
       </li>
