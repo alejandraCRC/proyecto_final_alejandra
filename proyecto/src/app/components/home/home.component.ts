@@ -224,6 +224,7 @@ export class HomeComponent {
               (a, b) =>
                 new Date(b.fecha).getTime() - new Date(a.fecha).getTime()
             );
+            this.actualizarPaginacion(); //prepara el array de publicaciones paginadas
             console.log(this.publicacionesResenias); // Ver en consola las publicaciones y reseñas
           },
           error: (err) => {
