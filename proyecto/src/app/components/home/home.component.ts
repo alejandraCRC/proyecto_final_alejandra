@@ -26,15 +26,23 @@ export class HomeComponent {
 
   public aClubs: any[] = [];
   public aUsuarios: Usuario[] = [];
-  public publicacionesResenias: any[] = [];
+  
 
-  // libros
+  // variables para libros
   librosUsuarios: any[] = [];
   libro: any = null;
   aLibros: any[] = [];
   quieroLeer: any[] = [];
   leyendo: any[] = [];
   leidos: any[] = [];
+
+  //variables para publicaciones y reseñas
+   publicacionesResenias: any[] = [];
+   publicacionesPaginadas: any[] = []; 
+   paginaActual: number = 1;
+   publicacionesPorPagina: number = 10;
+   totalPaginas: number = 0;
+   publicacionSeleccionada: any = null;
 
   private servicioClubs = inject(ClubsService);
   private servicioLibrosUsuario = inject(LibrosUsuarioService);
@@ -227,6 +235,24 @@ export class HomeComponent {
         console.error('Error al obtener usuarios seguidos:', err);
       },
     });
+  }
+
+    //funciones para paginacion de publicaciones y resenias
+  //metodos para la paginacion de las publicaciones
+  actualizarPaginacion() {
+    this.totalPaginas = Math.ceil(
+      this.publicacionesResenias.length / this.publicacionesPorPagina
+    );
+    const inicio = (this.paginaActual - 1) * this.publicacionesPorPagina;
+    const fin = inicio + this.publicacionesPorPagina;
+    this.publicacionesPaginadas = this.publicacionesResenias.slice(inicio, fin);
+  }
+
+  cambiarPagina(pagina: number) {
+    if (pagina >= 1 && pagina <= this.totalPaginas) {
+      this.paginaActual = pagina;
+      this.actualizarPaginacion();
+    }
   }
 
   //Método para redirigir al perfil del usuario

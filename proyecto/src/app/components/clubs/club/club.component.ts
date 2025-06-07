@@ -27,29 +27,29 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   styles: ``,
 })
 export class ClubComponent {
-  public club: any = null;
-  public lecturaActual: any = null;
-  public leido_lecturaActual: boolean = false;
-  public libro: any = null;
+   club: any = null;
+   lecturaActual: any = null;
+   leido_lecturaActual: boolean = false;
+   libro: any = null;
 
   //variables para usuario y miembros
-  public creador: any = null;
-  public usuario: any = null;
-  public miembros: any[] = [];
-  public usuarioEsMiembro: boolean = false;
-  public usuarioEsAdministrador: boolean = false;
+   creador: any = null;
+   usuario: any = null;
+   miembros: any[] = [];
+   usuarioEsMiembro: boolean = false;
+   usuarioEsAdministrador: boolean = false;
 
   //variables para modal
-  public mostrarModalPublicacion: boolean = false;
-  public mostrarModalComentarioPublicacion: boolean = false;
+   mostrarModalPublicacion: boolean = false;
+   mostrarModalComentarioPublicacion: boolean = false;
 
   //variables para publicaciones y paginacion
-  public publicaciones: any[] = [];
-  public publicacionesPaginadas: any[] = []; // Las publicaciones que se muestran
-  public paginaActual: number = 1;
-  public publicacionesPorPagina: number = 10;
-  public totalPaginas: number = 0;
-  public publicacionSeleccionada: any = null;
+   publicaciones: any[] = [];
+   publicacionesPaginadas: any[] = []; 
+   paginaActual: number = 1;
+   publicacionesPorPagina: number = 10;
+   totalPaginas: number = 0;
+   publicacionSeleccionada: any = null;
 
   //manejar rutas
   private ruta = inject(ActivatedRoute);

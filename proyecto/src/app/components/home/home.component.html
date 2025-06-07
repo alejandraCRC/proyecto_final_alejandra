@@ -42,7 +42,7 @@
     </h3>
     }@else{
     <ul class="flex flex-col justify-center align-middle gap-4 md:w-[80%] p-5">
-      @for(publicacion of publicacionesResenias; track $index){
+      @for(publicacion of publicacionesPaginadas; track $index){
       @if(publicacion.tipo == 'resenia') {
       <li class="bg-white p-4 rounded shadow hover:shadow-lg transition-shadow">
         <div class="flex justify-between items-center mb-2">
@@ -98,8 +98,41 @@
       </li>
       } }
     </ul>
+    <!-- final bucle publicaciones y reseñas  -->
     }
   </div>
+  
+  <!-- botones de paginacion  -->
+    <div class="flex justify-center mt-4 space-x-2">
+      <button
+        class="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400"
+        [disabled]="paginaActual === 1"
+        (click)="cambiarPagina(paginaActual - 1)"
+      >
+        {{ "club.anterior" | translate }}
+      </button>
+
+      @for ( i of [].constructor(totalPaginas); track $index) {
+      <button
+        class="px-3 py-1 rounded"
+        [ngClass]="{
+          'bg-[#F2A71B] text-white': paginaActual === $index + 1,
+          'bg-[#FCD26E]': paginaActual !== $index + 1
+        }"
+        (click)="cambiarPagina($index + 1)"
+      >
+        {{ $index + 1 }}
+      </button>
+      }
+
+      <button
+        class="px-3 py-1 bg-[#FCD26E] rounded hover:bg-[#F2A71B]"
+        [disabled]="paginaActual === totalPaginas"
+        (click)="cambiarPagina(paginaActual + 1)"
+      >
+        {{ "club.siguiente" | translate }}
+      </button>
+    </div>
 
   <!-- libros guardados -->
   <div
