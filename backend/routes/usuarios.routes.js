@@ -10,7 +10,7 @@ const router = Router();
 router.get('/usuario',autenticarToken,  getUsuario);
 router.get('/usuario/:idUsuario',autenticarToken,  getUsuario);
 router.get('/buscarUsuarios/:nombre',  getUsuariosPorNombre);
-router.put('/usuarios/:id_usuario', upload.single('avatar'), updateUsuario);
+router.put('/usuarios/:id_usuario', updateUsuario);
 router.delete('/usuarios', autenticarToken, delUsuario); // Asumiendo que el delete también actualiza el usuario
 
 router.get('/seguidos/:id_seguidor',autenticarToken, getSeguidos);
