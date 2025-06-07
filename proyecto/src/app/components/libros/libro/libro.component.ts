@@ -182,6 +182,8 @@ ordenarPorCalificacion(): void {
     this.resenias.sort((a, b) => a.calificacion - b.calificacion);
   } else if (this.ordenSeleccionado === 'desc') {
     this.resenias.sort((a, b) => b.calificacion - a.calificacion);
+  }else {
+    this.resenias.sort((a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime());
   }
   this.paginaActual = 1; // Reinicia a la primera página
   this.actualizarPaginacion();
