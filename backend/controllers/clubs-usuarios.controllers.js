@@ -4,7 +4,7 @@ export const getClubsUsuario = async (req, res) => {
   const id_usuario = req.user.id;
 
   try {
-    const [result] = await pool.query(`SELECT c.*, u.nombre AS nombre_usuario
+    const [result] = await pool.query(`SELECT c.*
        FROM miembros_club mc
        JOIN clubes_de_lectura c ON mc.id_club = c.id_club
        JOIN usuarios u ON mc.id_miembro = u.id_usuario
