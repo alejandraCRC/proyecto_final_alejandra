@@ -41,7 +41,7 @@
       {{ "home.publicaciones" | translate }}
     </h3>
     }@else{
-    <ul class="flex flex-col justify-center align-middle gap-4 md:w-[80%] p-5">
+    <ul class="flex flex-col justify-center align-middle gap-4 p-5">
       @for(publicacion of publicacionesPaginadas; track $index){
       @if(publicacion.tipo == 'resenia') {
       <li class="bg-white p-4 rounded shadow hover:shadow-lg transition-shadow">

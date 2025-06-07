@@ -109,6 +109,7 @@
     }
         <!-- botones de paginacion  -->
     <div class="flex justify-center mt-4 space-x-2">
+      @if(totalPaginas > 0) {
       <button
         class="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400"
         [disabled]="paginaActual === 1"
@@ -116,7 +117,7 @@
       >
         {{ "club.anterior" | translate }}
       </button>
-
+    }
       @for ( i of [].constructor(totalPaginas); track $index) {
       <button
         class="px-3 py-1 rounded"
@@ -129,7 +130,7 @@
         {{ $index + 1 }}
       </button>
       }
-
+      @if(totalPaginas > 0) {
       <button
         class="px-3 py-1 bg-[#FCD26E] rounded hover:bg-[#F2A71B]"
         [disabled]="paginaActual === totalPaginas"
@@ -137,6 +138,7 @@
       >
         {{ "club.siguiente" | translate }}
       </button>
+    }
     </div>
   </div>
 </div>
