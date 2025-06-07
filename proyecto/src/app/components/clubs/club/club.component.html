@@ -227,11 +227,7 @@
           "
         >
           <!-- cambia el texto segun si se muestran o no los comentarios -->
-          {{
-            publicacion.mostrarComentarios
-              ? "{{ 'club.ocultar_comentarios' | translate }}"
-              : "{{ 'club.ver_comentarios' | translate }}"
-          }}
+          {{ publicacion.mostrarComentarios ? ('club.ocultar_comentarios' | translate) : ('club.ver_comentarios' | translate) }}
         </button>
         }
         <!-- comentarios de la publicación -->
