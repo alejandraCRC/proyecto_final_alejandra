@@ -145,6 +145,21 @@ export class PerfilUsuarioComponent {
           });
         },
       });
+    } else {
+      this.servicioUsuarios.getSeguidos().subscribe({
+        next: (data) => {
+          const aSeguidos = data; //almacena los usuarios seguidos por el usuario
+          console.log('seguidos', aSeguidos);
+          aSeguidos.forEach((seguido) => {
+            console.log('seguido', seguido);
+            if (seguido.id_usuario === this.authService.getUsuario().id_usuario) {
+              this.sigueAlUsuario = true; //si el usuario sigue al usuario mostrado en el perfil
+            } else {
+              this.sigueAlUsuario = false; //si el usuario no sigue al usuario mostrado en el perfil
+            }
+          });
+        },
+      });
     }
   };
 
