@@ -31,7 +31,7 @@ export class LibroComponent {
   mostrarModalResenia: boolean = false;
   datos: { id_libro: string | null; fecha: Date; estado: any } | null = null;
   resenias: Resenia[] = []; // Almacena las reseñas del libro
-  ordenSeleccionado: 'desc' | 'asc' = 'desc';
+  ordenSeleccionado: string = 'fecha';
   //variables de  paginacion
   reseniasPaginadas: any[] = []; 
    paginaActual: number = 1;
