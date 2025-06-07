@@ -149,8 +149,10 @@
   "error_eliminar_libro_titulo": "Error",
   "error_eliminar_libro_texto": "The book could not be deleted",
   "alert_guardado_exito": "Book saved successfully",
-  "alert_guardado_error": "Error saving the book. Please try again."
-
+  "alert_guardado_error": "Error saving the book. Please try again.",
+  "libro.ordenar_por_calificacion": "Sort by rating",
+  "libro.de_mayor_a_menor": "From highest to lowest",
+  "libro.de_menor_a_mayor": "From lowest to highest"
 },
 
 "resenia": {
