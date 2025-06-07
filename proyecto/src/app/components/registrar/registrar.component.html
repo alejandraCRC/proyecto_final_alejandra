@@ -4,35 +4,35 @@
   <div
     class="absolute top-0 w-screen bg-[#8C3535] text-center text-white rounded p-2"
   >
-  <div class="flex justify-center items-center">
-    <h1>{{'register.bienvenido_a' | translate}} {{ title }}</h1>
+    <div class="flex justify-center items-center">
+      <h1>{{ "register.bienvenido_a" | translate }} {{ title }}</h1>
       <!-- Botones de idioma -->
-        <div
-          class="flex ml-4 rounded-md overflow-hidden border border-[#FCD26E] text-sm"
+      <div
+        class="flex ml-4 rounded-md overflow-hidden border border-[#FCD26E] text-sm"
+      >
+        <!-- sistema para el cambio de color segun el idioma seleccionado  -->
+        <button
+          (click)="traducir('es'); idiomaActual = 'es'"
+          [class.bg-[#FCD26E]]="idiomaActual === 'es'"
+          [class.text-[#843030]]="idiomaActual === 'es'"
+          [class.bg-transparent]="idiomaActual !== 'es'"
+          [class.text-[#FCD26E]]="idiomaActual !== 'es'"
+          class="py-0.5 px-3 font-semibold transition focus:outline-none"
         >
-          <!-- sistema para el cambio de color segun el idioma seleccionado  -->
-          <button
-            (click)="traducir('es'); idiomaActual = 'es'"
-            [class.bg-[#FCD26E]]="idiomaActual === 'es'"
-            [class.text-[#843030]]="idiomaActual === 'es'"
-            [class.bg-transparent]="idiomaActual !== 'es'"
-            [class.text-[#FCD26E]]="idiomaActual !== 'es'"
-            class="py-0.5 px-3 font-semibold transition focus:outline-none"
-          >
-            Esp
-          </button>
-          <button
-            (click)="traducir('en'); idiomaActual = 'en'"
-            [class.bg-[#FCD26E]]="idiomaActual === 'en'"
-            [class.text-[#843030]]="idiomaActual === 'en'"
-            [class.bg-transparent]="idiomaActual !== 'en'"
-            [class.text-[#FCD26E]]="idiomaActual !== 'en'"
-            class="py-0.5 px-3 font-semibold transition focus:outline-none"
-          >
-            Eng
-          </button>
-        </div>
-        </div>
+          Esp
+        </button>
+        <button
+          (click)="traducir('en'); idiomaActual = 'en'"
+          [class.bg-[#FCD26E]]="idiomaActual === 'en'"
+          [class.text-[#843030]]="idiomaActual === 'en'"
+          [class.bg-transparent]="idiomaActual !== 'en'"
+          [class.text-[#FCD26E]]="idiomaActual !== 'en'"
+          class="py-0.5 px-3 font-semibold transition focus:outline-none"
+        >
+          Eng
+        </button>
+      </div>
+    </div>
   </div>
   <!-- 
   medio- #D96E30
@@ -46,8 +46,11 @@
       (submit)="sendDatos()"
       class="bg-[#f5f5dc]/70 rounded py-[40px] px-[70px]"
     >
-      <div class="mb-5 ">
-        <label for="username" class="form-label">{{'register.nombre_usuario' | translate}}</label><br>
+      <div class="mb-5">
+        <label for="username" class="form-label">{{
+          "register.nombre_usuario" | translate
+        }}</label
+        ><br />
         <input
           type="text"
           class="p-2 rounded bg-[#f5f5dc]"
@@ -57,15 +60,19 @@
         />
         @if(frm.get('username')?.errors?.['required'] &&
         frm.get('username')?.touched){
-        <br/><small class="text-red-600 italic">{{'login.dato_requerido' | translate}}</small>
+        <br /><small class="text-red-600 italic">{{
+          "login.dato_requerido" | translate
+        }}</small>
         }@else { @if(frm.get('username')?.errors?.['pattern'] ){
-        <br/><small class="text-red-600 italic"
-          >{{'register.nombre_usuario_formato_incorrecto' | translate}}</small
-        >
+        <br /><small class="text-red-600 italic">{{
+          "register.nombre_usuario_formato_incorrecto" | translate
+        }}</small>
         } }
       </div>
       <div class="mb-5">
-        <label for="email" class="form-label">{{'login.email' | translate}} </label><br/>
+        <label for="email" class="form-label"
+          >{{ "login.email" | translate }} </label
+        ><br />
         <input
           type="email"
           class="p-2 rounded bg-[#f5f5dc]"
@@ -75,15 +82,20 @@
           size="30"
         />
         @if(emailNoRequerido){
-        <br /><small class="text-red-600 italic">{{'login.dato_requerido' | translate}}</small>
+        <br /><small class="text-red-600 italic">{{
+          "login.dato_requerido" | translate
+        }}</small>
         }@else{ @if(emailNoEmail){
-        <br /><small class="text-red-600 italic"
-          >{{'register.email_formato_incorrecto' | translate}}</small
-        >
+        <br /><small class="text-red-600 italic">{{
+          "register.email_formato_incorrecto" | translate
+        }}</small>
         } }
       </div>
       <div class="mb-5">
-        <label for="password" class="form-label">{{'login.password' | translate}}</label><br />
+        <label for="password" class="form-label">{{
+          "login.password" | translate
+        }}</label
+        ><br />
         <input
           type="password"
           class="p-2 rounded bg-bg-[#f5f5dc]"
@@ -92,15 +104,20 @@
           size="30"
         />
         @if(passNoRequerido){
-        <br /><small class="text-red-600 italic">{{'login.dato_requerido' | translate}}</small>
+        <br /><small class="text-red-600 italic">{{
+          "login.dato_requerido" | translate
+        }}</small>
         }@else { @if(passNoValido){
-        <br /><small class="text-red-600 italic"
-          >{{'register.password_formato_incorrecto' | translate}}</small>
-        }
-        } 
+        <br /><small class="text-red-600 italic">{{
+          "register.password_formato_incorrecto" | translate
+        }}</small>
+        } }
       </div>
       <div class="mb-5">
-        <label for="rPassword" class="form-label">{{'register.repita_password' | translate}}</label><br>
+        <label for="rPassword" class="form-label">{{
+          "register.repita_password" | translate
+        }}</label
+        ><br />
         <input
           [ngClass]="{ 'is-invalid': passNoValido }"
           type="password"
@@ -110,36 +127,69 @@
           size="30"
         />
         @if(rPassNoRequerido){
-        <br/><small class="text-red-600 italic">{{'login.dato_requerido' | translate}}</small>
+        <br /><small class="text-red-600 italic">{{
+          "login.dato_requerido" | translate
+        }}</small>
         }@else { @if(rPassNoIdem){
-        <br/><small class="text-red-600 italic">{{'register.password_no_iguales' | translate}}</small>
+        <br /><small class="text-red-600 italic">{{
+          "register.password_no_iguales" | translate
+        }}</small>
         } }
       </div>
-      
-        <div class="mb-3 flex align-center">
-          <input
-            type="checkbox"
-            class="w-5 h-5 text-[#366D73]  bg-[#f5f5dc] border-[#f5f5dc] rounded focus:ring-blue-500 focus:ring-2 mr-2"
-            id="terminos"
-            formControlName="terminos"
-          />
-          <label class="text-sm " for="exampleCheck1"
-            >{{'register.acepta_condiciones' | translate}}</label
-          >
-        </div>
 
-        <div class="flex justify-end">
+      <div class="mb-3 flex align-center">
+        <input
+          type="checkbox"
+          class="w-5 h-5 text-[#366D73] bg-[#f5f5dc] border-[#f5f5dc] rounded focus:ring-blue-500 focus:ring-2 mr-2"
+          id="terminos"
+          formControlName="terminos"
+        />
+        <label class="text-sm" for="exampleCheck1">{{
+          "register.acepta_condiciones" | translate
+        }}</label>
+      </div>
+      <!-- Botón para ver los Términos y Condiciones -->
+      <div class="mb-3 text-right">
+        <button
+          type="button"
+          (click)="mostrarTerminos = !mostrarTerminos"
+          class="text-sm text-blue-600 underline hover:text-blue-800 transition"
+        >
+          {{
+            mostrarTerminos
+              ? ("register.ocultar_terminos" | translate)
+              : ("register.ver_terminos" | translate)
+          }}
+        </button>
+      </div>
+      <!-- Contenido de Términos y Condiciones -->
+       @if(mostrarTerminos) {
+      <div
+        class="bg-white/80 border border-gray-300 p-4 rounded text-sm text-gray-800 mb-4 max-h-[200px] overflow-y-auto"
+      >
+        <h2 class="font-semibold mb-2">
+          {{ "register.titulo_terminos" | translate }}
+        </h2>
+        <p>{{ "register.texto_terminos" | translate }}</p>
+      </div>
+    }
+
+      <div class="flex justify-end">
         <button
           type="submit"
           class="bg-[#A6175A] mt-5 p-1 px-3 cursor-pointer text-white border-t-[7px] border-t-[#C7387A] border-l-[7px] border-l-[#A6175A] border border-b-[7px] border-b-[#891248] border-r-[7px] border-r-[#891248] rounded"
         >
-          {{'register.registrarse' | translate}}
+          {{ "register.registrarse" | translate }}
         </button>
       </div>
     </form>
   </div>
-  <div class="text-white bg-black/20 mt-4 px-4 py-2 rounded max-w-md text-center">
-    {{'register.volver_login' | translate}}
-    <a routerLink="/login" class="font-bold underline cursor-pointer ml-1">{{'register.iniciar_sesion' | translate}}</a>
+  <div
+    class="text-white bg-black/20 mt-4 px-4 py-2 rounded max-w-md text-center"
+  >
+    {{ "register.volver_login" | translate }}
+    <a routerLink="/login" class="font-bold underline cursor-pointer ml-1">{{
+      "register.iniciar_sesion" | translate
+    }}</a>
   </div>
 </div>

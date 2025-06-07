@@ -227,7 +227,11 @@
     "alert_registro_exito": "User successfully created",
     "alert_registro_error": "Error creating the user. Please try again.",
     "volver_login": "Back to ",
-    "iniciar_sesion": "Login"
+    "iniciar_sesion": "Login",
+    "ver_terminos": "View terms and conditions",
+    "ocultar_terminos": "Hide terms and conditions",
+    "titulo_terminos": "Terms and Conditions",
+    "texto_terminos": "By using this platform, you agree to comply with our usage rules, privacy policies, and legal conditions. Please review these terms carefully before proceeding."
   },
   "sweetAlert": {
   "confirmar_eliminar": "Yes, delete",

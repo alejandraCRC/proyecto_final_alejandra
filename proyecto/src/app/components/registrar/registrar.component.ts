@@ -19,8 +19,9 @@ import Swal from 'sweetalert2';
   templateUrl: './registrar.component.html',
 })
 export class RegistrarComponent {
-  public title: string = 'Page to Page';
+  title: string = 'Page to Page';
   idiomaActual = 'es';
+  mostrarTerminos: boolean = false;
 
   //inyectar servicios a partir de la versión 17
   private fb = inject(FormBuilder);

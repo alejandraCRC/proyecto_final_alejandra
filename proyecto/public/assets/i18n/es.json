@@ -226,7 +226,11 @@
     "alert_registro_exito": "Usuario creado con éxito",
     "alert_registro_error": "Error al crear el usuario. Inténtalo de nuevo.",
     "volver_login": "Volver a",
-    "iniciar_sesion": "Iniciar sesión."
+    "iniciar_sesion": "Iniciar sesión.",
+    "ver_terminos": "Ver términos y condiciones",
+    "ocultar_terminos": "Ocultar términos y condiciones",
+    "titulo_terminos": "Términos y Condiciones",
+    "texto_terminos": "Al utilizar esta plataforma, aceptas cumplir con nuestras normas de uso, políticas de privacidad y condiciones legales. Por favor, revisa estos términos detenidamente antes de continuar."
   },
   "sweetAlert":{
     "confirmar_eliminar": "Sí, eliminar",
