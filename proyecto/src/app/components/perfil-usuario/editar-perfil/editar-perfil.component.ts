@@ -21,9 +21,9 @@ export class EditarPerfilComponent {
   private translate = inject(TranslateService);
 
   // Variables
-  public perfilForm!: FormGroup;
-  public usuario: any = null;
-  public avatarSeleccionado: File | null = null;
+  perfilForm!: FormGroup;
+  usuario: any = null;
+  avatarSeleccionado: File | null = null;
 
   ngOnInit(): void {
     this.cargarDatosUsuario();

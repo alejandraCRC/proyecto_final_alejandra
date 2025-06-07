@@ -20,6 +20,7 @@ import Swal from 'sweetalert2';
 })
 export class RegistrarComponent {
   public title: string = 'Page to Page';
+  idiomaActual = 'es';
 
   //inyectar servicios a partir de la versión 17
   private fb = inject(FormBuilder);
@@ -33,7 +34,10 @@ export class RegistrarComponent {
     this.frm = this.fb.group({
       username: [
         '',
-        [Validators.required, Validators.pattern(/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{1,30}$/)],
+        [
+          Validators.required,
+          Validators.pattern(/^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\s]{1,30}$/),
+        ],
       ],
       email: ['', [Validators.required, Validators.email]],
       password: [
@@ -105,6 +109,11 @@ export class RegistrarComponent {
     }
   }
 
+  traducir(idioma: string) {
+    this.translate.use(idioma);
+    localStorage.setItem('idioma', idioma);
+  }
+
   sendDatos() {
     if (this.frm.invalid) {
       this.frm.markAllAsTouched(); // marca todos los campos como tocados para que se vean errores
@@ -123,29 +132,29 @@ export class RegistrarComponent {
       .subscribe({
         next: (respuesta) => {
           Swal.fire({
-                      toast: true,
-                      position: 'top-start',
-                      icon: 'success',
-                      title: this.translate.instant('register.alert_registro_exito'),
-                      showConfirmButton: false,
-                      timer: 3000,
-                      timerProgressBar: true,
-                    });
-          console.log('Usuario registrado:', respuesta);          
+            toast: true,
+            position: 'top-start',
+            icon: 'success',
+            title: this.translate.instant('register.alert_registro_exito'),
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+          });
+          console.log('Usuario registrado:', respuesta);
           this.router.navigate(['/login']); // Redirige al login después del registro
           // podrías mostrar un mensaje, redirigir, etc.
         },
         error: (error) => {
           Swal.fire({
-                      toast: true,
-                      position: 'top-start',
-                      icon: 'error',
-                      title: this.translate.instant('register.alert_registro_error'),
-                      showConfirmButton: false,
-                      timer: 3000,
-                      timerProgressBar: true,
-                    });
-          console.error('Error al registrar usuario:', error);          
+            toast: true,
+            position: 'top-start',
+            icon: 'error',
+            title: this.translate.instant('register.alert_registro_error'),
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+          });
+          console.error('Error al registrar usuario:', error);
           // aquí podrías mostrar un mensaje de error al usuario
         },
       });

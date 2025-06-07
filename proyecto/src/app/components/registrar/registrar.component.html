@@ -1,11 +1,37 @@
 <div
   class="login h-screen w-screen bg-[url('assets/imagenes/fondo.jpg')] bg-cover bg-center"
 >
-  <h1
+  <div
     class="absolute top-0 w-screen bg-[#8C3535] text-center text-white rounded p-2"
   >
-    {{'register.bienvenido_a' | translate}} {{ title }}
-  </h1>
+    <h1>{{'register.bienvenido_a' | translate}} {{ title }}</h1>
+      <!-- Botones de idioma -->
+        <div
+          class="flex ml-4 rounded-md overflow-hidden border border-[#FCD26E] text-sm"
+        >
+          <!-- sistema para el cambio de color segun el idioma seleccionado  -->
+          <button
+            (click)="traducir('es'); idiomaActual = 'es'"
+            [class.bg-[#FCD26E]]="idiomaActual === 'es'"
+            [class.text-[#843030]]="idiomaActual === 'es'"
+            [class.bg-transparent]="idiomaActual !== 'es'"
+            [class.text-[#FCD26E]]="idiomaActual !== 'es'"
+            class="py-0.5 px-3 font-semibold transition focus:outline-none"
+          >
+            Esp
+          </button>
+          <button
+            (click)="traducir('en'); idiomaActual = 'en'"
+            [class.bg-[#FCD26E]]="idiomaActual === 'en'"
+            [class.text-[#843030]]="idiomaActual === 'en'"
+            [class.bg-transparent]="idiomaActual !== 'en'"
+            [class.text-[#FCD26E]]="idiomaActual !== 'en'"
+            class="py-0.5 px-3 font-semibold transition focus:outline-none"
+          >
+            Eng
+          </button>
+        </div>
+  </div>
   <!-- 
   medio- #D96E30
   claro- #FCD26E 
