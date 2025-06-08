@@ -234,7 +234,8 @@
     "ver_terminos": "Ver términos y condiciones",
     "ocultar_terminos": "Ocultar términos y condiciones",
     "titulo_terminos": "Términos y Condiciones",
-    "texto_terminos": "Al utilizar esta plataforma, aceptas cumplir con nuestras normas de uso, políticas de privacidad y condiciones legales. Por favor, revisa estos términos detenidamente antes de continuar."
+    "texto_terminos": "Al utilizar esta plataforma, aceptas cumplir con nuestras normas de uso, políticas de privacidad y condiciones legales. Por favor, revisa estos términos detenidamente antes de continuar.",
+    "alert_email_existente": "Este correo ya está en uso"
   },
   "sweetAlert":{
     "confirmar_eliminar": "Sí, eliminar",

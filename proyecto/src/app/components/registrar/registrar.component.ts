@@ -146,17 +146,27 @@ export class RegistrarComponent {
           // podrías mostrar un mensaje, redirigir, etc.
         },
         error: (error) => {
+          console.error('Error al registrar usuario:', error);
+
+          let mensaje = this.translate.instant('register.alert_registro_error');
+          if (
+            error.status === 400 &&
+            error.error?.message?.includes('correo')
+          ) {
+            mensaje =
+              this.translate.instant('register.alert_email_existente') ||
+              'Este correo ya está en uso';
+          }
+
           Swal.fire({
             toast: true,
             position: 'top-start',
             icon: 'error',
-            title: this.translate.instant('register.alert_registro_error'),
+            title: mensaje,
             showConfirmButton: false,
             timer: 3000,
             timerProgressBar: true,
           });
-          console.error('Error al registrar usuario:', error);
-          // aquí podrías mostrar un mensaje de error al usuario
         },
       });
   }

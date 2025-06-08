@@ -234,7 +234,8 @@
     "ver_terminos": "View terms and conditions",
     "ocultar_terminos": "Hide terms and conditions",
     "titulo_terminos": "Terms and Conditions",
-    "texto_terminos": "By using this platform, you agree to comply with our usage rules, privacy policies, and legal conditions. Please review these terms carefully before proceeding."
+    "texto_terminos": "By using this platform, you agree to comply with our usage rules, privacy policies, and legal conditions. Please review these terms carefully before proceeding.",
+    "alert_email_existente": "An account with this email already exists. Please use a different email."
   },
   "sweetAlert": {
   "confirmar_eliminar": "Yes, delete",
