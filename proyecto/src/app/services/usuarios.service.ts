@@ -88,7 +88,7 @@ getSeguidores(id_seguido?: number): Observable<Usuario[]> {
   }
 
     //editar usuario
-  actualizarUsuario(id_usuario: number, datos: FormData):Observable<{message:string}>{ 
+  actualizarUsuario(id_usuario: number, datos: {nombre: string, email: string, biografia?: string}): Observable<{message:string}> { 
     return this.http.put<{message:string}>(`${this.url}/usuarios/${id_usuario}`,datos).pipe(
       catchError(this.handleError)
     );

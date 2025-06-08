@@ -55,13 +55,14 @@ export class EditarPerfilComponent {
       return;
     }
 
-    const formData = new FormData();
-    formData.append('nombre', this.perfilForm.get('nombre')?.value);
-    formData.append('email', this.perfilForm.get('email')?.value);
-    formData.append('biografia', this.perfilForm.get('biografia')?.value || '');
+    const datos = {
+    nombre: this.perfilForm.get('nombre')?.value,
+    email: this.perfilForm.get('email')?.value,
+    biografia: this.perfilForm.get('biografia')?.value || ''
+  };
 
 
-    this.servicioUsuarios.actualizarUsuario(this.usuario.id_usuario, formData).subscribe({
+    this.servicioUsuarios.actualizarUsuario(this.usuario.id_usuario, datos).subscribe({
       next: () => {
         Swal.fire({
           toast: true,
