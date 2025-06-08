@@ -52,6 +52,7 @@ export class LibroComponent {
 
   ngOnInit(): void {
     this.usuario = this.servicioUsuarios.getUsuario(); // Obtiene el usuario logueado
+    console.log('Usuario actual:', this.usuario);
     const idLibro = this.ruta.snapshot.paramMap.get('idLibro'); // Obtener el ID del libro desde la URL
     if (idLibro) {
       this.servicioLibros.obtenerLibroPorId(idLibro).subscribe((res: any) => {
