@@ -75,7 +75,7 @@ export class PerfilUsuarioComponent {
   }
 
   //obtención del usuario
-  getUsuario = () => {
+  getUsuario(){
     if (this.idUsuario) {
       this.servicioUsuarios.getUsuario(this.idUsuario).subscribe({
         next: (data) => {
@@ -94,7 +94,7 @@ export class PerfilUsuarioComponent {
       });
     }
   };
-  getSeguidores = () => {
+  getSeguidores(){
     if (this.idUsuario) {
       this.servicioUsuarios.getSeguidores(Number(this.idUsuario)).subscribe({
         next: (data) => {
@@ -111,7 +111,7 @@ export class PerfilUsuarioComponent {
       });
     }
   };
-  getSeguidos = () => {
+  getSeguidos(){
     if (this.idUsuario) {
       this.servicioUsuarios.getSeguidos(Number(this.idUsuario)).subscribe({
         next: (data) => {
@@ -129,29 +129,10 @@ export class PerfilUsuarioComponent {
     }
   };
   //comprobar si el usuario registrado sigue a este usuario
-  sigueUsuario = () => {
-    if (this.idUsuario) {
-      this.servicioUsuarios.getSeguidos(Number(this.idUsuario)).subscribe({
-        next: (data) => {
-          const aSeguidos = data; //almacena los usuarios seguidos por el usuario
-          console.log('seguidos', aSeguidos);
-          aSeguidos.forEach((seguido) => {
-            console.log('seguido', seguido);
-            if (seguido.id_usuario === Number(this.idUsuario)) {
-              this.sigueAlUsuario = true; //si el usuario sigue al usuario mostrado en el perfil
-            } else {
-              this.sigueAlUsuario = false; //si el usuario no sigue al usuario mostrado en el perfil
-            }
-          });
-        },
-      });
-    } else {
+  sigueUsuario(){
       this.servicioUsuarios.getSeguidos().subscribe({
         next: (data) => {
-          const aSeguidos = data; //almacena los usuarios seguidos por el usuario
-          console.log('seguidos', aSeguidos);
-          aSeguidos.forEach((seguido) => {
-            console.log('seguido', seguido);
+          data.forEach((seguido) => {
             if (seguido.id_usuario === this.authService.getUsuario().id_usuario) {
               this.sigueAlUsuario = true; //si el usuario sigue al usuario mostrado en el perfil
             } else {
@@ -160,10 +141,9 @@ export class PerfilUsuarioComponent {
           });
         },
       });
-    }
   };
 
-  seguir = () => {
+  seguir(){
     this.servicioUsuarios.seguirUsuario(Number(this.idUsuario)).subscribe({
       next: (data) => {
         Swal.fire({
@@ -193,7 +173,7 @@ export class PerfilUsuarioComponent {
     });
   };
 
-  dejarSeguir = () => {
+  dejarSeguir(){
     if (this.idUsuario) {
       this.servicioUsuarios.dejarDeSeguir(Number(this.idUsuario)).subscribe({
         next: (data) => {
@@ -226,7 +206,7 @@ export class PerfilUsuarioComponent {
   };
 
   //redirije a la pagina de edicion del perfil
-  editarPerfil = () => {
+  editarPerfil(){
     this.router.navigate(['/app/editar-perfil', this.usuario.id_usuario]);
   };
 
@@ -272,7 +252,7 @@ export class PerfilUsuarioComponent {
     });
   };
 
-  llenarArrayLibrosSegunUsuario = () => {
+  llenarArrayLibrosSegunUsuario () {
     if (this.idUsuario) {
       this.servicioLibrosUsuario.getLibrosUsuario(this.idUsuario).subscribe({
         next: (data) => {
