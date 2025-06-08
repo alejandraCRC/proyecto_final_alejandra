@@ -43,7 +43,7 @@ export class AuthService {
     const body = { nombre, email, contrasenia, fecha_registro };
     return this.http
       .post(`${this.apiUrl}/register`, body)
-      .pipe(catchError(this.handleError));
+      
   }
 
   setToken(token: any) {
