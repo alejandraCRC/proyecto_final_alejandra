@@ -191,7 +191,7 @@ ordenarPorCalificacion(): void {
   this.actualizarPaginacion();
 }
 
-eliminarResenia(id_libro: number) {
+eliminarResenia(id_libro: string) {
   Swal.fire({
     title: this.translate.instant('libro.confirmar_eliminar_resenia'),
     text: this.translate.instant('libro.confirmar_eliminar_resenia_texto'),
@@ -199,7 +199,7 @@ eliminarResenia(id_libro: number) {
     showCancelButton: true,
     confirmButtonColor: '#dc2626',
     cancelButtonColor: '#6b7280',
-    confirmButtonText: this.translate.instant('sweetAlert.eliminar'),
+    confirmButtonText: this.translate.instant('sweetAlert.confirmar_eliminar'),
     cancelButtonText: this.translate.instant('sweetAlert.cancelar'),
   }).then((result) => {
     if (result.isConfirmed) {

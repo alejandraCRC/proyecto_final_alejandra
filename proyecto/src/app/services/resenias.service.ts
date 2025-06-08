@@ -59,7 +59,7 @@ export class ReseniasService {
       .pipe(catchError(this.handleError));
   }
 
-  eliminarResenia(id_libro: number): Observable<any> {
+  eliminarResenia(id_libro: string): Observable<any> {
     //crear cabeceras
     const headers = new HttpHeaders({
       Authorization: `Bearer ${this.authService.getToken()}`, //la autorizacion va con esta estructura
