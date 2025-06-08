@@ -82,7 +82,7 @@ export const delResenia = async (req, res) => {
   try {
     const { id_libro } = req.params;
     const { id_usuario } = req.user?.id;
-    const [result] = await pool.query("DELETE FROM resenias WHERE id_resenia=?", [id_resenia]);
+    const [result] = await pool.query("DELETE FROM resenias WHERE id_libro=? AND id_usuario=?", [id_libro, id_usuario]);
 
     if (result.affectedRows == 0) {
       return res.status(400).json({

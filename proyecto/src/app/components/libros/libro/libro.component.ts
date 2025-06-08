@@ -199,7 +199,7 @@ eliminarResenia(id_libro: number) {
     showCancelButton: true,
     confirmButtonColor: '#dc2626',
     cancelButtonColor: '#6b7280',
-    confirmButtonText: this.translate.instant('sweetAlert.si_eliminar'),
+    confirmButtonText: this.translate.instant('sweetAlert.eliminar'),
     cancelButtonText: this.translate.instant('sweetAlert.cancelar'),
   }).then((result) => {
     if (result.isConfirmed) {
