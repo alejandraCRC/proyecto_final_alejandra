@@ -61,9 +61,7 @@ export const addResenia = async (req, res) => {
     const id_usuario = req.user.id;
 console.log(id_usuario);
     let { id_libro, calificacion, resenia, fecha } = req.body;
-    if (calificacion === 0 || calificacion === '' || calificacion === undefined) {
-    calificacion = null;
-  }
+
     const fechaFormateada = new Date(fecha).toISOString().slice(0, 19).replace('T', ' '); 
     console.log(req.body);
     const [result] = await pool.query(
