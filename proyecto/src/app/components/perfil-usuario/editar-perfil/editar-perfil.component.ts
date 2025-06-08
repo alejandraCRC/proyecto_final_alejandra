@@ -72,9 +72,6 @@ export class EditarPerfilComponent {
     formData.append('email', this.perfilForm.get('email')?.value);
     formData.append('biografia', this.perfilForm.get('biografia')?.value || '');
 
-    if (this.avatarSeleccionado) {
-      formData.append('avatar', this.avatarSeleccionado);
-    }
 
     this.servicioUsuarios.actualizarUsuario(this.usuario.id_usuario, formData).subscribe({
       next: () => {

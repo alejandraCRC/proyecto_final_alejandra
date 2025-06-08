@@ -115,15 +115,11 @@ export const updateUsuario = async (req, res) => {
   try {
     const id_usuario = req.params.id_usuario || req.user?.id;
     const { nombre, email, biografia } = req.body;
-    let avatarPath = null;
 
-    if (req.file) {
-      avatarPath = `/uploads/avatars/${req.file.filename}`; // Ruta para mostrar en frontend
-    }
 
     const [result] = await pool.query(
-      "UPDATE usuarios SET nombre=?, email=?,  avatar=?, biografia=? WHERE id_usuario=?",
-      [nombre, email, avatarPath, biografia, id_usuario]
+      "UPDATE usuarios SET nombre=?, email=?,  biografia=? WHERE id_usuario=?",
+      [nombre, email, biografia, id_usuario]
     );
 
     console.log(result);

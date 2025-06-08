@@ -1,7 +1,6 @@
 "use strict"
 
 import { Router } from 'express';
-import upload from '../middlewares/upload.js';
 
 import {getUsuario, getUsuariosPorNombre, getSeguidos, getSeguidores, seguirUsuario, dejarSeguirUsuario, updateUsuario, delUsuario} from '../controllers/usuarios.controllers.js'
 import { autenticarToken } from '../controllers/auth.controllers.js';

@@ -28,13 +28,6 @@ app.use(cookieParser());
 //para parsear la peticion al usuario
 app.use(express.json());
 
-//path del archivo actual
-const __filename = fileURLToPath(import.meta.url);
-//directorio del archivo actual (equivalente a __dirname)
-const __dirname = path.dirname(__filename);
-//hace pública la carpeta 'uploads'
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
 //ruta de autenticación
 app.use(routerAuth);
 
