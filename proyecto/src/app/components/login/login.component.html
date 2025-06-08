@@ -31,12 +31,10 @@
         </div>
         </div>
   </div>
-  <!-- medio- #D96E30
-  claro- #FCD26E 
-  oscuro- #8C3535 -->
 <div
   class="login min-h-screen w-full bg-[url('assets/imagenes/fondo.jpg')] bg-cover bg-center flex flex-col items-center justify-center px-4 py-8"
 >
+<!-- formulario de login  -->
   <form
     [formGroup]="frm"
     autocomplete="off"
@@ -44,6 +42,7 @@
     class="bg-[url('assets/imagenes/papel.png')] bg-cover bg-center bg-no-repeat flex flex-col justify-center shadow-lg p-8 md:p-16 w-full max-w-md rounded"
     style="height: auto;"
   >
+  <!-- campo email  -->
     <div class="mb-6">
       <label for="email" class="text-[#8C3535] block mb-1">{{'login.email' | translate}}</label>
       <input
@@ -54,12 +53,14 @@
         aria-describedby="emailHelp"
         size="30"
       />
+      <!-- comprobaciones del campo email  -->
       @if(emailNoRequerido){
         <small class="text-red-600 italic mt-1 block">{{'login.dato_requerido' | translate}}</small>
       }@else { @if(emailNoEmail){
         <small class="text-red-600 italic mt-1 block">{{'register.email_formato_incorrecto' | translate}}</small>
       } }
     </div>
+  <!-- campo password  -->
     <div class="mb-6">
       <label for="password" class="text-[#8C3535] block mb-1">{{'login.password' | translate}}</label>
       <input
@@ -69,16 +70,18 @@
         formControlName="password"
         size="30"
       />
+      <!-- comprobaciones del campo password  -->
       @if(passNoRequerido){
         <small class="text-red-600 italic mt-1 block">{{'login.dato_requerido' | translate}}</small>
       }
     </div>
+    <!-- boton para iniciar sesión  -->
     <div class="flex justify-end">
       <button
         type="submit"
         class="bg-[#A6175A] mt-5 py-2 px-6 cursor-pointer text-white border-t-[7px] border-t-[#C7387A] border-l-[7px] border-l-[#A6175A] border border-b-[7px] border-b-[#891248] border-r-[7px] border-r-[#891248] rounded transition-colors hover:bg-[#C7387A]"
       >
-        Login
+        {{'login.iniciar_sesion' | translate}}
       </button>
     </div>
   </form>

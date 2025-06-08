@@ -85,7 +85,7 @@ export class HomeComponent {
   redirigirClub(id: Number) {
     this.router.navigate(['/app/club', id]); // Navegar a la pagina del club
   }
-
+//obtiene los libros guardados por el usuario
   private mostrarLibrosUsuario() {
     this.servicioLibrosUsuario.getLibrosUsuario().subscribe({
       next: (data) => {
@@ -113,7 +113,7 @@ export class HomeComponent {
       console.log(this.libro); // Ver en consola los detalles del libro
     });
   };
-
+//llena el array que se utilizara para mostrar los tres ultimos libros guardados por el usuario
   llenarArrayLibros = () => {
     this.servicioLibrosUsuario.getLibrosUsuario().subscribe({
       next: (data) => {
@@ -184,7 +184,6 @@ export class HomeComponent {
   }
 
   //publicaciones y reseñas
-
   ObtenerPublicacionesYResenias() {
     this.servicioUsuarios.getSeguidos().subscribe({
       next: (seguidos) => {

@@ -1,3 +1,6 @@
+<!-- componente para ver los seguidos o seguidores de un usuairo  -->
+ 
+<!-- comprueba si la lista es de seguidos o seguidores  -->
 @if(tipoLista && listaUsuarios && listaUsuarios.length > 0){
 <div class="p-4">
   @if(tipoLista === "seguidores"){
@@ -9,8 +12,7 @@
     {{ 'listaUsuarios.titulo_seguidos' | translate }}
     </h2>
   }
-  
-
+<!-- lista de usuarios  -->
   <ul class="space-y-3">
     @for(usuario of listaUsuarios; track $index){
     <li

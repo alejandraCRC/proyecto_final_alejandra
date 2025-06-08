@@ -11,7 +11,7 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class BuscarLibrosComponent {
 
-
+//variables
   aLibros: any[] = [];
   libroSeleccionado: any = null;  
 

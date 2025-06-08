@@ -15,12 +15,14 @@ export class AñadirComentarioPublicacionModalComponent {
     contenido: string;
   }>(); // Evento para emitir el comentario al componente padre
 
+  //variables
   contenido: string = '';
 
+  // Método para cerrar el modal
   cerrar() {
     this.cerrarModalComentario.emit();
   }
-
+  // Método para guardar el contenido del comentario
   guardar() {
     this.guardarComentarioPublicacion.emit({
       contenido: this.contenido.trim(),

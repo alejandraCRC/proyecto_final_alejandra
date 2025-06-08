@@ -1,5 +1,6 @@
 <div class="modal-backdrop">
   <div class="modal animate">
+    <!-- calificacion por estrellas  -->
     <div class="star-rating">
       <span
         *ngFor="let star of [1, 2, 3, 4, 5]"
@@ -14,7 +15,7 @@
         ★
       </span>
     </div>
-
+<!-- reseña del libro en textarea  -->
     <textarea
       [(ngModel)]="resenia"
       rows="5"
@@ -22,9 +23,12 @@
       placeholder="{{ 'resenia.placeholder' | translate }}"
     ></textarea>
     <br />
+    <!-- muestra un error si los dos campos estan vacios  -->
     @if(mostrarError) {
     <span class="text-red-600 italic">{{ 'resenia.alert_Dato_requerido' | translate }}</span>
     }
+
+    <!-- botones de guardar y cancelar  -->
     <div class="flex justify-between">
       <button
         class="bg-[#F2A71B] mt-5 p-1 px-3 cursor-pointer text-white border-t-[7px] border-t-[#FFD666] border-l-[7px] border-l-[#F2A71B] border border-b-[7px] border-b-[#C98914] border-r-[7px] border-r-[#C98914] rounded"
@@ -39,5 +43,6 @@
         {{ 'resenia.cancelar' | translate }}
       </button>
     </div>
+    
   </div>
 </div>

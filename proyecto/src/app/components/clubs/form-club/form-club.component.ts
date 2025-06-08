@@ -17,6 +17,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   styles: ``,
 })
 export class FormClubComponent {
+  //variables
   club: any = {
     nombre: '',
     descripcion: '',
@@ -25,6 +26,7 @@ export class FormClubComponent {
   usuario: any = null;
   idClub: any = null;
 
+  //servicios
   private ruta = inject(ActivatedRoute);
   private router = inject(Router);
   private servicioClubs = inject(ClubsService);
@@ -35,19 +37,20 @@ export class FormClubComponent {
   public formClub!: FormGroup;
 
   ngOnInit() {
-    this.usuario = this.servicioAuth.getUsuario();
+    this.usuario = this.servicioAuth.getUsuario(); //obtiene usuario logueado
 
+    //campos requeridos del formulario
     this.formClub = this.fb.group({
       nombre: ['', Validators.required],
       descripcion: ['', Validators.required],
     });
 
-    this.idClub = this.ruta.snapshot.paramMap.get('idClub');
+    this.idClub = this.ruta.snapshot.paramMap.get('idClub'); //obtiene el id del club desde la ruta
     if (this.idClub) {
       this.cargarDatosClub(this.idClub);
     }
   }
-
+//carga los datos del club si se edita
   cargarDatosClub(id_club: any) {
     this.servicioClubs.obtenerClubPorId(id_club).subscribe({
       next: (data) => {
@@ -60,7 +63,7 @@ export class FormClubComponent {
       error: (err) => console.error('Error al cargar club', err),
     });
   }
-
+// Método para validar y guardar los datos del club
   guardarCambios() {
     if (this.formClub.invalid) {
       this.formClub.markAllAsTouched(); // marcar para mostrar errores si hay
@@ -68,7 +71,7 @@ export class FormClubComponent {
     }
 
     const datos = this.formClub.value;
-
+    //si está definido el id del club, se actualiza
     if (this.club.id_club) {
       datos.id_club = this.club.id_club;
       this.servicioClubs.actualizarClub(datos).subscribe({
@@ -96,7 +99,7 @@ export class FormClubComponent {
           });
         },
       });
-    } else {
+    } else { //si no, se crea uno nuevo
       datos.fecha_creacion = new Date();
       this.servicioClubs.crearClub(datos).subscribe({
         next: (nuevoClub) => {

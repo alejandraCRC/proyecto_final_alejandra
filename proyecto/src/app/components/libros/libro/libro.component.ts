@@ -26,6 +26,7 @@ import Swal from 'sweetalert2';
   styles: ``,
 })
 export class LibroComponent {
+  //variables
   libro: any = null;
   estadoSeleccionado: string = '';
   mostrarModalResenia: boolean = false;
@@ -38,6 +39,7 @@ export class LibroComponent {
    reseniasPorPagina: number = 10;
    totalPaginas: number = 0;
 
+   //srvicios
   private ruta = inject(ActivatedRoute);
   private router = inject(Router);
   private translate = inject(TranslateService);
@@ -56,8 +58,7 @@ export class LibroComponent {
 
     this.reseniasDelLibro();
   }
-  resenia = '';
-  calificacion: number = 0;
+
 
   // Método para manejar el guardado de la reseña
   recibirResenia(resenia: string, calificacion: number) {
@@ -88,15 +89,16 @@ export class LibroComponent {
       });
   }
 
+  //Método que comprueba si el estado seleccionado es "leído" y muestra el modal de reseña
   CambioDeEstado() {
     //comprueba si el estado seleccionado es "leído" y muestra el modal de reseña
     this.mostrarModalResenia = this.estadoSeleccionado === 'leido';
   }
-  cerrarModalResenia() {
-    //controla el cierre del modal
+  //Metodo que controla el cierre del modal
+  cerrarModalResenia() {    
     this.mostrarModalResenia = false;
   }
-
+// Método para guardar el libro con el estado seleccionado
   guardarLibro() {
     this.datos = {
       id_libro: this.ruta.snapshot.paramMap.get('idLibro'),
@@ -139,7 +141,7 @@ export class LibroComponent {
           },
         });
   }
-
+// Método para obtener las reseñas del libro
   reseniasDelLibro() {
     const id_libro = this.ruta.snapshot.paramMap.get('idLibro');
     if (id_libro) {

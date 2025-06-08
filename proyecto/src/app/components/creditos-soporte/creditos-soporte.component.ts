@@ -4,7 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-creditos-soporte',
   imports: [],
   templateUrl: './creditos-soporte.component.html',
-  styleUrl: './creditos-soporte.component.css'
 })
 export class CreditosSoporteComponent {
 

@@ -14,12 +14,13 @@ import Swal from 'sweetalert2';
   styles: ``,
 })
 export class ElegirLecturaActualComponent {
+  //variables
   formLectura!: FormGroup;
   libroSeleccionado: any = null;
   aLibros: any[] = [];
   id_club: number = 0;
   fechaMinima: string = '';
-
+//servicios
   private servicioClubs = inject(ClubsService);
   private servicioLibros = inject(LibrosService);
   private ruta = inject(ActivatedRoute);
@@ -28,14 +29,14 @@ export class ElegirLecturaActualComponent {
   private translate = inject(TranslateService);
 
   ngOnInit() {
-    const hoy = new Date();
+    const hoy = new Date(); //obtiene fecha actual para establecer la fecha mínima
   this.fechaMinima = hoy.toISOString().split('T')[0];
     this.id_club = Number(this.ruta.snapshot.paramMap.get('idClub'));
     this.formLectura = this.fb.group({
       fecha_fin: ['', Validators.required],
     });
   }
-
+//metodo para el buscador de libros
   buscar(event: Event) {
     const value = (event.target as HTMLInputElement).value;
     if (value.trim() === '') {
@@ -47,13 +48,14 @@ export class ElegirLecturaActualComponent {
       this.aLibros = res.items ?? [];
     });
   }
-
+//metodo para seleccionar un libro
   libroElegido(libro: any) {
     this.libroSeleccionado = libro;
     this.aLibros = [];
   }
-
+//Método para guardar la lectura actual
   guardarLectura() {
+    // Verifica si el formulario es válido y si hay un libro seleccionado
     if (this.formLectura.invalid || !this.libroSeleccionado) {
       this.formLectura.markAllAsTouched(); //hace como que los inputs han sido tocados para que salga el aviso
         Swal.fire({
@@ -64,7 +66,7 @@ export class ElegirLecturaActualComponent {
     });
       return;
     }
-
+    // Si el formulario es válido, procede a guardar la lectura
     const fecha_fin = this.formLectura.value.fecha_fin;
     const id_libro = this.libroSeleccionado.id;
 

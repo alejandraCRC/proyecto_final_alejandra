@@ -218,7 +218,7 @@ export class ClubComponent {
         error: (err) => console.error('Error al guardar el comentario:', err),
       });
   }
-
+// Método para eliminar un comentario de una publicación
   eliminarComentario(id_comentario: number) {
     Swal.fire({
       title: this.translate.instant('club.alert_seguro_eliminar_comentario'),
@@ -250,6 +250,7 @@ export class ClubComponent {
   //funciones para paginacion de publicaciones
   //metodos para la paginacion de las publicaciones
   actualizarPaginacion() {
+    //calcula el total de páginas y actualiza las publicaciones paginadas
     this.totalPaginas = Math.ceil(
       this.publicaciones.length / this.publicacionesPorPagina
     );
@@ -258,6 +259,7 @@ export class ClubComponent {
     this.publicacionesPaginadas = this.publicaciones.slice(inicio, fin);
   }
 
+  //método para cambiar de pagina en la paginación
   cambiarPagina(pagina: number) {
     if (pagina >= 1 && pagina <= this.totalPaginas) {
       this.paginaActual = pagina;
@@ -265,7 +267,7 @@ export class ClubComponent {
     }
   }
 
-  //funciones para miembros
+  //funciones para obtener los miembros
   getMiembros() {
     this.servicioMiembrosClub
       .getMiembrosClub(this.club.id_club)
@@ -277,6 +279,7 @@ export class ClubComponent {
       });
   }
 
+  //método para obtener el creador del club
   obtenerCreador() {
     this.servicioUsuarios
       .getUsuario(this.club.id_creador)
@@ -285,10 +288,8 @@ export class ClubComponent {
         console.log(this.creador);
       });
   }
-
+  //Método para comprobar si el usuario registrado es miembro del club
   ComprobarUsuarioEsMiembro() {
-    // Verifica si el usuario es miembro del club
-    console.log('miembros', this.miembros);
     if (
       this.miembros.some(
         (miembro) => miembro.id_miembro === this.usuario.id_usuario
@@ -299,7 +300,7 @@ export class ClubComponent {
       this.usuarioEsMiembro = false; // El usuario no es miembro del club
     }
   }
-
+  //Método para comprobar si el usuario registrado es administrador del club
   ComprobarUsuarioEsAdministrador() {
     // Verifica si el usuario tiene rol de 'admin'
     console.log('id', this.usuario.id_usuario);
@@ -314,7 +315,7 @@ export class ClubComponent {
     }
     console.log('admin', this.usuarioEsAdministrador);
   }
-
+//Método para unirse al club
   unirseClub() {
     const id_club = this.club.id_club;
     this.servicioMiembrosClub
@@ -337,7 +338,7 @@ export class ClubComponent {
         error: (err) => console.error('Error al unirse al club:', err),
       });
   }
-
+//método para dejar el club
   dejarClub() {
     const id_club = this.club.id_club;
     this.servicioMiembrosClub
@@ -362,10 +363,11 @@ export class ClubComponent {
   }
 
   //funciones para el club
+  //método para editar el club
   editarClub() {
     this.router.navigate(['/app/form-club', this.club.id_club]);
   }
-
+ // Método para eliminar el club (solo el administrador)
   eliminarClub() {
     Swal.fire({
       title: this.translate.instant('club.alert_seguro_eliminar'),
@@ -414,6 +416,7 @@ export class ClubComponent {
   }
 
   //funciones de lectura actual
+  //obtiene la lectura actual del club
   obtenerLecturaActual() {
     this.servicioClubs.getLecturaActual(this.club.id_club).subscribe({
       next: (data) => {
@@ -430,11 +433,11 @@ export class ClubComponent {
       },
     });
   }
-
+// Método para crear una nueva lectura actual
   crearLecturaActual() {
     this.router.navigate(['/app/lectura-actual', this.club.id_club]);
   }
-
+//Método que comprueba la fecha fin de la lectura actual y la termina si ha llegado a su fecha fin
   comprobarFechaFinalLectura() {
     //solo si existe la lectura actual
     if (this.lecturaActual) {
@@ -447,6 +450,7 @@ export class ClubComponent {
     }
   }
 
+// Método para finalizar la lectura actual antes de la fecha fin
   finalizarLecturaActual() {
     this.servicioClubs.finalizarLecturaActual(this.club.id_club).subscribe({
       next: () => {
@@ -456,6 +460,7 @@ export class ClubComponent {
     });
   }
 
+// Método para crear una publicación automática al finalizar la lectura
   crearPulicacionAutomática() {
     // Crear publicación automáticamente
     const publicacionAutomatica = {
@@ -484,6 +489,7 @@ export class ClubComponent {
       });
   }
 
+// Método para confirmar y navegar al detalle del libro
   confirmarGuardarLibro(): void {
   Swal.fire({
     title: this.translate.instant('club.pregunta_guardar_libro'),
@@ -498,7 +504,7 @@ export class ClubComponent {
     }
   });
 }
-
+// Método para redirigir al detalle del libro
 navegarADetalleLibro(): void {
   if (this.libro?.id) {
     this.router.navigate(['/app/libro', this.libro.id]);
@@ -512,6 +518,7 @@ navegarADetalleLibro(): void {
   }
 }
 
+// Método para comprobar si el libro de la lectura actual ya ha sido leído por el usuario
 comprobarLeidoLecturaActual(): void {
   this.servicioLibrosUsuario.getLibrosUsuario().subscribe({
     next: (data) => {
@@ -530,6 +537,7 @@ comprobarLeidoLecturaActual(): void {
   });
 }
 
+// Método para marcar la lectura actual como leída y abrir el diálogo para guardar el libro
 marcarComoLeido(): void {
   if (!this.leido_lecturaActual && this.club?.id_club) {
     this.servicioClubs.actualizarLecturaActual(this.club.id_club).subscribe({

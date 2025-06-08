@@ -40,7 +40,7 @@
         </a>
       </div>
 
-      <!-- Iconos derecha + botones de idioma -->
+      <!-- Iconos derecha y botones de idioma -->
       <div class="flex items-center space-x-4">
 
         <!-- Menú perfil desplegable -->
@@ -57,11 +57,13 @@
           <div
             class="absolute right-0 hidden group-hover:block bg-white border rounded-lg shadow-lg py-1 w-48 z-50"
           >
+          <!-- va al perfil del usuario  -->
             <a
               (click)="redirigirPerfil(usuario.id_usuario)"
               class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#f5f5dc] cursor-pointer"
               >{{ "nav.tu_perfil" | translate }}</a
             >
+            <!-- cierra la sesion  -->
             <a
               (click)="cerrarSesion()"
               class="block px-4 py-2 text-sm text-gray-700 hover:bg-[#f5f5dc]"

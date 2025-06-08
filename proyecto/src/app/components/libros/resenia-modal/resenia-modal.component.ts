@@ -16,16 +16,20 @@ export class ReseniaModalComponent {
     calificacion: number;
   }>(); // Evento para emitir la reseña al componente padre
 
+  // Variables del formulario
   resenia: string = '';
   calificacion: number = 0;
   hover: number = 0;
   mostrarError: boolean = false;
   
+  //metodo de cerrar modal
   cerrar() {
     this.cerrarModal.emit();
   }
 
+  //metodo para guardar reseña
   guardar() {
+  // Verifica si los campos están vacíos o si la calificación es cero, se puede guardar con solo uno relleno
     if (!this.resenia.trim() && this.calificacion === 0) {
     this.mostrarError = true;
     return;

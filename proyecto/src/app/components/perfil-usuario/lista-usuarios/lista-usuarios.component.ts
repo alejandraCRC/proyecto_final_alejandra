@@ -10,9 +10,10 @@ import { TranslateModule } from '@ngx-translate/core';
   styles: [],
 })
 export class ListaUsuariosComponent {
+  // Variables
  tipoLista: 'seguidores' | 'seguidos' | null = null;
   listaUsuarios: any[] = [];
-
+//servicios
   private ruta = inject(ActivatedRoute);
   private router = inject(Router);
   private servicioUsuarios = inject(UsuariosService);
@@ -21,7 +22,7 @@ export class ListaUsuariosComponent {
     this.ruta.paramMap.subscribe((params) => {
       const idUsuario = params.get('idUsuario');
       const url = this.ruta.snapshot.url.map(segment => segment.path);
-
+//compurebacion del tipo de lista
       if (url.includes('seguidos')) {
         this.tipoLista = 'seguidos';
         this.cargarSeguidos(idUsuario);
@@ -34,7 +35,7 @@ export class ListaUsuariosComponent {
       }
     });
   }
-
+// Carga los usuarios seguidos o seguidores según el tipo de lista
   cargarSeguidos(idUsuario: string | null) {
     this.servicioUsuarios.getSeguidos(Number(idUsuario)).subscribe({
       next: (data) => {
@@ -42,7 +43,6 @@ export class ListaUsuariosComponent {
       }
     });
   }
-
   cargarSeguidores(idUsuario: string | null) {
      this.servicioUsuarios.getSeguidores(Number(idUsuario)).subscribe({
       next: (data) => {
@@ -50,9 +50,9 @@ export class ListaUsuariosComponent {
       }
     });
   }
-
+// Redirige al perfil del usuario seleccionado
   redirigirPerfil(id: number) {
-    this.router.navigate(['/app/perfil', id]);  // Navegar a la ruta de detalle pasando el ID
+    this.router.navigate(['/app/perfil', id]); 
   }
 
 }

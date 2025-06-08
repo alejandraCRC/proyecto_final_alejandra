@@ -1,9 +1,10 @@
+<!-- pagina para elegir la lectura actual de un club  -->
 <div class="crear-club min-h-screen w-full bg-[url('assets/imagenes/fondo.jpg')] bg-cover bg-center">
   <div class="flex flex-col min-h-screen justify-center items-center p-4">
     <h1 class="text-2xl md:text-3xl font-bold bg-[#8C3535] text-center text-white rounded p-3 w-full max-w-xl">
       {{ 'lectura.titulo' | translate }}
     </h1>
-
+<!-- formulario de lectura actual  -->
     <form
       [formGroup]="formLectura"
       autocomplete="off"
@@ -29,7 +30,7 @@
         }
       </div>
 
-      <!-- Buscador -->
+      <!-- Buscador de libros-->
       <div class="mb-5">
         <label class="form-label block mb-1">{{ 'lectura.elige_libro' | translate }}</label>
         <input
@@ -89,7 +90,7 @@
         }
       }
 
-      <!-- Botón -->
+      <!-- Botón de guardar cambios -->
       <div class="flex justify-end">
         <button
           type="submit"

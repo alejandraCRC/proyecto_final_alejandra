@@ -15,12 +15,13 @@ import { EstrellasPipe } from '../../../pipes/estrellas.pipe';
   styles: ``
 })
 export class ListaLibrosGuardadosComponent {
-
+// Variables
   libros: any[] = [];
   resenias: any[] = [];
   idUsuarioActual?: number;
   idUsuarioDelPerfil?: number;
 
+  //servicios
   private ruta = inject(ActivatedRoute);
   private router = inject(Router);
   private servicioLibrosUsuario = inject(LibrosUsuarioService);
@@ -36,7 +37,7 @@ export class ListaLibrosGuardadosComponent {
     this.libros = this.servicioLibrosUsuario.getLibros();
     this.obtenerResenias();
   }
-
+//Método para eliminar el libro de gusrdados
 eliminarLibro(id_libro: string) {
   Swal.fire({
     title: this.translate.instant('libro.eliminar_libro_warning_titulo'),
@@ -98,7 +99,7 @@ eliminarLibro(id_libro: string) {
     }
   });
 }
-
+// Método para obtener las reseñas del usuario
 obtenerResenias(){
   this.servicioResenia.getReseniasPorUsuarioId(Number(this.idUsuarioDelPerfil)).subscribe({
     next: (data) => {
@@ -108,11 +109,10 @@ obtenerResenias(){
     }
 })
 }
-
+// Método para obtener la reseña de un libro específico
 obtenerReseniaDeCadaLibro(idLibro: string) {
   return this.resenias.find((resenia) => resenia.id_libro === idLibro);
 }
-
 
     // Método para manejar el clic en un libro y obtener sus detalles
   redirigirLibro(id: string) {

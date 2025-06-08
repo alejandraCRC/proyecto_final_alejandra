@@ -1,9 +1,9 @@
 <div class="flex flex-col md:flex-row align-middle justify-center p-6">
   <div class="izquierdo">
-    <!-- imagen de perfil -->
     <div
       class="flex flex-col items-center justify-center bg-white p-4 rounded-lg shadow-md space-y-4"
     >
+    <!-- imagen de perfil  -->
       <img
         src="../assets/imagenes/usuario.jpg"
         alt="{{ 'perfil.imagen_perfil_alt' | translate }}"
@@ -11,11 +11,13 @@
       />
       <p class="text-center text-lg font-semibold">{{ usuario?.nombre }}</p>
       <p class="text-center text-sm text-gray-500">{{ usuario?.email }}</p>
+      <!-- si tiene biografia se muestra  -->
       @if(usuario?.biografia){
       <p>{{ usuario.biografia }}</p>
       }
       <div class="flex gap-4 mt-2 text-center">
         <div>
+          <!-- link para ir a la lista de seguidos del usuario  -->
           <a
             [routerLink]="['/app/perfil', usuario?.id_usuario, 'seguidos']"
             class="cursor-pointer"
@@ -29,6 +31,7 @@
           </a>
         </div>
         <div>
+          <!-- link para ir a la lista de seguidores del usuario  -->
           <a
             [routerLink]="['/app/perfil', usuario?.id_usuario, 'seguidores']"
             class="cursor-pointer"
@@ -42,7 +45,7 @@
           </a>
         </div>
       </div>
-      <!-- boton para editar el perfil  -->
+      <!-- boton para editar el perfil, si el perfil es propio  -->
       @if(perfilPropio){
       <button
         (click)="editarPerfil()"
@@ -51,6 +54,7 @@
         {{ "perfil.editar_perfil" | translate }}
       </button>
       }@else{ @if(sigueAlUsuario){
+        <!-- boton para dejar de seguir al usuario si el perfil no es propio y sigue al usuario -->
       <button
         (click)="dejarSeguir()"
         class="mt-2 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
@@ -58,6 +62,7 @@
         {{ "perfil.dejar_seguir" | translate }}
       </button>
       }@else{
+        <!-- boton para dejar de seguir al usuario si el perfil no es propio y no sigue al usuario -->
       <button
         (click)="seguir()"
         class="mt-2 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"

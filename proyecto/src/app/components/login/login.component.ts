@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
   styles: ``
 })
 export class LoginComponent {
-  public title: string = 'Gestión de tareas colaborativas';
+  title: string = 'Page to Page';
   idiomaActual = 'es';
 
   //inyectar servicios 
@@ -34,7 +34,7 @@ export class LoginComponent {
 
     })
   }
-
+//para el boton de cambiar idioma
     traducir(idioma: string) {
     this.translate.use(idioma);
     localStorage.setItem('idioma', idioma);
@@ -53,7 +53,9 @@ get passNoRequerido(){
   return this.frm.get('password')?.errors?.['required'] && this.frm.get('password')?.touched;
 }
 
+//Metodo para enviar los datos del formulario
 sendDatos() {
+  // Verifica si el formulario es válido
   if (this.frm.invalid) {
     this.frm.markAllAsTouched();
     return;

@@ -27,7 +27,7 @@ export class EditarPerfilComponent {
   ngOnInit(): void {
     this.cargarDatosUsuario();
   }
-
+//carga los datos del usuario si se edita
   cargarDatosUsuario() {
     this.servicioUsuarios.getUsuario().subscribe({
       next: (data) => {
@@ -39,7 +39,7 @@ export class EditarPerfilComponent {
       }
     });
   }
-
+// Inicializa el formulario con FormBuilder
   inicializarFormulario() {
     this.perfilForm = this.fb.group({
       nombre: [this.usuario?.nombre || '', Validators.required],
@@ -48,8 +48,9 @@ export class EditarPerfilComponent {
     });
   }
 
-
+// Método guardar los datos
   guardarCambios() {
+    // Verifica si el formulario es válido
     if (this.perfilForm.invalid) {
       this.perfilForm.markAllAsTouched();
       return;
@@ -60,7 +61,6 @@ export class EditarPerfilComponent {
     email: this.perfilForm.get('email')?.value,
     biografia: this.perfilForm.get('biografia')?.value || ''
   };
-
 
     this.servicioUsuarios.actualizarUsuario(this.usuario.id_usuario, datos).subscribe({
       next: () => {

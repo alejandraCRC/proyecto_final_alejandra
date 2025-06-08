@@ -5,12 +5,14 @@
   <div
     class="clubs order-1 md:order-1 md:w-[25%] bg-[#FAF0E6] flex flex-col items-center gap-4"
   >
+  <!-- boton para crear club  -->
     <button
       (click)="crearClub()"
       class="mt-4 bg-[#A6175A] text-sm text-white px-2 py-1 rounded hover:bg-[#891248] transition-colors"
     >
       {{ "home.crear_club" | translate }} <i class="fas fa-user-plus"></i>
     </button>
+    
     @if(aClubs.length == 0){
     <h3 class="text-[#8C3535] font-bold italic m-5">
       {{ "home.no_clubs" | translate }}
@@ -25,9 +27,6 @@
         class="cursor-pointer flex flex-col justify-center items-center bg-[#FFD6A5] hover:bg-[#FFC185] rounded-lg text-[#843030] font-bold py-1 px-3 m-3 transition-colors duration-200"
       >
         <p>{{ club.nombre }}</p>
-        <!-- <small class="text-xs font-normal"
-          >{{ "home.creado_por" | translate }} {{ club.nombre_usuario }}</small -->
-        <!-- > -->
       </li>
       }
     </ul>
@@ -43,6 +42,7 @@
     }@else{
     <ul class="flex flex-col justify-center align-middle gap-4 p-5">
       @for(publicacion of publicacionesPaginadas; track $index){
+        <!-- reseñas  -->
       @if(publicacion.tipo == 'resenia') {
       <li class="bg-white p-4 rounded shadow hover:shadow-lg transition-shadow">
         <div class="flex justify-between items-center mb-2">
@@ -69,6 +69,7 @@
           >{{ "home.reseña_de" | translate }} {{ publicacion.nombre }}</small
         >
       </li>
+      <!-- publicaciones  -->
       }@else{
       <li
         class="bg-white p-4 rounded shadow hover:shadow-lg transition-shadow flex justify-between"

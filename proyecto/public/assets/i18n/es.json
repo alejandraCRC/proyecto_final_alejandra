@@ -208,6 +208,7 @@
   },
 
   "login":{
+    "iniciar_sesion": "Iniciar sesión",
     "email": "Correo electrónico",
     "password": "Contraseña",
     "dato_requerido": "Dato requerido.",

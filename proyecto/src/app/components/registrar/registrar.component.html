@@ -34,18 +34,16 @@
       </div>
     </div>
   </div>
-  <!-- 
-  medio- #D96E30
-  claro- #FCD26E 
-  oscuro- #8C3535-->
 
   <div class="flex flex-col h-screen justify-center items-center">
+    <!-- formulario de registro  -->
     <form
       [formGroup]="frm"
       autocomplete="off"
       (submit)="sendDatos()"
       class="bg-[#f5f5dc]/70 rounded py-[40px] px-[70px]"
     >
+    <!-- nombre de usuario  -->
       <div class="mb-5">
         <label for="username" class="form-label">{{
           "register.nombre_usuario" | translate
@@ -58,6 +56,7 @@
           formControlName="username"
           size="30"
         />
+        <!-- comprobaciones del campo nombre de usuario  -->
         @if(frm.get('username')?.errors?.['required'] &&
         frm.get('username')?.touched){
         <br /><small class="text-red-600 italic">{{
@@ -69,6 +68,8 @@
         }}</small>
         } }
       </div>
+
+      <!-- campo de email  -->
       <div class="mb-5">
         <label for="email" class="form-label"
           >{{ "login.email" | translate }} </label
@@ -81,6 +82,7 @@
           aria-describedby="emailHelp"
           size="30"
         />
+        <!-- comprobaciones del campo email  -->
         @if(emailNoRequerido){
         <br /><small class="text-red-600 italic">{{
           "login.dato_requerido" | translate
@@ -91,6 +93,7 @@
         }}</small>
         } }
       </div>
+      <!-- campo de password  -->
       <div class="mb-5">
         <label for="password" class="form-label">{{
           "login.password" | translate
@@ -103,6 +106,7 @@
           formControlName="password"
           size="30"
         />
+        <!-- comprobaciones del campo password  -->
         @if(passNoRequerido){
         <br /><small class="text-red-600 italic">{{
           "login.dato_requerido" | translate
@@ -113,6 +117,7 @@
         }}</small>
         } }
       </div>
+      <!-- campo de repetir password  -->
       <div class="mb-5">
         <label for="rPassword" class="form-label">{{
           "register.repita_password" | translate
@@ -126,6 +131,7 @@
           formControlName="rPassword"
           size="30"
         />
+        <!-- comprobacion de que las contraseñas coincidan   -->
         @if(rPassNoRequerido){
         <br /><small class="text-red-600 italic">{{
           "login.dato_requerido" | translate
@@ -136,7 +142,7 @@
         }}</small>
         } }
       </div>
-
+<!-- campo de aceptar terminos y condiciones  -->
       <div class="mb-3 flex align-center">
         <input
           type="checkbox"
@@ -174,7 +180,7 @@
       </div>
     }
       
-
+<!-- boton de registrarse -->
       <div class="flex justify-end">
         <button
           type="submit"
@@ -185,6 +191,7 @@
       </div>
     </form>
     
+   <!-- para redirigir al login -->
      <div
     class="text-white bg-black/20 mt-4 px-4 py-2 rounded max-w-md text-center"
   >

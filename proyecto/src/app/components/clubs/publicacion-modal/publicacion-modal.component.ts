@@ -16,15 +16,18 @@ export class PublicacionModalComponent {
     contenido: string;
   }>(); // Evento para emitir la publicacion al componente padre
 
+  // variables del formulario 
   titulo: string = '';
   contenido: string = '';
-  mostrarError: boolean = false;
+  mostrarError: boolean = false; //para mostrar el mensaje de error si los campos están vacíos
 
+  // cierra la modal 
   cerrar() {
     this.cerrarModal.emit();
   }
-
+// guarda la publicacion
   guardar() {
+    // Verifica si los campos están vacíos
     if (this.titulo == '' || this.contenido == '') {
     this.mostrarError = true;
     return;

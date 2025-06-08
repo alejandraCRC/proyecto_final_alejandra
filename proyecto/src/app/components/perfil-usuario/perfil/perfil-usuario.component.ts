@@ -46,11 +46,11 @@ export class PerfilUsuarioComponent {
   leidos: any[] = [];
 
   //variables de publicaciones y reseñas
-   publicacionesResenias: any[] = [];
-   publicacionesPaginadas: any[] = []; 
-   paginaActual: number = 1;
-   publicacionesPorPagina: number = 10;
-   totalPaginas: number = 0;
+  publicacionesResenias: any[] = [];
+  publicacionesPaginadas: any[] = [];
+  paginaActual: number = 1;
+  publicacionesPorPagina: number = 10;
+  totalPaginas: number = 0;
 
   private ruta = inject(ActivatedRoute);
   private servicioUsuarios = inject(UsuariosService);
@@ -62,8 +62,7 @@ export class PerfilUsuarioComponent {
   private router = inject(Router);
   private translate = inject(TranslateService);
 
-  idUsuario =
-    this.ruta.snapshot.paramMap.get('idUsuario') 
+  idUsuario = this.ruta.snapshot.paramMap.get('idUsuario');
 
   ngOnInit() {
     this.getUsuario(); //obtiene el usuario
@@ -75,7 +74,7 @@ export class PerfilUsuarioComponent {
   }
 
   //obtención del usuario
-  getUsuario(){
+  getUsuario() {
     if (this.idUsuario) {
       this.servicioUsuarios.getUsuario(this.idUsuario).subscribe({
         next: (data) => {
@@ -93,8 +92,9 @@ export class PerfilUsuarioComponent {
         },
       });
     }
-  };
-  getSeguidores(){
+  }
+  //metodos para obtener los usuarios seguidos y seguidores del usuario
+  getSeguidores() {
     if (this.idUsuario) {
       this.servicioUsuarios.getSeguidores(Number(this.idUsuario)).subscribe({
         next: (data) => {
@@ -110,8 +110,8 @@ export class PerfilUsuarioComponent {
         },
       });
     }
-  };
-  getSeguidos(){
+  }
+  getSeguidos() {
     if (this.idUsuario) {
       this.servicioUsuarios.getSeguidos(Number(this.idUsuario)).subscribe({
         next: (data) => {
@@ -127,14 +127,16 @@ export class PerfilUsuarioComponent {
         },
       });
     }
-  };
+  }
   //comprobar si el usuario registrado sigue a este usuario
-  sigueUsuario(){
-    if( this.idUsuario){
+  sigueUsuario() {
+    if (this.idUsuario) {
       this.servicioUsuarios.getSeguidos(Number(this.idUsuario)).subscribe({
         next: (data) => {
           data.forEach((seguido) => {
-            if (seguido.id_usuario === this.authService.getUsuario().id_usuario) {
+            if (
+              seguido.id_usuario === this.authService.getUsuario().id_usuario
+            ) {
               this.sigueAlUsuario = true; //si el usuario sigue al usuario mostrado en el perfil
             } else {
               this.sigueAlUsuario = false; //si el usuario no sigue al usuario mostrado en el perfil
@@ -143,9 +145,9 @@ export class PerfilUsuarioComponent {
         },
       });
     }
-  };
-
-  seguir(){
+  }
+  //Método para seguir al usuario
+  seguir() {
     this.servicioUsuarios.seguirUsuario(Number(this.idUsuario)).subscribe({
       next: (data) => {
         Swal.fire({
@@ -173,9 +175,9 @@ export class PerfilUsuarioComponent {
         console.error('Error al seguir al usuario:', error);
       },
     });
-  };
-
-  dejarSeguir(){
+  }
+  //metodo para dejar de seguir al usuario
+  dejarSeguir() {
     if (this.idUsuario) {
       this.servicioUsuarios.dejarDeSeguir(Number(this.idUsuario)).subscribe({
         next: (data) => {
@@ -205,13 +207,13 @@ export class PerfilUsuarioComponent {
         },
       });
     }
-  };
+  }
 
   //redirije a la pagina de edicion del perfil
-  editarPerfil(){
+  editarPerfil() {
     this.router.navigate(['/app/editar-perfil', this.usuario.id_usuario]);
-  };
-
+  }
+  // Método para llenar el array de libros guardados por el usuario que se van a mostrar(los tres más recientes de cada estado)
   llenarArrayLibros = () => {
     const librosTemp: any[] = [];
     let totalCargados = 0;
@@ -253,8 +255,8 @@ export class PerfilUsuarioComponent {
       });
     });
   };
-
-  llenarArrayLibrosSegunUsuario () {
+  //Metodo para obtener los libros guardados por el usuario
+  llenarArrayLibrosSegunUsuario() {
     if (this.idUsuario) {
       this.servicioLibrosUsuario.getLibrosUsuario(this.idUsuario).subscribe({
         next: (data) => {
@@ -276,16 +278,16 @@ export class PerfilUsuarioComponent {
         },
       });
     }
-  };
+  }
 
   //Dirigir a los libros guardados
   redirigirLibrosGuardados(tipo: string) {
     let idUsuario: number;
-    if(!this.idUsuario) {
-       idUsuario = this.authService.getUsuario().id_usuario;
-    }else{
+    if (!this.idUsuario) {
+      idUsuario = this.authService.getUsuario().id_usuario;
+    } else {
       idUsuario = Number(this.idUsuario);
-    }   
+    }
     if (tipo === 'quiero leer') {
       this.servicioLibrosUsuario.setLibros(this.quieroLeer);
     }
@@ -295,9 +297,9 @@ export class PerfilUsuarioComponent {
     if (tipo === 'leidos') {
       this.servicioLibrosUsuario.setLibros(this.leidos);
     }
-    if( this.idUsuario) {
-    this.router.navigate(['app/libros-guardados', idUsuario]);
-    }else{
+    if (this.idUsuario) {
+      this.router.navigate(['app/libros-guardados', idUsuario]);
+    } else {
       this.router.navigate(['app/libros-guardados']);
     }
   }
@@ -305,24 +307,21 @@ export class PerfilUsuarioComponent {
   //publicaciones y reseñas
   ObtenerPublicacionesYResenias() {
     let idUsuario: number;
-    if(!this.idUsuario) {
-       idUsuario = this.authService.getUsuario().id_usuario;
-    }else{
+    if (!this.idUsuario) {
+      idUsuario = this.authService.getUsuario().id_usuario;
+    } else {
       idUsuario = Number(this.idUsuario);
-    }    
-    const publicaciones$ = this.servicioPublicaciones.getPublicacionesUsuario(
-      idUsuario
-    );
-    const resenias$ = this.servicioResenias.getReseniasPorUsuarioId(
-      idUsuario
-    );
-
+    }
+    const publicaciones$ =
+      this.servicioPublicaciones.getPublicacionesUsuario(idUsuario);
+    const resenias$ = this.servicioResenias.getReseniasPorUsuarioId(idUsuario);
+    //junta las publicaciones y reseñas en un solo array
     forkJoin([publicaciones$, resenias$]).subscribe({
       next: ([publicaciones, resenias]) => {
         const publicacionesConTipo = publicaciones.map((pub) => ({
           ...pub,
           tipo: 'publicacion',
-          fecha: pub.fecha_publicacion
+          fecha: pub.fecha_publicacion,
         }));
 
         const reseniasConTipo = resenias.map((resenia) => ({
@@ -339,7 +338,7 @@ export class PerfilUsuarioComponent {
         this.publicacionesResenias.sort(
           (a, b) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime()
         );
-this.actualizarPaginacion(); //prepara el array de publicaciones paginadas
+        this.actualizarPaginacion(); //prepara el array de publicaciones paginadas
 
         console.log(this.publicacionesResenias); // Ver en consola
       },
@@ -366,7 +365,6 @@ this.actualizarPaginacion(); //prepara el array de publicaciones paginadas
       this.actualizarPaginacion();
     }
   }
-
 
   // Método para llevar al club correspondiente
   redirigirClub(id: Number) {

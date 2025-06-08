@@ -122,7 +122,7 @@
       <!-- miembros del club  -->
       <div></div>
     </div>
-  </div>
+  </div> <!-- fin tarjeta club  -->
 
   <!-- publicaciones -->
   <div class="publicaciones mt-6 p-5">
@@ -217,9 +217,9 @@
           ></app-addComentarioPublicacion-modal>
           }
         </div>
-        <!-- listado de comentarios de la publicacion -->
-        <!-- botón para mostrar/ocultar comentarios -->
+        <!-- listado de comentarios de la publicacion -->        
         @if(publicacion.comentarios?.length > 0) {
+          <!-- botón para mostrar/ocultar comentarios -->
         <button
           class="text-sm text-blue-600 hover:underline mt-2"
           (click)="

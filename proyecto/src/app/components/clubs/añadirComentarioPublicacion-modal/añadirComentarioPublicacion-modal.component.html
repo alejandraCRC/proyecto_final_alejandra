@@ -1,6 +1,7 @@
-<div class=" ">
+<!-- modal para hacer un comentario en una publicacion  -->
+<div>
   <div class="modal ">
-
+    <!-- contenido del comentario  -->
     <textarea
       [(ngModel)]="contenido"
       rows="5"
@@ -8,6 +9,7 @@
       placeholder="{{ 'Escribe tu comentario aquí...' | translate }}"
     ></textarea>
 
+    <!-- boton de cerrar el modal    -->
     <div class="flex justify-end space-x-3">
       <button
         class="bg-pink-700 hover:bg-pink-800 text-white font-semibold py-2 px-4 rounded-md shadow-md transition disabled:opacity-50"
@@ -16,6 +18,7 @@
         {{ 'Cancelar' | translate }}
       </button>
 
+      <!-- boton de guardar el comentario  -->
       <button
         [disabled]="!contenido.trim()"
         class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-md shadow-md transition disabled:opacity-50"

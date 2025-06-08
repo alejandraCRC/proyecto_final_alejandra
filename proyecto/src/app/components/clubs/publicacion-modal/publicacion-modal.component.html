@@ -1,15 +1,21 @@
-<div class="modal-backdrop fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50" >
-  <div class="modal bg-white rounded-lg shadow-lg p-6 w-full max-w-md animate-fade-in">
-    
-    <h2 class="text-xl font-semibold mb-4 text-gray-800">{{'publicacion.nueva_publicación' | translate}}</h2>
-    
+<!-- modal para crear una nueva publicación en un club  -->
+<div
+  class="modal-backdrop fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50"
+>
+  <div
+    class="modal bg-white rounded-lg shadow-lg p-6 w-full max-w-md animate-fade-in"
+  >
+    <h2 class="text-xl font-semibold mb-4 text-gray-800">
+      {{ "publicacion.nueva_publicación" | translate }}
+    </h2>
+    <!-- titulo de la publicacion  -->
     <input
       [(ngModel)]="titulo"
       type="text"
       class="w-full mb-4 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
       placeholder="{{ 'publicacion.placeholder_titulo' | translate }}"
     />
-
+    <!-- contenido de la publicacion  -->
     <textarea
       [(ngModel)]="contenido"
       rows="5"
@@ -17,23 +23,27 @@
       placeholder="{{ 'publicacion.placeholder_contenido' | translate }}"
     ></textarea>
 
+    <!-- muestra un error si el contenido o el titulo estan vacios   -->
     @if(mostrarError) {
-    <span class="text-red-600 mb-3 italic">{{ 'publicacion.alert_Dato_requerido' | translate }}</span>
+    <span class="text-red-600 mb-3 italic">{{
+      "publicacion.alert_Dato_requerido" | translate
+    }}</span>
     }
     <div class="flex justify-end space-x-3">
+      <!-- boton de cancelar  -->
       <button
         class="bg-pink-700 hover:bg-pink-800 text-white font-semibold py-2 px-4 rounded-md shadow-md transition disabled:opacity-50"
         (click)="cerrar()"
       >
-        {{'publicacion.cancelar' | translate}}
+        {{ "publicacion.cancelar" | translate }}
       </button>
-
+      <!-- boton de guardar la publicacion   -->
       <button
         [disabled]="!contenido.trim() && !titulo.trim()"
         class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-md shadow-md transition disabled:opacity-50"
         (click)="guardar()"
       >
-        {{'publicacion.guardar' | translate}}
+        {{ "publicacion.guardar" | translate }}
       </button>
     </div>
   </div>
