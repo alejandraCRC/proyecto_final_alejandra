@@ -51,9 +51,9 @@
               >
                 <div>
                   <h4 class="text-md font-semibold text-gray-800">
-                    {{ libro.volumeInfo.title }}
+                    {{ libro?.volumeInfo.title }}
                   </h4>
-                  <small>{{ libro.volumeInfo.authors?.join(", ") }}</small>
+                  <small>{{ libro?.volumeInfo.authors?.join(", ") }}</small>
                 </div>
               </li>
             }
@@ -66,14 +66,22 @@
         <div class="text-center m-2">
           <p>
             {{ 'lectura.libro_seleccionado' | translate }} 
-            <b>{{ libroSeleccionado.volumeInfo.title }}</b>
+            <b>{{ libroSeleccionado?.volumeInfo.title }}</b>
           </p>
         </div>
 
-        @if (libroSeleccionado.volumeInfo.imageLinks.smallThumbnail) {
+        @if (libroSeleccionado?.volumeInfo.imageLinks.smallThumbnail) {
           <div class="flex justify-center mt-2">
             <img
-              [src]="libroSeleccionado.volumeInfo.imageLinks.smallThumbnail"
+              [src]="libroSeleccionado?.volumeInfo.imageLinks.smallThumbnail"
+              alt="{{ libroSeleccionado.volumeInfo.title }}"
+              class="w-24 h-auto rounded border"
+            />
+          </div>
+        }@else {
+          <div class="flex justify-center mt-2">
+            <img
+              [src]="libroSeleccionado?.volumeInfo.imageLinks.thumbnail"
               alt="{{ libroSeleccionado.volumeInfo.title }}"
               class="w-24 h-auto rounded border"
             />
