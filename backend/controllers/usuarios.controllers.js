@@ -1,6 +1,6 @@
 import { pool } from "../db.js";
 
-
+//obtener un usuario
 export const getUsuario = async (req, res) => {
   try {
     const id_usuario = req.params.idUsuario || req.user?.id;
@@ -19,6 +19,7 @@ export const getUsuario = async (req, res) => {
   }
 };
 
+//obtener usuarios por nombre
 export const getUsuariosPorNombre = async (req, res) => {
   try {
     console.log("params", req.params);
@@ -36,6 +37,7 @@ export const getUsuariosPorNombre = async (req, res) => {
   }
 };
 
+//obtener los usuarios seguidos por un usuario
 export const getSeguidos = async (req, res) => {
   try {
     console.log("params seguidos", req.params, req.user?.id);
@@ -56,6 +58,7 @@ export const getSeguidos = async (req, res) => {
   }
 };
 
+//obtener los seguidores de un usuario
 export const getSeguidores = async (req, res) => {
   try {
     const id_seguido = req.params.id_seguido || req.user?.id;
@@ -73,6 +76,7 @@ export const getSeguidores = async (req, res) => {
   }
 };
 
+// Seguir a un usuario
 export const seguirUsuario = async (req, res) => {
   try {
     const id_seguidor = req.user.id;
@@ -92,6 +96,8 @@ export const seguirUsuario = async (req, res) => {
     });
   }
 };
+
+// Dejar de seguir a un usuario
 export const dejarSeguirUsuario = async (req, res) => {
   try {
     const id_seguidor = req.user.id;
@@ -112,6 +118,7 @@ export const dejarSeguirUsuario = async (req, res) => {
   }
 };
 
+// Actualizar un usuario
 export const updateUsuario = async (req, res) => {
   try {
     const id_usuario = req.params.id_usuario || req.user?.id;
@@ -141,6 +148,7 @@ export const updateUsuario = async (req, res) => {
   }
 };
 
+// Eliminar un usuario
 export const delUsuario = async (req, res) => {
   try {
     const id_usuario =  req.user.id;

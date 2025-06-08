@@ -1,5 +1,5 @@
 import { pool } from '../db.js'
-
+// Obtener todos los clubes de lectura
 export const getClubs = async (req, res) => {
   try {
     const [result] = await pool.query("SELECT * FROM clubes_de_lectura");
@@ -12,6 +12,7 @@ export const getClubs = async (req, res) => {
   }
 };
 
+// Obtener un club de lectura por ID
 export const getClub = async (req, res) => {
   try {
     console.log('params',req.params);
@@ -26,6 +27,7 @@ export const getClub = async (req, res) => {
   }
 };
 
+// Obtener clubes de lectura por nombre (búsqueda parcial)
 export const getClubsPorNombre = async (req, res) => {
   try {
     console.log('params',req.params);
@@ -40,6 +42,7 @@ export const getClubsPorNombre = async (req, res) => {
   }
 }
 
+// Actualizar un club de lectura
  export const updateClub = async (req, res) => {
     try {
       console.log('update',req.body);
@@ -69,6 +72,7 @@ export const getClubsPorNombre = async (req, res) => {
     }
   };
 
+  // Añadir un nuevo club de lectura
 export const addClub = async (req, res) => {
   try {
     const id_creador = req.user.id;
@@ -86,6 +90,7 @@ export const addClub = async (req, res) => {
 }
 };
 
+// Eliminar un club de lectura
 export const delClub = async (req, res) => {  
   try {
     const {id_club} =req.params
@@ -106,8 +111,9 @@ export const delClub = async (req, res) => {
 }
 };
 
+//a partir de aquí endpoints de lectura actual del club
 
-//lectura actual
+// Añadir la lectura actual de un club(si ya existe, se actualiza)
 export const addLecturaActual = async (req, res) => {
   try {
     const {id_club} = req.params
@@ -125,6 +131,7 @@ export const addLecturaActual = async (req, res) => {
 }
 };
 
+// Obtener la lectura actual de un club
 export const getLecturaActual = async (req, res) => {
   try {
     const {id_club}=req.params
@@ -138,6 +145,7 @@ export const getLecturaActual = async (req, res) => {
   }
 }
 
+//eliminar la lectura actual de un club
 export const delLecturaActual = async (req, res) => {  
   try {
     const {id_club} =req.params

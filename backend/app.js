@@ -1,8 +1,6 @@
 import express from 'express';
 import cors from 'cors';
 
-import path from 'path';
-import { fileURLToPath } from 'url';
 import { PORT } from './config.js';
 import { routerAuth } from './routes/auth.routes.js';
 import { routerLibrosUsuarios } from './routes/libros-usuarios.routes.js';
@@ -14,8 +12,6 @@ import { routerResenias } from './routes/resenias.routes.js';
 
 const app = express();
 import cookieParser from 'cookie-parser';
-//Configurar puerto
-//const PORT = 3000;
 
 //Middleware para manejar las CORS
 // app.use (cors())

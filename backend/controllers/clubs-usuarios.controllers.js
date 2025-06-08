@@ -1,5 +1,6 @@
 import { pool } from "../db.js";
 
+// Obtener los clubes a los que pertenece un usuario
 export const getClubsUsuario = async (req, res) => {
   const id_usuario = req.user.id;
 
@@ -20,7 +21,7 @@ export const getClubsUsuario = async (req, res) => {
       });
   }
 };
-
+// Obtener los miembros de un club
 export const getmiembrosClub = async (req, res) => {
   const {id_club} = req.params;
 
@@ -37,6 +38,8 @@ export const getmiembrosClub = async (req, res) => {
       });
   }
 };
+
+// Añadir un miembro a un club
 export const addMiembroClub = async (req, res) => {
  const {id_club, id_usuario} = req.params;
  console.log('111', req.params);
@@ -57,6 +60,7 @@ export const addMiembroClub = async (req, res) => {
   }
 }
 
+// Eliminar un miembro de un club
 export const delMiembroClub = async (req, res) => {
   const { id_club, id_usuario } = req.params;
   try {

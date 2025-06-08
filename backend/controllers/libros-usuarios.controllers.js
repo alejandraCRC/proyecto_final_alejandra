@@ -1,5 +1,6 @@
 import { pool } from "../db.js";
 
+//obtener los libros de un usuario
 export const getLibrosUsuario = async (req, res) => {
   try {
     const id_usuario = req.params.id_usuario || req.user?.id;
@@ -15,6 +16,7 @@ export const getLibrosUsuario = async (req, res) => {
   }
 };
 
+//añadir un libro de un usuario
 export const addLibroUsuario = async (req, res) => {
   try {
     const id_usuario = req.user.id;
@@ -35,6 +37,7 @@ export const addLibroUsuario = async (req, res) => {
   }
 };
 
+//actualizar un libro de un usuario
 export const updateLibroUsuario = async (req, res) => {
   try {
     const { fecha, estado } = req.body;
@@ -61,6 +64,7 @@ export const updateLibroUsuario = async (req, res) => {
   }
 };
 
+//eliminar un libro de un usuario
 export const delLibroUsuario = async (req, res) => {
   try {
     const id_usuario = req.user.id;

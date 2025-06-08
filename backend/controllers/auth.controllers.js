@@ -3,8 +3,6 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs'
 import { pool } from '../db.js'
 import { SECRET_KEY, REFRESH_SECRET_KEY } from '../config.js';
-// import {v4 as uuidv4} from 'uuid';
-// import { sendMail } from '../mailer.js'; 
 
 
 export const login = async (req, res) => {
@@ -16,17 +14,12 @@ export const login = async (req, res) => {
     if(result.length == 0){
       return res.status(401).json({message: "Email y/o contraseña incorrectos"});
     }
-
     
     //verificar la contraseña con bcrypt
     const validarPass = await bcrypt.compare(password, result[0].contrasenia);
     if(!validarPass){
       return res.status(401).json({message: "Email y/o contraseña incorrectos"});
     }
-    // //validar que la cuenta está activa
-    // if(!result[0].is_verif){
-    //   return res.status(403).json({message: "Cuenta no activa, revisa tu correo para activarla"});
-    // }
     // //generar el token  
     const token = jwt.sign({id:result[0].id_usuario, createTo:new Date().toISOString()},SECRET_KEY,{
       "expiresIn": "3h"
@@ -42,9 +35,6 @@ export const login = async (req, res) => {
       secure: true,
       sameSite: "none", //protección CSRF
     })
-
-    // //enviar un email
-    // sendMail(result[0].email, 'logueado2', `<h1>Hola ${result[0].username}</h1><p>Gracias por loguearte</p>`)
 
     //devolver al usuario
     res.status(200).json({
@@ -66,7 +56,6 @@ export const autenticarToken=(req, res, next)=>{
       return res.status(403).json({message: 'token no proporcionado'})
     }
     const token = autHeader.split(' ')[1];
-    // console.log(token);
     
     //verificar la autenticidad del token
     jwt.verify(token, SECRET_KEY, (err, user)=>{
@@ -89,15 +78,7 @@ export const register = async (req, res) => {
    
     }
       const hashPassword = await bcrypt.hash(contrasenia, 10)
-      // const activacionToken= uuidv4();
       const [result]=await pool.query("INSERT INTO usuarios (nombre, email, contrasenia, fecha_registro) VALUES (?,?,?,?)", [nombre, email, hashPassword, fechaFormateada]);
-      // console.log(result);
-    
-    // const activarLink=`http://localhost:3000/activa/${activacionToken}`;
-    // const emailHTML = '<h2>Bienvenid@ a nuestra plataforma</h2>' +
-    // '<p>Para activar su cuenta haga click en el siguiente enlace</p>' +
-    //  `<a href="${activarLink}">Activar cuenta</a>`;
-    //  await sendMail(email,'Activa cuenta',emailHTML)
 
     if(result.affectedRows == 1){
       res.status(201).json({message: "Usuario creado correctamente"});
@@ -143,31 +124,3 @@ export const refreshToken = async (req, res) => {
     res.status(401).json({ message: 'Token inválido o expirado' });
   }
 };
-
-/**
- * 
- * @param {Array} rolesPermitidos donde establecerá los roles permitidos
- * @returns permite que siga al siguiente metodo o error
- */
-// export const autorizarRol=(rolesPermitidos)=>{
-//   return (req, res, next)=>{
-//     console.log();
-//     if(!rolesPermitidos.includes(req.user.role)){
-//       return res.status(403).json({message: "No tiene permiso para acceder a esta ruta"});
-//     }
-//     next();
-//   }
-// }
-
-// export const activaCuenta= async(req, res)=>{
-//   const {token}=req.params; //esta en la url
-//   //buscar el usuario que ha recivido ese token
-//   const [user] = await pool.query("SELECT * FROM usuarios WHERE token_verif=?",[token]);
-
-//   if(user.length == 0){
-//     return res.status(400).json({message: 'Token no válido o no existe'})
-//   }
-//   //actualizar is_verif y token_verif
-//   await pool.query("UPDATE usuarios SET is_verif=?, token_verif=? WHERE token_verif=?",[true, null, token]);
-//   res.status(200).json({message: 'Cuenta activada correctamente, ya puedes iniciar sesión'})
-// }

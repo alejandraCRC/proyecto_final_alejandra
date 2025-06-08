@@ -1,18 +1,7 @@
 import { pool } from '../db.js'
 import axios from 'axios';
 
-// export const getLibros = async (req, res) => {
-//   try {
-//     const [result] = await pool.query("SELECT * FROM libros");
-//     console.log(result);
-//     res.status(200).json(result);
-//   } catch (error) {
-//     res
-//       .status(500)
-//       .json({ message: "Error al obtener los libros", error: error.message });
-//   }
-// };
-
+// Obtener todas las reseñas de un libro
 export const getReseniasPorLibroId = async (req, res) => {
   try {
     console.log(req.params);
@@ -27,8 +16,7 @@ export const getReseniasPorLibroId = async (req, res) => {
   }
 };
 
-
-
+// Obtener todas las reseñas de un usuario
 export const getReseniasPorUsuarioId = async (req, res) => {
   try {
     const { id_usuario } = req.params;
@@ -67,9 +55,7 @@ export const getReseniasPorUsuarioId = async (req, res) => {
   }
 };
 
-
-
-
+// Añadir una nueva reseña a un libro
 export const addResenia = async (req, res) => {
   try {
     const id_usuario = req.user.id;
@@ -91,55 +77,4 @@ console.log(id_usuario);
     });
   }
 };
-
-// export const updateTarea = async (req, res) =>{
-//   try {
-//     console.log(req.body);
-//     const {titulo, descripcion,fecha_creacion, estado, idUsuario, importancia}=req.body;
-//     const {id}=req.params;
-
-//     const [result]=await pool.query("UPDATE tareas SET titulo=?, descripcion=?, fecha_creacion=?, estado=?, idUsuario=?, importancia=? WHERE idTarea=?", [titulo, descripcion,fecha_creacion, estado, idUsuario, importancia, id]);
-//     //const [result]=await pool.query("UPDATE alumnos SET apellidosNombre=IFNULL(?,apellidosNombre), idCurso=IFNULL(?, idCurso) WHERE idAlumno=?", [nameAl, idCiclo, id]);
-    
-//      console.log(result);
-//      if (result.affectedRows==0){
-//         return res.status(400).json({
-//             message:'no existe'
-//         })
-//      }else{
-//         return res.status(200).json({
-//             message:'ha sido actualizado'
-//         })
-//      }
-
-// } catch (error) {
-//     res.status(500).json({
-//         message:"Error en el servidor"
-//     })
-// }
-
-// }
-
-// export const delTarea = async (req, res) => {  
-//   try {
-//     console.log({req});
-//     const {id} =req.params
-//     const [result]=await pool.query("DELETE FROM tareas WHERE idTarea=?", [id]);
-//     console.log('borrado', result);
-//     if (result.affectedRows==0){
-//         return res.status(400).json({
-//             message:'no existe'
-//         })
-//     }else{
-//         return res.status(200).json({
-//             message:'ha sido borrado'
-//         })
-//     }
-// } catch (error) {
-//     res.status(500).json({
-//         message:"Error en el servidor"
-//     })
-// }
-// };
-
-
+ 

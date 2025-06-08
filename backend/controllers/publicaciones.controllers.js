@@ -1,5 +1,6 @@
 import { pool } from "../db.js";
 
+//obtener todas las publicaciones de un club
 export const getPublicaciones = async (req, res) => {
   const { id_club } = req.params;
 
@@ -18,6 +19,7 @@ export const getPublicaciones = async (req, res) => {
   }
 };
 
+// Obtener las publicaciones de un usuario
 export const getPublicacionesUsuario = async (req, res) => {
   const { id_usuario } = req.params;
 
@@ -36,6 +38,7 @@ export const getPublicacionesUsuario = async (req, res) => {
   }
 };
 
+// Añadir una nueva publicación
 export const addPublicacion = async (req, res) => {
   try {
     const id_usuario = req.user.id;
@@ -56,6 +59,7 @@ export const addPublicacion = async (req, res) => {
   }
 };
 
+// eliminar una publicación
 export const delPublicacion = async (req, res) => {
   try {
     const { id_publicacion } = req.params;
@@ -78,6 +82,9 @@ export const delPublicacion = async (req, res) => {
   }
 }
 
+//a partir de aquí endpoints de comentarios de publicaciones
+
+// Obtener los comentarios de una publicación
 export const getComentariosPublicaciones = async (req, res) => {
   const { id_publicacion } = req.params;
   console.log(' comentarios id_publicacion', id_publicacion);
@@ -95,6 +102,7 @@ export const getComentariosPublicaciones = async (req, res) => {
   }
 };
 
+// Añadir un comentario a una publicación
 export const addComentarioPublicacion = async (req, res) => {
   try {
     const id_usuario = req.user.id;
@@ -115,6 +123,7 @@ export const addComentarioPublicacion = async (req, res) => {
   }
 };
 
+// Eliminar un comentario de una publicación
 export const delComentarioPublicacion = async (req, res) => {
   try {
     const { id_comentario } = req.params;
@@ -137,86 +146,3 @@ export const delComentarioPublicacion = async (req, res) => {
     });
   }
 }
-
-// export const getmiembrosClub = async (req, res) => {
-//   const {id_club} = req.params;
-
-//   try {
-//     const [result] = await pool.query("SELECT * FROM miembros_club WHERE id_club = ?", [id_club]);
-
-//     res.status(200).json(result);
-//   } catch (error) {
-//     res
-//       .status(500)
-//       .json({
-//         message: "Error al obtener los libros del usuario",
-//         error: error.message,
-//       });
-//   }
-// };
-// export const addClubUsuario = async (req, res) => {
-//   try {
-//     const id_usuario = req.user.id;
-//   // console.log('red',req.user);
-//   //   console.log(req.body);
-//     const {  id_libro, fecha, estado } = req.body;
-
-//     const [result] = await pool.query(
-//       "INSERT INTO libros_usuario (id_usuario, id_libro, fecha, estado) VALUES (?,?,?,?)",
-//       [id_usuario, id_libro, fecha, estado]
-//     );
-
-//     res.status(201).json({ id: result.insertId });
-//   } catch (error) {
-//     res.status(500).json({
-//       message: "Error en el servidor",
-//     });
-//   }
-// };
-
-// export const updateLibroUsuario = async (req, res) => {
-//   try {
-//     const { fecha, estado } = req.body;
-//     const { id_libro, id_usuario } = req.params;
-
-//     const [result] = await pool.query(
-//       "UPDATE libros_usuario SET fecha=?, estado=? WHERE id_libro=? AND id_usuario=?",
-//       [fecha, estado, id_libro, id_usuario]
-//     );
-
-//     if (result.affectedRows == 0) {
-//       return res.status(400).json({
-//         message: "no existe",
-//       });
-//     } else {
-//       return res.status(200).json({
-//         message: "ha sido actualizado",
-//       });
-//     }
-//   } catch (error) {
-//     res.status(500).json({
-//       message: "Error en el servidor",
-//     });
-//   }
-// };
-
-// export const delLibroUsuario = async (req, res) => {
-//   try {
-//     const {id_libro, id_usuario} =req.params
-//     const [result]=await pool.query("DELETE FROM libros_usuario WHERE id_libro=? AND id_usuario=?", [id_libro, id_usuario]);
-
-//     if (result.affectedRows==0){
-//         return res.status(400).json({
-//             message:'no existe'
-//         })
-//     }else{
-//         return res.status(200).json({
-//             message:'ha sido borrado'
-//         })
-//     }
-// } catch (error) {
-//     res.status(500).json({
-//         message:"Error en el servidor"
-//     })
-// }
-// };
