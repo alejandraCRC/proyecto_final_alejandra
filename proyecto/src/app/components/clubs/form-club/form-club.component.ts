@@ -23,6 +23,7 @@ export class FormClubComponent {
     fecha_creacion: new Date()
   };
   usuario: any = null;
+  idClub: any = null;
 
   private ruta = inject(ActivatedRoute);
   private router = inject(Router);
@@ -41,9 +42,9 @@ export class FormClubComponent {
       descripcion: ['', Validators.required],
     });
 
-    const idClub = this.ruta.snapshot.paramMap.get('idClub');
-    if (idClub) {
-      this.cargarDatosClub(idClub);
+    this.idClub = this.ruta.snapshot.paramMap.get('idClub');
+    if (this.idClub) {
+      this.cargarDatosClub(this.idClub);
     }
   }
 
