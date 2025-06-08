@@ -149,9 +149,16 @@ export class RegistrarComponent {
           console.error('Error al registrar usuario:', error);
 
           let mensaje = this.translate.instant('register.alert_registro_error');
-          if (error.status === 400) {
+          const errorMsg = error?.error?.message || '';
+
+          // Comprobamos si es error 400 y mensaje contiene 'email'
+          if (
+            error.status === 400 &&
+            errorMsg.toLowerCase().includes('email')
+          ) {
             mensaje =
-              this.translate.instant('register.alert_email_existente')
+              this.translate.instant('register.alert_email_existente') ||
+              errorMsg;
           }
 
           Swal.fire({
