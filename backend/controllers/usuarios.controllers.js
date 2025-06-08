@@ -38,6 +38,7 @@ export const getUsuariosPorNombre = async (req, res) => {
 
 export const getSeguidos = async (req, res) => {
   try {
+    console.log("params seguidos", req.params);
     const id_seguidor = req.params.id_seguidor || req.user?.id;
     "id2", req.params, req.user.id;
     "idSeguidpr", id_seguidor;
@@ -58,7 +59,7 @@ export const getSeguidos = async (req, res) => {
 export const getSeguidores = async (req, res) => {
   try {
     const id_seguido = req.params.id_seguido || req.user?.id;
-    "id", req.params;
+    "idSeguidores", req.params;
     const [result] = await pool.query(
       "SELECT u.id_usuario, u.nombre, u.email, u.avatar FROM seguimientos s JOIN usuarios u ON s.id_seguidor = u.id_usuario WHERE s.id_seguido = ?",
       [id_seguido]
