@@ -227,7 +227,11 @@
           "
         >
           <!-- cambia el texto segun si se muestran o no los comentarios -->
-          {{ publicacion.mostrarComentarios ? ('club.ocultar_comentarios' | translate) : ('club.ver_comentarios' | translate) }}
+          {{
+            publicacion.mostrarComentarios
+              ? ("club.ocultar_comentarios" | translate)
+              : ("club.ver_comentarios" | translate)
+          }}
         </button>
         }
         <!-- comentarios de la publicación -->
@@ -242,21 +246,24 @@
                 }}</span
                 >: {{ comentario.contenido }}
               </p>
-              <small class="text-gray-400 italic">{{
-                comentario.fecha_comentario | formatoFecha
-              }}</small>
+              <div>
+                <small class="text-gray-400 italic">{{
+                  comentario.fecha_comentario | formatoFecha
+                }}</small>
+                @if(usuarioEsAdministrador || comentario.id_usuario ===
+                usuario?.id_usuario){
+                <div class="ml-2">
+                  <button
+                    (click)="eliminarComentario(comentario.id_comentario)"
+                    class="text-sm text-red-600 hover:underline"
+                  >
+                    {{ "club.eliminar" | translate }}
+                  </button>
+                </div>
+                }
+              </div>
             </div>
-            @if(usuarioEsAdministrador || comentario.id_usuario ===
-            usuario?.id_usuario){
-            <div class="ml-2">
-              <button
-                (click)="eliminarComentario(comentario.id_comentario)"
-                class="text-sm text-red-600 hover:underline"
-              >
-                {{ "club.eliminar" | translate }}
-              </button>
-            </div>
-            } }
+            }
           </div>
           <ng-template #sinComentarios>
             <p class="text-gray-400 italic">
@@ -285,8 +292,7 @@
       >
         {{ "club.anterior" | translate }}
       </button>
-      } 
-      @for ( i of [].constructor(totalPaginas); track $index) {
+      } @for ( i of [].constructor(totalPaginas); track $index) {
       <button
         class="px-3 py-1 rounded"
         [ngClass]="{
