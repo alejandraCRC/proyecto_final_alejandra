@@ -23,7 +23,6 @@ export class EditarPerfilComponent {
   // Variables
   perfilForm!: FormGroup;
   usuario: any = null;
-  avatarSeleccionado: File | null = null;
 
   ngOnInit(): void {
     this.cargarDatosUsuario();
@@ -49,17 +48,6 @@ export class EditarPerfilComponent {
     });
   }
 
-  cambiarImagen(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      this.avatarSeleccionado = file;
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.usuario.avatar = reader.result as string;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
 
   guardarCambios() {
     if (this.perfilForm.invalid) {

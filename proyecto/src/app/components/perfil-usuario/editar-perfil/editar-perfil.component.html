@@ -12,15 +12,9 @@
   <!-- Imagen de perfil -->
   <div class="text-center">
     <img
-      [src]="usuario.avatar || '../assets/imagenes/usuario.jpg'"
+      [src]=" '../assets/imagenes/usuario.jpg'"
       alt="{{ 'editarPerfil.avatar_alt' | translate }}"
       class="w-24 h-24 mx-auto rounded-full border"
-    />
-    <input
-      type="file"
-      (change)="cambiarImagen($event)"
-      accept="image/*"
-      class="mt-2 block w-full text-sm"
     />
   </div>
 

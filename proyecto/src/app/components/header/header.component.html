@@ -48,19 +48,11 @@
           <button
             class="flex items-center space-x-2 p-1 rounded-full bg-[#a64545] hover:bg-[#9d3e3e] transition"
           >
-            @if(usuario?.avatar){
-            <img
-              [src]="usuario?.avatar"
-              alt="{{ 'perfil.imagen_perfil_alt' | translate }}"
-              class="w-8 h-8 rounded-full border-2 border-gray-300"
-            />
-            }@else{
             <img
               src="../assets/imagenes/usuario.jpg"
               alt="{{ 'perfil.imagen_perfil_alt' | translate }}"
               class="w-8 h-8 rounded-full border-2 border-gray-300"
             />
-            }
           </button>
           <div
             class="absolute right-0 hidden group-hover:block bg-white border rounded-lg shadow-lg py-1 w-48 z-50"

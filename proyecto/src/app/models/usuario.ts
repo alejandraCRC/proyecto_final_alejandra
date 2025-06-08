@@ -4,6 +4,5 @@ export interface Usuario {
     email: string,
     contrasenia: string,
     fecha_registro: Date,
-    avatar?: string,
     biografia?:string
 }
