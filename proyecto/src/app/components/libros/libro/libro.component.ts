@@ -11,7 +11,7 @@ import { EstrellasPipe } from '../../../pipes/estrellas.pipe';
 import { FormatoFechaPipe } from '../../../pipes/fecha.pipe';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
-import { UsuariosService } from '../../../services/usuarios.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-libros.component',
@@ -48,10 +48,10 @@ export class LibroComponent {
   private servicioLibros = inject(LibrosService);
   private servicioLibrosUsuario = inject(LibrosUsuarioService);
   private servicioResenia = inject(ReseniasService);
-  private servicioUsuarios = inject(UsuariosService);
+  private servicioAuth = inject(AuthService);
 
   ngOnInit(): void {
-    this.usuario = this.servicioUsuarios.getUsuario(); // Obtiene el usuario logueado
+    this.usuario = this.servicioAuth.getUsuario(); // Obtiene el usuario logueado
     console.log('Usuario actual:', this.usuario);
     const idLibro = this.ruta.snapshot.paramMap.get('idLibro'); // Obtener el ID del libro desde la URL
     if (idLibro) {
