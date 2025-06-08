@@ -38,7 +38,7 @@ export const getUsuariosPorNombre = async (req, res) => {
 
 export const getSeguidos = async (req, res) => {
   try {
-    console.log("params seguidos", req.params);
+    console.log("params seguidos", req.params, req.user?.id);
     const id_seguidor = req.params.id_seguidor || req.user?.id;
     "id2", req.params, req.user.id;
     "idSeguidpr", id_seguidor;
