@@ -191,6 +191,59 @@ ordenarPorCalificacion(): void {
   this.actualizarPaginacion();
 }
 
+eliminarResenia(id_libro: number) {
+  Swal.fire({
+    title: this.translate.instant('libro.confirmar_eliminar_resenia'),
+    text: this.translate.instant('libro.confirmar_eliminar_resenia_texto'),
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#dc2626',
+    cancelButtonColor: '#6b7280',
+    confirmButtonText: this.translate.instant('sweetAlert.si_eliminar'),
+    cancelButtonText: this.translate.instant('sweetAlert.cancelar'),
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.servicioResenia.eliminarResenia(id_libro).subscribe({
+        next: () => {
+          this.reseniasDelLibro(); // Vuelve a cargar las reseñas del libro
+          this.actualizarPaginacion(); // Actualiza la paginación después de eliminar
+          Swal.fire({
+            title: this.translate.instant('libro.resenia_eliminada'),
+            text: this.translate.instant('libro.resenia_eliminada_texto'),
+            icon: 'success',
+            timer: 1500,
+            showConfirmButton: false,
+            background: '#f9fafb',
+            color: '#1f2937',
+            iconColor: '#10b981', // verde Tailwind
+            customClass: {
+              popup: 'rounded-lg shadow-lg'
+            }
+          });
+        },
+        error: (err) => {
+          console.error('Error al eliminar reseña:', err);
+          Swal.fire({
+            title: this.translate.instant('libro.error_eliminar_resenia_titulo'),
+            text: this.translate.instant('libro.error_eliminar_resenia_texto'),
+            icon: 'error',
+            background: '#fef2f2', // rojo claro
+            color: '#991b1b',
+            iconColor: '#dc2626',
+            confirmButtonColor: '#dc2626',
+            confirmButtonText: this.translate.instant('sweetAlert.entendido'),
+            customClass: {
+              popup: 'rounded-lg shadow-md',
+              confirmButton:
+                'bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded'
+            }
+          });
+        }
+      });
+    }
+  });
+}
+
   //Método para redirigir al perfil del usuario
   redirigirPerfil(id: number) {
     this.router.navigate(['/app/perfil', id]); // Navegar a la ruta de detalle pasando el ID
