@@ -130,7 +130,8 @@ export class PerfilUsuarioComponent {
   };
   //comprobar si el usuario registrado sigue a este usuario
   sigueUsuario(){
-      this.servicioUsuarios.getSeguidos().subscribe({
+    if( this.idUsuario){
+      this.servicioUsuarios.getSeguidos(Number(this.idUsuario)).subscribe({
         next: (data) => {
           data.forEach((seguido) => {
             if (seguido.id_usuario === this.authService.getUsuario().id_usuario) {
@@ -141,6 +142,7 @@ export class PerfilUsuarioComponent {
           });
         },
       });
+    }
   };
 
   seguir(){
