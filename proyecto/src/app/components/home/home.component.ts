@@ -186,7 +186,7 @@ export class HomeComponent {
   //publicaciones y reseñas
 
   ObtenerPublicacionesYResenias() {
-    this.servicioUsuarios.getSeguidos(this.idUsuario).subscribe({
+    this.servicioUsuarios.getSeguidos().subscribe({
       next: (seguidos) => {
         const idsSeguidos = seguidos.map((u) => Number(u.id_usuario));
 
