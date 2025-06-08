@@ -170,7 +170,8 @@
   "nombre": "Name",
   "email": "Email",
   "bio": "Biography",
-  "guardar_cambios": "Save changes"
+  "guardar_cambios": "Save changes",
+  "eliminar_cuenta": "Delete account"
 },
 
 "listaUsuarios": {
