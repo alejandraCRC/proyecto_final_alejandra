@@ -11,6 +11,7 @@ import { EstrellasPipe } from '../../../pipes/estrellas.pipe';
 import { FormatoFechaPipe } from '../../../pipes/fecha.pipe';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
+import { UsuariosService } from '../../../services/usuarios.service';
 
 @Component({
   selector: 'app-libros.component',
@@ -33,6 +34,7 @@ export class LibroComponent {
   datos: { id_libro: string | null; fecha: Date; estado: any } | null = null;
   resenias: Resenia[] = []; // Almacena las reseñas del libro
   ordenSeleccionado: string = 'fecha';
+  usuario: any = null; // Almacena el usuario logueado
   //variables de  paginacion
   reseniasPaginadas: any[] = []; 
    paginaActual: number = 1;
@@ -46,8 +48,10 @@ export class LibroComponent {
   private servicioLibros = inject(LibrosService);
   private servicioLibrosUsuario = inject(LibrosUsuarioService);
   private servicioResenia = inject(ReseniasService);
+  private servicioUsuarios = inject(UsuariosService);
 
   ngOnInit(): void {
+    this.usuario = this.servicioUsuarios.getUsuario(); // Obtiene el usuario logueado
     const idLibro = this.ruta.snapshot.paramMap.get('idLibro'); // Obtener el ID del libro desde la URL
     if (idLibro) {
       this.servicioLibros.obtenerLibroPorId(idLibro).subscribe((res: any) => {
