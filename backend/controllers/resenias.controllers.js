@@ -4,7 +4,6 @@ import axios from 'axios';
 // Obtener todas las reseñas de un libro
 export const getReseniasPorLibroId = async (req, res) => {
   try {
-    console.log(req.params);
     const {id_libro}=req.params
     const [result] = await pool.query("SELECT r.id_usuario, r.resenia, r.calificacion, r.fecha, u.nombre FROM resenias r JOIN usuarios u ON r.id_usuario = u.id_usuario WHERE r.id_libro = ?",[id_libro] );
     console.log(result);
@@ -59,7 +58,6 @@ export const getReseniasPorUsuarioId = async (req, res) => {
 export const addResenia = async (req, res) => {
   try {
     const id_usuario = req.user.id;
-console.log(id_usuario);
     let { id_libro, calificacion, resenia, fecha } = req.body;
 if(calificacion == 0) {
   calificacion = '0'; 

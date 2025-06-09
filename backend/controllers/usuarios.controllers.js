@@ -42,8 +42,6 @@ export const getSeguidos = async (req, res) => {
   try {
     console.log("params seguidos", req.params, req.user?.id);
     const id_seguidor = req.params.id_seguidor || req.user?.id;
-    "id2", req.params, req.user.id;
-    "idSeguidpr", id_seguidor;
     const [result] = await pool.query(
       "SELECT u.id_usuario, u.nombre, u.email FROM seguimientos s JOIN usuarios u ON s.id_seguido = u.id_usuario WHERE s.id_seguidor = ?",
       [id_seguidor]
@@ -62,7 +60,6 @@ export const getSeguidos = async (req, res) => {
 export const getSeguidores = async (req, res) => {
   try {
     const id_seguido = req.params.id_seguido || req.user?.id;
-    "idSeguidores", req.params;
     const [result] = await pool.query(
       "SELECT u.id_usuario, u.nombre, u.email FROM seguimientos s JOIN usuarios u ON s.id_seguidor = u.id_usuario WHERE s.id_seguido = ?",
       [id_seguido]
@@ -81,7 +78,6 @@ export const seguirUsuario = async (req, res) => {
   try {
     const id_seguidor = req.user.id;
     const { id_seguido } = req.params;
-    console.log("sies", req.params, req.user.id);
     const [result] = await pool.query(
       "INSERT INTO seguimientos (id_seguidor, id_seguido) VALUES (?,?)",
       [id_seguidor, id_seguido]

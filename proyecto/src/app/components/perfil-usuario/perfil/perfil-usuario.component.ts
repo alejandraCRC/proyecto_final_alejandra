@@ -131,9 +131,9 @@ export class PerfilUsuarioComponent {
   }
   //comprobar si el usuario registrado sigue a este usuario
   sigueUsuario(aSeguidores: any[]) {
-          aSeguidores.forEach((seguido) => {
+          aSeguidores.forEach((seguidor) => {
             if (
-              seguido.id_usuario === this.authService.getUsuario().id_usuario
+              seguidor.id_usuario === this.authService.getUsuario().id_usuario
             ) {
               this.sigueAlUsuario = true; //si el usuario sigue al usuario mostrado en el perfil
             } else {

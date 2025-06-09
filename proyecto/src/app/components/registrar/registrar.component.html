@@ -132,15 +132,11 @@
           size="30"
         />
         <!-- comprobacion de que las contraseñas coincidan   -->
-        @if(rPassNoRequerido){
-        <br /><small class="text-red-600 italic">{{
-          "login.dato_requerido" | translate
-        }}</small>
-        }@else { @if(rPassNoIdem){
+         @if(rPassNoIdem){
         <br /><small class="text-red-600 italic">{{
           "register.password_no_iguales" | translate
         }}</small>
-        } }
+        } 
       </div>
 <!-- campo de aceptar terminos y condiciones  -->
       <div class="mb-3 flex align-center">
