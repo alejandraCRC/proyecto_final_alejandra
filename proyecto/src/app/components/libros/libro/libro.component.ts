@@ -59,9 +59,9 @@ export class LibroComponent {
         this.libro = res; // Almacena los detalles del libro
         console.log(this.libro); // Ver en consola los detalles del libro
       });
-    }
-
-    this.reseniasDelLibro();
+      this.comprobarLibroGuardado(); // Verifica si el libro ya está guardado por el usuario
+       this.reseniasDelLibro();
+    }   
   }
 
 
@@ -103,6 +103,32 @@ export class LibroComponent {
   cerrarModalResenia() {    
     this.mostrarModalResenia = false;
   }
+
+  comprobarLibroGuardado() {
+  const id_libro = this.ruta.snapshot.paramMap.get('idLibro');
+  if (!id_libro || !this.usuario) return;
+
+  this.servicioLibrosUsuario
+    .getLibroUsuario( id_libro, this.usuario.id_usuario)
+    .subscribe({
+      next: (respuesta) => {
+        if (respuesta) {
+          this.estadoSeleccionado = respuesta.estado;
+          console.log(`Libro ya guardado con estado: ${respuesta.estado}`);
+        }
+      },
+       error: (error) => {
+        // Si es 404, simplemente significa que el libro no está guardado aún
+        if (error.status === 404) {
+          console.log('El libro no está guardado por el usuario.');
+        } else {
+          console.error('Error al verificar si el libro está guardado:', error);
+        }
+      },
+    });
+}
+
+
 // Método para guardar el libro con el estado seleccionado
   guardarLibro() {
     this.datos = {

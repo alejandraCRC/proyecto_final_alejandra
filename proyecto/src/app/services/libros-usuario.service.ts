@@ -30,6 +30,14 @@ export class LibrosUsuarioService {
           return this.http.get<Libro[]>(url, {headers}).pipe(catchError(this.handleError));
   }
 
+  getLibroUsuario(id_libro: string, id_usuario?:any): Observable<any> {
+    //crear cabeceras
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authService.getToken()}`, //la autorizacion va con esta estructura
+    });
+    return this.http.get<any>(`${this.url}/librosUsuario/${id_libro}/${id_usuario}`, {headers});
+  };
+
   guardarLibroUsuario(
     id_libro: string,
     fecha: Date,

@@ -16,6 +16,29 @@ export const getLibrosUsuario = async (req, res) => {
   }
 };
 
+export const getLibroUsuario = async (req, res) => {
+  try {
+    const { id_libro, id_usuario } = req.params;
+    const [result] = await pool.query(
+      "SELECT * FROM libros_usuario WHERE id_libro=? AND id_usuario=?",
+      [id_libro, id_usuario]
+    );
+
+    if (result.length === 0) {
+      return res.status(404).json({
+        message: "Libro no encontrado para este usuario",
+      });
+    }
+
+    res.status(200).json(result[0]);
+  } catch (error) {
+    res.status(500).json({
+      message: "Error al obtener el libro del usuario",
+      error: error.message,
+    });
+  }
+}
+
 //añadir un libro de un usuario
 export const addLibroUsuario = async (req, res) => {
   try {
