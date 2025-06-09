@@ -30,10 +30,12 @@ export class LibroComponent {
   //variables
   libro: any = null;
   estadoSeleccionado: string = '';
+  estadoOriginal: string = ''; // Almacena el estado original del libro si ya estaba guardado
   mostrarModalResenia: boolean = false;
   datos: { id_libro: string | null; fecha: Date; estado: any } | null = null;
   resenias: Resenia[] = []; // Almacena las reseñas del libro
   ordenSeleccionado: string = 'fecha';
+  yaGuardado: boolean = false; // Indica si el libro ya está guardado por el usuario
   usuario: any = null; // Almacena el usuario logueado
   //variables de  paginacion
   reseniasPaginadas: any[] = []; 
@@ -114,6 +116,8 @@ export class LibroComponent {
       next: (respuesta) => {
         if (respuesta) {
           this.estadoSeleccionado = respuesta.estado;
+          this.estadoOriginal = respuesta.estado; // Guardamos el estado original
+          this.yaGuardado = true; // Indica que el libro ya está guardado
           console.log(`Libro ya guardado con estado: ${respuesta.estado}`);
         }
       },
@@ -131,6 +135,20 @@ export class LibroComponent {
 
 // Método para guardar el libro con el estado seleccionado
   guardarLibro() {
+     // Comprobar si ya está guardado y el estado no ha cambiado
+  if (this.yaGuardado && this.estadoSeleccionado === this.estadoOriginal) {
+    Swal.fire({
+      icon: 'info',
+      title: this.translate.instant('libro.estado_ya_guardado'),
+      text: this.translate.instant('libro.estado_igual'),
+      toast: true,
+      position: 'top-start',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true
+    });
+    return;
+  }
     this.datos = {
       id_libro: this.ruta.snapshot.paramMap.get('idLibro'),
       fecha: new Date(),

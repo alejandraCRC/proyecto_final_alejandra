@@ -160,7 +160,9 @@
   "resenia_eliminada": "Review deleted",
   "resenia_eliminada_texto": "The review has been successfully deleted.",
   "error_eliminar_resenia_titulo": "Deletion error",
-  "error_eliminar_resenia_texto": "Could not delete the review. Please try again."
+  "error_eliminar_resenia_texto": "Could not delete the review. Please try again.",
+  "estado_ya_guardado": "No state change detected",
+  "estado_igual": "This state is already saved for the book."
 },
 
 "resenia": {
@@ -243,6 +245,30 @@
     "titulo_terminos": "Terms and Conditions",
     "texto_terminos": "By using this platform, you agree to comply with our usage rules, privacy policies, and legal conditions. Please review these terms carefully before proceeding.",
     "alert_email_existente": "An account with this email already exists. Please use a different email."
+  },
+  "creditos": {
+    "titulo": "Credits & Support",
+    "desarrolladora": "Developer:",
+    "curso": "Course:",
+    "curso_valor": "2nd Year Web Application Development (DAW)",
+    "backend": "Backend:",
+    "frontend": "Frontend:",
+    "traduccion": "Translation:",
+    "hosting": "Hosting:",
+    "iconos": "Icons:",
+    "soporte_titulo": "Support",
+    "soporte_descripcion": "If you have questions, technical issues, or suggestions, you can contact us through:",
+    "correo": "soporte.com",
+    "github": "Report an issue on GitHub",
+    "whatsapp": "Support via WhatsApp"
+  },
+   "footer": {
+    "acerca_de": "About",
+    "ayuda": "Help",
+    "descripcion_acerca": "This application was developed by Alejandra Carrasquilla Rodríguez-Córdoba, a student at IES Trassierra, as an educational project to promote collaborative reading.",
+    "descripcion_ayuda": "If you encounter critical issues while using the application (such as errors when saving books or display failures), please reload the page. For additional support, contact our team.",
+    "copyright":
+      "Page2page - Alejandra Carrasquilla Rodríguez-Córdoba"
   },
   "sweetAlert": {
   "confirmar_eliminar": "Yes, delete",

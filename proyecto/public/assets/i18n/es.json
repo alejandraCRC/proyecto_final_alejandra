@@ -160,7 +160,9 @@
   "resenia_eliminada": "Reseña eliminada",
   "resenia_eliminada_texto": "La reseña se ha eliminado correctamente.",
   "error_eliminar_resenia_titulo": "Error al eliminar",
-  "error_eliminar_resenia_texto": "No se pudo eliminar la reseña. Por favor, intenta de nuevo."
+  "error_eliminar_resenia_texto": "No se pudo eliminar la reseña. Por favor, intenta de nuevo.",
+  "estado_ya_guardado": "Estado sin cambios",
+  "estado_igual": "Este estado ya está guardado para el libro."
 },
 
 "resenia": {
@@ -244,6 +246,31 @@
     "texto_terminos": "Al utilizar esta plataforma, aceptas cumplir con nuestras normas de uso, políticas de privacidad y condiciones legales. Por favor, revisa estos términos detenidamente antes de continuar.",
     "alert_email_existente": "Este correo ya está en uso"
   },
+  "creditos": {
+    "titulo": "Créditos & Soporte",
+    "desarrolladora": "Desarrolladora:",
+    "curso": "Curso:",
+    "curso_valor": "2º Desarrollo de Aplicaciones Web (DAW)",
+    "backend": "Backend:",
+    "frontend": "Frontend:",
+    "traduccion": "Traducción:",
+    "hosting": "Hosting:",
+    "iconos": "Íconos:",
+    "soporte_titulo": "Soporte",
+    "soporte_descripcion": "Si tienes dudas, problemas técnicos o sugerencias, puedes contactarnos a través de:",
+    "correo": "soporte.com",
+    "github": "Reportar un error en GitHub",
+    "whatsapp": "Soporte vía WhatsApp"
+  },
+  "footer": {
+    "acerca_de": "Acerca de",
+    "ayuda": "Ayuda",
+    "descripcion_acerca": "Esta aplicación ha sido desarrollada por Alejandra Carrasquilla Rodríguez-Córdoba, alumna del IES Trassierra, como proyecto educativo para fomentar la lectura colaborativa.",
+    "descripcion_ayuda": "Si experimentas problemas críticos durante el uso de la aplicación (como errores al guardar libros o fallos en la visualización), por favor recarga la página. Para soporte adicional, contacta con nuestro equipo.",
+    "copyright":
+      "Page2page - Alejandra Carrasquilla Rodríguez-Córdoba"
+  },
+
   "sweetAlert":{
     "confirmar_eliminar": "Sí, eliminar",
     "cancelar": "Cancelar",

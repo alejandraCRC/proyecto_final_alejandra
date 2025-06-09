@@ -4,23 +4,19 @@
     <div class="flex flex-col md:flex-row md:justify-between gap-6 text-left">
       <!-- Acerca de -->
       <div class="md:w-1/2">
-        <h3 class="font-semibold mb-2 uppercase text-xs tracking-wide">Acerca de</h3>
-        <p class="text-xs leading-relaxed">
-          Esta aplicación ha sido desarrollada por <strong>Alejandra Carrasquilla Rodríguez-Córdoba</strong>, alumna del <strong>IES Trassierra</strong>, como proyecto educativo para fomentar la lectura colaborativa.
-        </p>
+        <h3 class="font-semibold mb-2 uppercase text-xs tracking-wide">{{ 'footer.acerca_de' | translate }}</h3>
+<p class="text-xs leading-relaxed">{{ 'footer.descripcion_acerca' | translate }}</p>
       </div>
 
       <!-- Ayuda -->
       <div class="md:w-1/2">
-        <h3 class="font-semibold mb-2 uppercase text-xs tracking-wide">Ayuda</h3>
-        <p class="text-xs leading-relaxed">
-          Si experimentas problemas críticos durante el uso de la aplicación (como errores al guardar libros o fallos en la visualización), por favor recarga la página. Para soporte adicional, contacta con el profesor responsable del proyecto.
-        </p>
+       <h3 class="font-semibold mb-2 uppercase text-xs tracking-wide">{{ 'footer.ayuda' | translate }}</h3>
+<p class="text-xs leading-relaxed">{{ 'footer.descripcion_ayuda' | translate }}</p>
       </div>
     </div>
     <hr class="my-6 border-[#D96E30]">
         <div class="text-center mb-4">
-      &copy; Page2page – Alejandra Carrasquilla Rodríguez-Córdoba
-    </div>
+  &copy; {{ 'footer.copyright' | translate }}
+</div>
   </div>
 </footer>
