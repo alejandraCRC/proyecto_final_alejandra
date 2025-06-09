@@ -60,7 +60,7 @@ export class LibrosUsuarioService {
   //funciones para pasar los libros entre componentes
    private librosSeleccionados: any[] = [];
 
-   //obtiene los libros del usuario
+   //obtiene los libros del usuario del storage
   getLibros(): any[] {
   if (this.librosSeleccionados.length === 0) {
     const guardados = localStorage.getItem('libros_seleccionados');
