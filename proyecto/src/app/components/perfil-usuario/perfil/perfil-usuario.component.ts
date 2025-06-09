@@ -67,7 +67,6 @@ export class PerfilUsuarioComponent {
   ngOnInit() {
     this.getUsuario(); //obtiene el usuario
     this.llenarArrayLibrosSegunUsuario(); //llena el array de libros con los libros guardados por el usuario
-    this.sigueUsuario(); //comprobar si el usuario registrado sigue a este usuario
     this.getSeguidores();
     this.getSeguidos();
     this.ObtenerPublicacionesYResenias();
@@ -117,6 +116,7 @@ export class PerfilUsuarioComponent {
         next: (data) => {
           const aSeguidos = data; //almacena los Seguidos del usuario
           this.cantidadSeguidos = aSeguidos.length; //almacena la cantidad de Seguidos
+          this.sigueUsuario(aSeguidos); //comprobar si el usuario registrado sigue a este usuario
         },
       });
     } else {
@@ -129,11 +129,8 @@ export class PerfilUsuarioComponent {
     }
   }
   //comprobar si el usuario registrado sigue a este usuario
-  sigueUsuario() {
-    if (this.idUsuario) {
-      this.servicioUsuarios.getSeguidos(Number(this.idUsuario)).subscribe({
-        next: (data) => {
-          data.forEach((seguido) => {
+  sigueUsuario(aSeguidos: any[]) {
+          aSeguidos.forEach((seguido) => {
             if (
               seguido.id_usuario === this.authService.getUsuario().id_usuario
             ) {
@@ -142,9 +139,6 @@ export class PerfilUsuarioComponent {
               this.sigueAlUsuario = false; //si el usuario no sigue al usuario mostrado en el perfil
             }
           });
-        },
-      });
-    }
   }
   //Método para seguir al usuario
   seguir() {
