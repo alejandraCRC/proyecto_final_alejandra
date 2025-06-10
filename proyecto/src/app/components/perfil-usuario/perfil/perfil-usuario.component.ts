@@ -117,7 +117,6 @@ export class PerfilUsuarioComponent {
         next: (data) => {
           const aSeguidos = data; //almacena los Seguidos del usuario
           this.cantidadSeguidos = aSeguidos.length; //almacena la cantidad de Seguidos
-          
         },
       });
     } else {
@@ -131,16 +130,12 @@ export class PerfilUsuarioComponent {
   }
   //comprobar si el usuario registrado sigue a este usuario
   sigueUsuario(aSeguidores: any[]) {
-          aSeguidores.forEach((seguidor) => {
-            if (
-              seguidor.id_usuario === this.authService.getUsuario().id_usuario
-            ) {
-              this.sigueAlUsuario = true; //si el usuario sigue al usuario mostrado en el perfil
-            } else {
-              this.sigueAlUsuario = false; //si el usuario no sigue al usuario mostrado en el perfil
-            }
-          });
+    const idActual = this.authService.getUsuario().id_usuario;
+    this.sigueAlUsuario = aSeguidores.some(
+      (seguidor) => seguidor.id_usuario === idActual
+    );
   }
+
   //Método para seguir al usuario
   seguir() {
     this.servicioUsuarios.seguirUsuario(Number(this.idUsuario)).subscribe({
