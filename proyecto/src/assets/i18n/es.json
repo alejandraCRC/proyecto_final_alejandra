@@ -71,8 +71,10 @@
     "salido_exito_texto": "Ya no eres miembro de este club.",
     "publicacion_guardada": "¡Publicación guardada!",
     "publicacion_guardada_texto": "Tu publicación se ha guardado correctamente.",
-    "comentario_guardado": "Comment saved!",
-    "comentario_guardado_texto": "Your comment has been added successfully."
+    "comentario_guardado": "¡Comentario guardado!",
+    "comentario_guardado_texto": "Tu comentario ha sido añadido correctamente."
+    
+
   },
 
   "lectura": {
@@ -147,7 +149,20 @@
   "error_eliminar_libro_titulo": "Error",
   "error_eliminar_libro_texto": "No se pudo eliminar el libro",
   "alert_guardado_exito": "Libro guardado con éxito",
-  "alert_guardado_error": "Error al guardar el libro. Inténtalo de nuevo."
+  "alert_guardado_error": "Error al guardar el libro. Inténtalo de nuevo.",
+  "ordenar_por_calificacion": "Ordenar por",
+  "de_mayor_a_menor": "De mayor a menor",
+  "de_menor_a_mayor": "De menor a mayor",
+  "sin_ordenar": "Sin ordenar",
+  "recientes": "Recientes",
+  "confirmar_eliminar_resenia": "¿Eliminar reseña?",
+  "confirmar_eliminar_resenia_texto": "¿Estás seguro de que deseas eliminar esta reseña? Esta acción no se puede deshacer.",
+  "resenia_eliminada": "Reseña eliminada",
+  "resenia_eliminada_texto": "La reseña se ha eliminado correctamente.",
+  "error_eliminar_resenia_titulo": "Error al eliminar",
+  "error_eliminar_resenia_texto": "No se pudo eliminar la reseña. Por favor, intenta de nuevo.",
+  "estado_ya_guardado": "Estado sin cambios",
+  "estado_igual": "Este estado ya está guardado para el libro."
 },
 
 "resenia": {
@@ -163,7 +178,8 @@
   "nombre": "Nombre",
   "email": "Email",
   "bio": "Biografía",
-  "guardar_cambios": "Guardar cambios"
+  "guardar_cambios": "Guardar cambios",
+  "eliminar_cuenta": "Borrar cuenta"
 },
 
 "listaUsuarios": {
@@ -192,10 +208,15 @@
     "alert_seguir_exito": "Ahora sigues a este usuario.",
     "alert_seguir_error": "No se pudo seguir al usuario. Inténtalo de nuevo.",
     "alert_dejar_seguir_exito": "Has dejado de seguir al usuario.",
-    "alert_dejar_seguir_error": "No se pudo dejar de seguir al usuario. Inténtalo de nuevo."
+    "alert_dejar_seguir_error": "No se pudo dejar de seguir al usuario. Inténtalo de nuevo.",
+    "eliminar_titulo": "¿Estás seguro?",
+    "eliminar_texto": "Esta acción no se puede deshacer. Se eliminará tu cuenta permanentemente.",
+    "eliminado_exito": "Tu cuenta ha sido eliminada correctamente.",
+    "eliminado_error": "Hubo un error al eliminar la cuenta"
   },
 
   "login":{
+    "iniciar_sesion": "Iniciar sesión",
     "email": "Correo electrónico",
     "password": "Contraseña",
     "dato_requerido": "Dato requerido.",
@@ -216,8 +237,42 @@
     "email_formato_incorrecto":"Formato de correo electrónico incorrecto",
     "password_formato_incorrecto": "La contraseña debe tener un mínimo de 8 caracteres y máximo 20",
     "alert_registro_exito": "Usuario creado con éxito",
-    "alert_registro_error": "Error al crear el usuario. Inténtalo de nuevo."
+    "alert_registro_error": "Error al crear el usuario. Inténtalo de nuevo.",
+    "volver_login": "Volver a",
+    "iniciar_sesion": "Iniciar sesión.",
+    "ver_terminos": "Ver términos y condiciones",
+    "ocultar_terminos": "Ocultar términos y condiciones",
+    "titulo_terminos": "Términos y Condiciones",
+    "texto_terminos": "Al utilizar esta plataforma, aceptas cumplir con nuestras normas de uso, políticas de privacidad y condiciones legales. Por favor, revisa estos términos detenidamente antes de continuar.",
+    "alert_email_existente": "Este correo ya está en uso"
   },
+  "creditos": {
+    "titulo": "Sobre nosotros",
+    "desarrolladora": "Desarrolladora:",
+    "curso": "Curso:",
+    "curso_valor": "2º Desarrollo de Aplicaciones Web (DAW)",
+    "backend": "Backend:",
+    "frontend": "Frontend:",
+    "traduccion": "Traducción:",
+    "hosting": "Hosting:",
+    "iconos": "Íconos:",
+    "soporte_titulo": "Soporte",
+    "soporte_descripcion": "Si tienes dudas, problemas técnicos o sugerencias, puedes contactarnos a través de:",
+    "correo": "acarrod1605@g.educaand.es",
+    "github": "Reportar un error en GitHub",
+    "whatsapp": "Soporte vía WhatsApp",
+    "video_titulo": "Video tutorial",
+    "video_descripcion": "Si necesitas ayuda para utilizar la aplicación, puedes ver este video tutorial."
+  },
+  "footer": {
+    "acerca_de": "Acerca de",
+    "ayuda": "Ayuda",
+    "descripcion_acerca": "Esta aplicación ha sido desarrollada por Alejandra Carrasquilla Rodríguez-Córdoba, alumna del IES Trassierra, como proyecto educativo para fomentar la lectura colaborativa.",
+    "descripcion_ayuda": "Si experimentas problemas críticos durante el uso de la aplicación (como errores al guardar libros o fallos en la visualización), por favor recarga la página. Para soporte adicional, contacta con nuestro equipo.",
+    "copyright":
+      "Page2page - Alejandra Carrasquilla Rodríguez-Córdoba"
+  },
+
   "sweetAlert":{
     "confirmar_eliminar": "Sí, eliminar",
     "cancelar": "Cancelar",

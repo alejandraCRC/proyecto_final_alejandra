@@ -247,7 +247,7 @@
     "alert_email_existente": "Este correo ya está en uso"
   },
   "creditos": {
-    "titulo": "Créditos & Soporte",
+    "titulo": "Sobre nosotros",
     "desarrolladora": "Desarrolladora:",
     "curso": "Curso:",
     "curso_valor": "2º Desarrollo de Aplicaciones Web (DAW)",
@@ -258,15 +258,17 @@
     "iconos": "Íconos:",
     "soporte_titulo": "Soporte",
     "soporte_descripcion": "Si tienes dudas, problemas técnicos o sugerencias, puedes contactarnos a través de:",
-    "correo": "soporte.com",
+    "correo": "acarrod1605@g.educaand.es",
     "github": "Reportar un error en GitHub",
-    "whatsapp": "Soporte vía WhatsApp"
+    "whatsapp": "Soporte vía WhatsApp",
+    "video_titulo": "Video tutorial",
+    "video_descripcion": "Si necesitas ayuda para utilizar la aplicación, puedes ver este video tutorial."
   },
   "footer": {
     "acerca_de": "Acerca de",
     "ayuda": "Ayuda",
     "descripcion_acerca": "Esta aplicación ha sido desarrollada por Alejandra Carrasquilla Rodríguez-Córdoba, alumna del IES Trassierra, como proyecto educativo para fomentar la lectura colaborativa.",
-    "descripcion_ayuda": "Si experimentas problemas críticos durante el uso de la aplicación (como errores al guardar libros o fallos en la visualización), por favor recarga la página. Para soporte adicional, contacta con nuestro equipo.",
+    "descripcion_ayuda": "Si experimentas problemas críticos durante el uso de la aplicación (como errores al guardar libros o fallos en la visualización), por favor recarga la página. Para soporte adicional, contacta con nuestro equipo o si tienes dudas en cuanto al funcionamiento revisa la página 'sobre nosotros'.",
     "copyright":
       "Page2page - Alejandra Carrasquilla Rodríguez-Córdoba"
   },

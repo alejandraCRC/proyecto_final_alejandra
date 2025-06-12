@@ -71,8 +71,8 @@
     "salido_exito_texto": "You will no longer receive updates from this club.",
     "publicacion_guardada": "Post saved!",
     "publicacion_guardada_texto": "Your post has been successfully saved.",
-    "comentario_guardado": "¡Comentario guardado!",
-    "comentario_guardado_texto": "Tu comentario ha sido añadido correctamente."
+    "comentario_guardado": "Comment saved!",
+    "comentario_guardado_texto": "Your comment has been added successfully."
   },
 
   "lectura": {
@@ -149,8 +149,20 @@
   "error_eliminar_libro_titulo": "Error",
   "error_eliminar_libro_texto": "The book could not be deleted",
   "alert_guardado_exito": "Book saved successfully",
-  "alert_guardado_error": "Error saving the book. Please try again."
-
+  "alert_guardado_error": "Error saving the book. Please try again.",
+  "ordenar_por_calificacion": "Sort by rating",
+  "de_mayor_a_menor": "From highest to lowest",
+  "de_menor_a_mayor": "From lowest to highest",
+  "sin_ordenar": "Unsorted",
+  "recientes": "Recent",
+  "confirmar_eliminar_resenia": "Delete review?",
+  "confirmar_eliminar_resenia_texto": "Are you sure you want to delete this review? This action cannot be undone.",
+  "resenia_eliminada": "Review deleted",
+  "resenia_eliminada_texto": "The review has been successfully deleted.",
+  "error_eliminar_resenia_titulo": "Deletion error",
+  "error_eliminar_resenia_texto": "Could not delete the review. Please try again.",
+  "estado_ya_guardado": "No state change detected",
+  "estado_igual": "This state is already saved for the book."
 },
 
 "resenia": {
@@ -166,7 +178,8 @@
   "nombre": "Name",
   "email": "Email",
   "bio": "Biography",
-  "guardar_cambios": "Save changes"
+  "guardar_cambios": "Save changes",
+  "eliminar_cuenta": "Delete account"
 },
 
 "listaUsuarios": {
@@ -195,10 +208,15 @@
     "alert_seguir_exito": "You are now following this user.",
     "alert_seguir_error": "Could not follow the user. Please try again.",
     "alert_dejar_seguir_exito": "You have unfollowed the user.",
-    "alert_dejar_seguir_error": "Could not unfollow the user. Please try again."
+    "alert_dejar_seguir_error": "Could not unfollow the user. Please try again.",
+    "eliminar_titulo": "Are you sure?",
+    "eliminar_texto": "This action cannot be undone. Your account will be permanently deleted.",
+    "eliminado_exito": "Your account has been successfully deleted.",
+    "eliminado_error": "There was an error deleting the account"
   },
 
   "login":{
+    "iniciar_sesion": "Login",
     "email": "Email",
     "password": "Password",
     "dato_requerido": "Required",
@@ -219,8 +237,40 @@
     "email_formato_incorrecto": "Invalid email format",
     "password_formato_incorrecto": "Password must be between 8 and 20 characters",
     "alert_registro_exito": "User successfully created",
-    "alert_registro_error": "Error creating the user. Please try again."
-
+    "alert_registro_error": "Error creating the user. Please try again.",
+    "volver_login": "Back to ",
+    "iniciar_sesion": "Login",
+    "ver_terminos": "View terms and conditions",
+    "ocultar_terminos": "Hide terms and conditions",
+    "titulo_terminos": "Terms and Conditions",
+    "texto_terminos": "By using this platform, you agree to comply with our usage rules, privacy policies, and legal conditions. Please review these terms carefully before proceeding.",
+    "alert_email_existente": "An account with this email already exists. Please use a different email."
+  },
+  "creditos": {
+    "titulo": "About us",
+    "desarrolladora": "Developer:",
+    "curso": "Course:",
+    "curso_valor": "2nd Year Web Application Development (DAW)",
+    "backend": "Backend:",
+    "frontend": "Frontend:",
+    "traduccion": "Translation:",
+    "hosting": "Hosting:",
+    "iconos": "Icons:",
+    "soporte_titulo": "Support",
+    "soporte_descripcion": "If you have questions, technical issues, or suggestions, you can contact us through:",
+    "correo": "acarrod1605@g.educaand.es",
+    "github": "Report an issue on GitHub",
+    "whatsapp": "Support via WhatsApp",
+    "video_titulo": "Tutorial video",
+    "video_descripcion": "Watch our tutorial video to learn how to use the application."
+  },
+   "footer": {
+    "acerca_de": "About",
+    "ayuda": "Help",
+    "descripcion_acerca": "This application was developed by Alejandra Carrasquilla Rodríguez-Córdoba, a student at IES Trassierra, as an educational project to promote collaborative reading.",
+    "descripcion_ayuda": "If you encounter critical issues while using the application (such as errors when saving books or display failures), please reload the page. For additional support, contact our team.",
+    "copyright":
+      "Page2page - Alejandra Carrasquilla Rodríguez-Córdoba"
   },
   "sweetAlert": {
   "confirmar_eliminar": "Yes, delete",

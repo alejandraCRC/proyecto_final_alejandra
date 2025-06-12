@@ -247,7 +247,7 @@
     "alert_email_existente": "An account with this email already exists. Please use a different email."
   },
   "creditos": {
-    "titulo": "Credits & Support",
+    "titulo": "About us",
     "desarrolladora": "Developer:",
     "curso": "Course:",
     "curso_valor": "2nd Year Web Application Development (DAW)",
@@ -258,9 +258,11 @@
     "iconos": "Icons:",
     "soporte_titulo": "Support",
     "soporte_descripcion": "If you have questions, technical issues, or suggestions, you can contact us through:",
-    "correo": "soporte.com",
+    "correo": "acarrod1605@g.educaand.es",
     "github": "Report an issue on GitHub",
-    "whatsapp": "Support via WhatsApp"
+    "whatsapp": "Support via WhatsApp",
+    "video_titulo": "Tutorial video",
+    "video_descripcion": "Watch our tutorial video to learn how to use the application."
   },
    "footer": {
     "acerca_de": "About",
