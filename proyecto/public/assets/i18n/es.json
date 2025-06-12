@@ -10,9 +10,9 @@
   },
 
   "error_404": {
-    "title": "Error 404",
-    "message": "La página que estás buscando no se pudo encontrar",
-    "button": "Ir a la página de inicio"
+    "titulo": "Error 404",
+    "mensaje": "La página que estás buscando no se pudo encontrar",
+    "boton": "Ir a la página de inicio"
   },
 
   "comentario": {
